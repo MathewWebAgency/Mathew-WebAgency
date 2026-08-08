@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Neue Website mit Projektgalerie für den Garten- und Landschaftsbau">
+  <!-- TODO: Durch einen echten Screenshot des Projekts ersetzen. -->
+  <rect width="800" height="500" fill="#e7eae4"/>
+  <g font-family="monospace" font-size="11" fill="#59635f" letter-spacing="1.6">
+    <text x="40" y="38">GALABAU · MÜNSTERLAND</text>
+  </g>
+  <rect x="690" y="24" width="70" height="20" rx="10" fill="#14523a"/>
+  <text x="725" y="38" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">Projekte</text>
+  <rect x="40" y="60" width="720" height="1" fill="#c9cec6"/>
+
+  <rect x="430" y="92" width="330" height="266" rx="8" fill="#14523a"/>
+  <path d="M520 358 v-70 h30 v-40 h28 l17 -30 l17 30 h28 v40 h30 v70 Z" fill="#c8b48c" opacity="0.34"/>
+
+  <text x="40" y="150" font-family="Helvetica, Arial" font-size="42" font-weight="bold" fill="#10171a">Gärten, die</text>
+  <text x="40" y="200" font-family="Helvetica, Arial" font-size="42" fill="#14523a">man sehen muss.</text>
+  <rect x="40" y="232" width="330" height="7" rx="3" fill="#b8bfb7"/>
+  <rect x="40" y="250" width="280" height="7" rx="3" fill="#b8bfb7"/>
+  <rect x="40" y="268" width="310" height="7" rx="3" fill="#b8bfb7"/>
+
+  <rect x="40" y="300" width="150" height="34" rx="17" fill="#14523a"/>
+  <text x="115" y="322" text-anchor="middle" font-family="Arial" font-size="13" fill="#fff">Projekte</text>
+
+  <rect x="40" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.90"/><rect x="164" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.77"/><rect x="288" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.64"/><rect x="412" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.51"/><rect x="536" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.38"/><rect x="660" y="386" width="112" height="80" rx="5" fill="#14523a" opacity="0.25"/>
+</svg>

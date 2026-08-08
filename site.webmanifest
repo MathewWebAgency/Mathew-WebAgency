@@ -1,0 +1,14 @@
+{
+  "name": "Mathew WebAgency",
+  "short_name": "Mathew",
+  "description": "Webdesign aus Münster – handgebaute Websites für Handwerk, Kanzleien und Dienstleister.",
+  "lang": "de",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E7EAE4",
+  "theme_color": "#10171A",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,8 @@
+# macOS / iCloud
+.DS_Store
+.AppleDouble
+Icon?
+._*
+
+# Lokale Claude-Code-Einstellungen (nicht teilen)
+.claude/settings.local.json

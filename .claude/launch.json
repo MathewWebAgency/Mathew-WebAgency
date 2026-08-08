@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mathew-webagency",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4173",
+        "--directory",
+        "/Users/aaronmathew/Library/Mobile Documents/com~apple~CloudDocs/Claude Code Websites/Mathew WebAgency"
+      ],
+      "port": 4173
+    }
+  ]
+}
