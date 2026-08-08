@@ -2122,7 +2122,8 @@ button {
     opacity: 1;
     transform: none;
   }
-  /* Statt der gepinnten Baustelle: beide Zustände ruhig nebeneinander. */
+  /* Statt der gepinnten Baustelle: beide Zustände ruhig nebeneinander.
+     Der animierte Kopf entfällt – "Scroll weiter" wäre hier eine Lüge. */
   .rb {
     height: auto;
   }
@@ -2130,14 +2131,18 @@ button {
     position: static;
     height: auto;
   }
-  .rb__field,
-  .rb__caption {
+  .rb__head,
+  .rb__field {
     display: none;
   }
   .rb__static {
     display: grid;
     gap: 1.25rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .rb__static-head {
+    grid-column: 1 / -1;
+    margin-bottom: 0.75rem;
   }
   .ticker__row {
     animation: none;
