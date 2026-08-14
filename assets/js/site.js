@@ -51,7 +51,9 @@
   function initHeader() {
     var hdr = document.querySelector('.hdr');
     if (!hdr) return;
-    var dark = document.querySelector('.hero, .phead');
+    /* Nur die Unterseiten öffnen dunkel. Die Startseite beginnt auf Papier,
+       dort läuft der Header von Anfang an in normaler Optik. */
+    var dark = document.querySelector('.phead');
 
     function onScroll() {
       hdr.classList.toggle('is-stuck', window.scrollY > 24);
@@ -152,17 +154,6 @@
     });
   }
 
-  /* Laufband verdoppeln, damit die Schleife lückenlos läuft. */
-  function initTicker() {
-    document.querySelectorAll('.ticker').forEach(function (t) {
-      var row = t.querySelector('.ticker__row');
-      if (!row) return;
-      var clone = row.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      t.appendChild(clone);
-    });
-  }
-
   /* ---------------------------------------------------------------- 2 ---- */
   /* SIGNATURE — "Die Baustelle"
      Eine Baukastenseite wird beim Scrollen abgerissen und neu gebaut.
@@ -199,33 +190,33 @@
         at: 0,
         phase: 'alt',
         label: 'Bestand',
-        url: 'www.beispiel-betrieb.de/index.htm',
-        title: 'So sieht die Seite aus, die du ablösen willst.',
-        text: 'Baukasten-Vorlage, Systemschrift, Stockfoto-Platzhalter, Cookie-Wand über dem halben Inhalt. Auf dem Handy wird es nicht besser.'
+        url: 'www.tischlerei-brinkmann.de/start.htm',
+        title: 'Eine Tischlerei, die keiner findet.',
+        text: 'Brinkmann baut Einbauschränke nach Maß. Die Seite sagt „Herzlich Willkommen“, führt ein Gästebuch im Menü und stellt eine Cookie-Wand über den halben Inhalt.'
       },
       {
         at: 0.22,
         phase: 'abriss',
         label: 'Abriss',
-        url: 'www.beispiel-betrieb.de/index.htm',
+        url: 'www.tischlerei-brinkmann.de/start.htm',
         title: 'Alles raus, was keine Anfrage bringt.',
-        text: 'Blindtext, Zierrat, Besucherzähler. Wir behalten nur, was ein Kunde wirklich sucht: was du machst, für wen, und wie er dich erreicht.'
+        text: 'Blindtext, Zierrat, Besucherzähler. Es bleibt nur, wonach ein Kunde tatsächlich sucht: was der Betrieb macht, wie es aussieht, und wie man einen Termin bekommt.'
       },
       {
         at: 0.52,
         phase: 'neu',
         label: 'Aufbau',
-        url: 'beispiel-betrieb.de',
-        title: 'Struktur zuerst, dann Gestaltung.',
-        text: 'Eine klare Aussage oben, ein Bild, das dein Handwerk zeigt, ein Weg zum Kontakt. Handgeschriebener Code statt Baukasten-Ballast.'
+        url: 'tischlerei-brinkmann.de',
+        title: 'Erst die Aussage, dann alles andere.',
+        text: '„Möbel nach Maß. Aus einer Werkstatt.“ steht in der ersten Zeile. Daneben die Arbeit selbst, darunter ein Satz, der erklärt, wofür man Brinkmann holt.'
       },
       {
         at: 0.88,
         phase: 'neu',
         label: 'Fertig',
-        url: 'beispiel-betrieb.de',
-        title: 'Fertig. Und zwar auf jedem Gerät.',
-        text: 'Unter einer Sekunde Ladezeit, lesbar auf dem Handy im Transporter, gefunden bei „Betrieb in Münster". Genau das bauen wir für dich.'
+        url: 'tischlerei-brinkmann.de',
+        title: 'Ein Weg. Auf jedem Gerät derselbe.',
+        text: 'Ein Ziel pro Seite, lesbar auf dem Handy in der Werkstatt. Was Brinkmann kann, sieht man jetzt in der ersten Sekunde – nicht erst im dritten Klick.'
       }
     ];
 
@@ -257,16 +248,18 @@
     var oldCounter = old.querySelector('.old__counter');
     var oldCookie = old.querySelector('.old__cookie');
 
-    var newEyebrow = neu.querySelector('.new__eyebrow');
-    var newH = neu.querySelector('.new__h');
+    var newBar = neu.querySelector('.new__bar');
     var newHParts = neu.querySelectorAll('.new__h > *');
     var newImg = neu.querySelector('.new__img');
+    var newShelves = neu.querySelectorAll('.new__shelf i');
+    var newCopy = neu.querySelector('.new__copy');
     var newCta = neu.querySelector('.new__cta');
-    var newFacts = neu.querySelectorAll('.new__facts div');
+    var newStrip = neu.querySelectorAll('.new__strip span');
 
     gsap.set(neu, { opacity: 0 });
     gsap.set(grid, { opacity: 0 });
-    gsap.set([newEyebrow, newHParts, newFacts], { opacity: 0, y: 14 });
+    gsap.set([newBar, newHParts, newCopy, newStrip], { opacity: 0, y: 14 });
+    gsap.set(newShelves, { opacity: 0, x: -18 });
     gsap.set(newImg, { clipPath: 'inset(0% 0% 100% 0%)' });
     gsap.set(newCta, { opacity: 0, scale: 0.5 });
     if (phone) gsap.set(phone, { opacity: 0, x: 90, rotate: 6 });
@@ -347,7 +340,7 @@
 
     /* --- Aufbau: von oben nach unten, wie ein echtes Layout ---------- */
     tl.to(neu, { opacity: 1, duration: 0.04 }, 0.5)
-      .to(newEyebrow, { opacity: 1, y: 0, duration: 0.06 }, 0.53)
+      .to(newBar, { opacity: 1, y: 0, duration: 0.06 }, 0.53)
       .to(
         newHParts,
         { opacity: 1, y: 0, duration: 0.1, stagger: 0.05 },
@@ -362,10 +355,22 @@
         },
         0.63
       )
+      /* Die Regalböden schieben sich ein — wie beim Einbauen. */
+      .to(
+        newShelves,
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.1,
+          stagger: 0.025,
+          ease: 'power2.out'
+        },
+        0.7
+      )
       .to(
         newCta,
         { opacity: 1, scale: 1, duration: 0.1, ease: 'back.out(2.4)' },
-        0.72
+        0.78
       );
 
     if (phone) {
@@ -376,11 +381,13 @@
       );
     }
 
-    tl.to(
-      newFacts,
-      { opacity: 1, y: 0, duration: 0.08, stagger: 0.03 },
-      0.86
-    ).to(frame, { scale: 1, duration: 0.1 }, 0.9);
+    tl.to(newCopy, { opacity: 1, y: 0, duration: 0.07 }, 0.84)
+      .to(
+        newStrip,
+        { opacity: 1, y: 0, duration: 0.07, stagger: 0.02 },
+        0.88
+      )
+      .to(frame, { scale: 1, duration: 0.1 }, 0.9);
 
     /* Für Tests: erlaubt es, die Timeline von außen abzuspielen. */
     window.__rb = tl;
@@ -446,7 +453,6 @@
     initLenis();
     initHeader();
     initMenu();
-    initTicker();
     initReveals();
     initLv();
     initFaq();

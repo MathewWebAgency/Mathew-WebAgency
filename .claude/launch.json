@@ -5,13 +5,10 @@
       "name": "mathew-webagency",
       "runtimeExecutable": "python3",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "4173",
-        "--directory",
-        "/Users/aaronmathew/Library/Mobile Documents/com~apple~CloudDocs/Claude Code Websites/Mathew WebAgency"
+        "/Users/aaronmathew/Library/Mobile Documents/com~apple~CloudDocs/Claude Code Websites/Mathew WebAgency/.claude/devserver.py"
       ],
-      "port": 4173
+      "port": 4173,
+      "autoPort": false
     }
   ]
 }

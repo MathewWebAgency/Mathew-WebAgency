@@ -22,8 +22,8 @@ ohne sich dafür in einen sechsmonatigen Prozess zu begeben.
 
 ## Product Purpose
 
-Handgebaute Websites (plus lokale Auffindbarkeit, laufende Betreuung, Videoproduktion und
-digitales Marketing) für Betriebe, die mehr wollen als „online sein".
+Websites (plus lokale Auffindbarkeit, laufende Betreuung, Videoproduktion und digitales
+Marketing) für Betriebe, die mehr wollen als „online sein".
 
 Diese Website selbst ist das Verkaufsinstrument der Agentur: Sie muss Vertrauen herstellen
 und zu genau einer Handlung führen — dem kostenlosen 30-Minuten-Erstgespräch. Erfolg ist
@@ -31,10 +31,17 @@ nicht Traffic, sondern die Zahl qualifizierter Erstgespräch-Anfragen.
 
 ## Positioning
 
-Der Auftritt beweist die Behauptung, indem er selbst das Gegenteil eines Baukastens ist —
-„Von Hand gebaut. Nicht zusammengeklickt." Ein Wettbewerber, der auf WordPress-Themes oder
-einem Baukasten arbeitet, könnte diesen Satz nicht wahrheitsgemäß sagen, und eine
-klassische Agentur könnte das Tempo- und Preisversprechen nicht halten.
+Das Ergebnis zählt, nicht der Herstellungsweg. Bestätigt vom Inhaber (2026-08-10): Die
+Website darf **nicht** behaupten, der Code sei von Hand geschrieben — das ist er nicht,
+und den Kunden interessiert es ohnehin nicht. Formulierungen wie „von Hand gebaut",
+„handgebauter Code" oder „handgeschrieben" sind aus der gesamten Website entfernt und
+dürfen nicht zurückkehren, auch nicht in abgewandelter Form.
+
+Was stattdessen trägt und wahr bleibt: Die Seite entsteht **für diesen einen Betrieb**,
+nicht aus einer Vorlage und nicht in einem Baukasten — das ist eine Aussage über das
+Produkt, nicht über die Werkzeuge, und ein Wettbewerber auf WordPress-Themes kann sie
+nicht wahrheitsgemäß machen. Dazu die Konditionen, die eine klassische Agentur nicht
+halten kann:
 
 Vier konkrete Gegenpositionen zur klassischen Agentur, alle bestätigt und alle einlösbar:
 
@@ -58,10 +65,13 @@ Die Zusammenarbeit ist vollständig remote (Telefon, Videocall).
 
 ## Capabilities and Constraints
 
-**Leistungen (fünf, alle selbst erbracht, kein Weiterreichen an Freelancer):** Websites ·
-Auffindbarkeit (lokale Suche, Google-Business-Profil, Technik-SEO) · Betreuung (Updates,
-Backups, Inhaltsänderungen) · Video (Image- und Erklärvideos, Kurzformate, KI-gestützt
-produziert) · Marketing (Google- und Social-Anzeigen, Content-Plan, monatliche Auswertung).
+**Reines Webdesign-Unternehmen.** Bestätigt vom Inhaber (2026-08-10): Videografie,
+Marketing und alles Vergleichbare gehören **nicht** zum Angebot und sind aus der Website
+entfernt. Nicht wieder aufnehmen, ohne dass der Inhaber es ausdrücklich sagt.
+
+**Leistungen (drei, alle selbst erbracht, kein Weiterreichen an Freelancer):** Websites ·
+Auffindbarkeit (lokale Suche, Google-Business-Profil, Technik-SEO) · Betreuung (Hosting,
+Domain, SSL, Updates, Backups, Inhaltsänderungen, laufende Auffindbarkeit).
 
 **Technisch verbindlich:** statisches HTML/CSS/Vanilla JS, kein Framework, kein Build-Step.
 GSAP + ScrollTrigger + Lenis liegen lokal im Repo. Zur Laufzeit werden keine externen
@@ -74,21 +84,33 @@ durchgehend. Der Betrieb heißt „Betrieb", nicht „Unternehmen" oder „Busin
 
 **Offene Entscheidungen — nicht erfinden, sondern klären:**
 
-- *Sitz und Impressum.* Es gibt keinen Sitz in Münster. Die Anschrift für Impressum,
-  Datenschutz und AGB steht noch nicht fest; alle drei Seiten tragen dort TODOs.
-  Rechtlich zwingend vor Launch.
-- *Kein regionaler Fokus.* Bestätigt: Die Agentur arbeitet bundesweit remote und hat
-  keinen regionalen Zielmarkt. Die gesamte bestehende Website behauptet jedoch das
-  Gegenteil — Koordinaten 51.96° N im Hero und Footer, „Nur Leute aus Münster", „ein
-  Termin bei dir im Büro ist keine Fahrt, sondern eine Fahrradstrecke", `areaServed:
-  Münster` und `addressLocality: Münster` im Schema-Markup, der Seitentitel „Webdesign
-  Münster", „Arbeitet ihr nur in Münster?" in der FAQ. Diese Ortsbehauptungen sind
-  unbelegt und müssen aufgelöst werden, bevor die Seite live geht.
+- *Preismodell.* Zwei Teile: einmalig für den Aufbau, danach ein fester Monatsbetrag für
+  Hosting, Domain, SSL, Wartung und laufende Auffindbarkeit; monatlich kündbar. Als
+  Größenordnung im Gespräch genannt: rund 1999 € einmalig und 49 € monatlich — **beide
+  Zahlen sind noch nicht final und dürfen nirgends auf der Website erscheinen.** Die Seite
+  verkauft das Modell (ein Betrag statt vier Verträge, ein Ansprechpartner, kündbar), nicht
+  den Preis. Erst wenn der Inhaber die Zahlen freigibt, dürfen sie genannt werden.
+- *Kein regionaler Fokus.* Bestätigt: Die Agentur arbeitet bundesweit und vollständig
+  aus der Ferne. Sie hat keinen regionalen Zielmarkt und keinen Sitz in Münster.
+  Erledigt (Stand 2026-08-10): Sämtliche Ortsbehauptungen sind aus allen zehn Seiten
+  entfernt — Koordinaten, Seitentitel, Meta- und OG-Texte, `areaServed` und `address`
+  im Schema-Markup, die FAQ-Antworten, die Fahrradstrecke-Zusage und „Nur Leute aus
+  Münster". `areaServed` steht jetzt auf Deutschland, eine Adresse führt das Markup
+  nicht mehr, bis das Impressum eine echte hat. Auch der Stufengiebel ist entfallen
+  und das Designsystem heißt nicht mehr „Promenadengrün".
 - *Formular.* `kontakt.html` hat noch keinen Endpoint (Platzhalter
   `DEIN-FORMSPREE-ENDPOINT`). Bis dahin zeigt es bewusst einen Hinweis mit Telefonnummer
   und E-Mail, statt ins Leere zu senden.
-- *Preise.* Es gibt keine veröffentlichte Preisliste und keine Preisspanne. Der Festpreis
-  entsteht nach dem Erstgespräch. Keine Zahl erfinden.
+- *Referenzen.* Der gesamte Projekt-/Referenzbereich ist auf Wunsch des Inhabers entfernt
+  (Seite `referenzen.html`, Startseiten-Sektion, Navigationseinträge, Platzhalter-SVGs).
+  Kommt zurück, sobald echte Projekte mit Freigabe vorliegen.
+
+- *Rechtstexte.* Impressum und Datenschutz sind mit den echten Daten von
+  mathew-webagency.de gefüllt (Kian Mathew, Am Wasserturm 2, 59379 Selm,
+  Kleinunternehmer § 19 UStG). Die Datenschutzerklärung wurde angepasst, nicht kopiert:
+  Newsletter, YouTube und Cookie-Banner der alten Seite gibt es hier nicht. Die AGB
+  ließen sich nur zusammengefasst abrufen und sind deshalb **kein Originalwortlaut** —
+  vor Launch gegen das Original abgleichen.
 
 ## Brand Commitments
 
@@ -96,7 +118,7 @@ durchgehend. Der Betrieb heißt „Betrieb", nicht „Unternehmen" oder „Busin
 sitemap.xml zeigen bereits dorthin).
 
 **Kontakt, öffentlich und bestätigt:** +49 179 2382 180 (auch WhatsApp),
-Mathew-WebAgency@web.de, Instagram @mathew_webagency.
+info@mathew-webagency.de, Instagram @mathew_webagency.
 
 **Ansprache:** Der Betrieb wird von einer Person geführt. Die Website spricht dennoch
 durchgehend von „wir" — das ist eine bewusste, bestätigte Entscheidung und bleibt so.
@@ -109,10 +131,18 @@ gegeneinander laufen.
 gelegentlich trocken. Behauptung und Widerspruch als Satzpaar („Reden kostet nichts.
 Außer 30 Minuten.") sind das wiederkehrende rhetorische Muster.
 
-**Bestehendes Designsystem:** „Kalkgrau & Promenadengrün", vollständig dokumentiert in
-`README.md` und als Tokens in `assets/css/site.css`. Der Stufengiebel ist Logo und
-Ortszeichen zugleich. Beides ist bislang aus Münster hergeleitet und steht deshalb unter
-demselben Vorbehalt wie oben.
+**Bestehendes Designsystem:** „Kalkgrau & Tiefgrün", vollständig dokumentiert in
+`README.md` und als Tokens in `assets/css/site.css`. Die Palette ist vom Nutzer
+bestätigt und bleibt. Hergeleitet ist sie jetzt aus dem Angebot auf Papier, nicht
+mehr aus Münster.
+
+**Logo:** ein M-Monogramm mit Wortmarke, vom Nutzer geliefert. Die Datei liegt noch
+nicht im Projekt (erwartet als `assets/img/logo.svg`). Zwei offene Punkte dazu: Das
+Monogramm lebt von schmalen Schlitzen zwischen den Diagonalen und braucht für
+Header-Größe (22 px) eine vereinfachte Fassung; und die Wortmarke setzt „WebAgency"
+in einer kontrastreichen Serif, die im Typo-System der Seite (Bricolage Grotesque,
+Instrument Sans) keine Entsprechung hat — im Header deshalb nur das Monogramm plus
+Seitenschrift, das volle Lockup für Impressum, Rechnungen und OG-Bild.
 
 ## Evidence on Hand
 
@@ -133,9 +163,10 @@ Platzhalter durch Belegtes oder entfernt sie — sie füllt sie nicht mit Plausi
 
 ## Product Principles
 
-1. **Der Auftritt ist der Beweis.** Was die Seite über handgebaute Qualität behauptet,
-   muss sie an sich selbst vorführen — in Ladezeit, Code und Gestaltung. Ein
-   Baukasten-Reflex auf dieser Seite widerlegt das Angebot.
+1. **Der Auftritt ist der Beweis.** Was die Seite über Qualität behauptet, muss sie an
+   sich selbst vorführen — in Ladezeit, Struktur und Gestaltung. Ein Baukasten-Reflex auf
+   dieser Seite widerlegt das Angebot. Der Beweis liegt im Ergebnis, nie im
+   Herstellungsweg: Wie die Seite entstanden ist, ist kein Verkaufsargument.
 2. **Ein Ziel pro Seite.** Jede Seite führt zum Erstgespräch. Zweitziele, die davon
    ablenken, kommen nicht dazu.
 3. **Nur behaupten, was belegt ist.** Lieber eine Lücke sichtbar lassen als sie mit
