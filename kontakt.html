@@ -23,7 +23,7 @@
 
 <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260819d">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260819k">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,7 +35,15 @@
   "telephone": "+491792382180",
   "image": "https://mathew-webagency.de/assets/img/og-image.png",
   "priceRange": "\u20ac\u20ac",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Am Wasserturm 2",
+    "postalCode": "59379",
+    "addressLocality": "Selm",
+    "addressCountry": "DE"
+  },
   "areaServed": { "@type": "Country", "name": "Deutschland" },
+  "founder": { "@type": "Person", "name": "Kian Mathew" },
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -93,7 +101,7 @@
   <section class="phead band--ink">
     <div class="wrap">
       <h1>Reden kostet nichts. <span class="claim-b">Außer 30 Minuten.</span></h1>
-      <p class="lead">Erzähl uns kurz, worum es geht – wir melden uns mit einem Terminvorschlag.</p>
+      <p class="lead">Erzähl uns kurz, worum es geht – wir melden uns mit einem Terminvorschlag. Antwort innerhalb von 24&nbsp;Stunden, meistens deutlich schneller.</p>
     </div>
   </section>
 
@@ -103,11 +111,7 @@
         <div>
           <h2 class="display-m">Vier Felder. Mehr brauchen wir nicht.</h2>
 
-          <!-- TODO: Formular anschließen. Auf https://formspree.io ein kostenloses
-               Formular anlegen und unten in action="" die echte Endpoint-URL
-               eintragen, z. B. action="https://formspree.io/f/abcdwxyz".
-               Danach Datenschutzerklärung um den Anbieter ergänzen. -->
-          <form class="form" method="POST" action="DEIN-FORMSPREE-ENDPOINT" style="margin-top:2rem">
+          <form class="form" method="POST" action="https://formspree.io/f/myeglzod" style="margin-top:2rem">
             <label class="field">
               <span>Name</span>
               <input type="text" name="name" autocomplete="name" required>
@@ -136,7 +140,6 @@
               <button class="btn" type="submit">Nachricht senden <span class="btn__arrow" aria-hidden="true">→</span></button>
             </div>
             <p class="form__status" role="status"></p>
-            <p class="form__note">Antwort innerhalb von 24 Stunden – meistens deutlich schneller.</p>
           </form>
         </div>
 
@@ -236,6 +239,6 @@
 <script src="/assets/js/gsap.min.js" defer></script>
 <script src="/assets/js/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/lenis.min.js" defer></script>
-<script src="/assets/js/site.js?v=20260819d" defer></script>
+<script src="/assets/js/site.js?v=20260819k" defer></script>
 </body>
 </html>

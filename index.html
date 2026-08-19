@@ -23,11 +23,8 @@
 
 <link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260819d">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260819k">
 
-<!-- TODO: Sobald die Geschäftsanschrift feststeht, "address" mit den echten Daten
-     aus dem Impressum ergänzen. Bis dahin steht hier keine Adresse: eine erfundene
-     wäre schlechter als gar keine. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +36,21 @@
   "telephone": "+491792382180",
   "image": "https://mathew-webagency.de/assets/img/og-image.png",
   "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Am Wasserturm 2",
+    "postalCode": "59379",
+    "addressLocality": "Selm",
+    "addressCountry": "DE"
+  },
   "areaServed": { "@type": "Country", "name": "Deutschland" },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "founder": { "@type": "Person", "name": "Kian Mathew" },
   "sameAs": ["https://www.instagram.com/mathew_webagency/"]
 }
 </script>
@@ -507,6 +518,6 @@
 <script src="/assets/js/gsap.min.js" defer></script>
 <script src="/assets/js/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/lenis.min.js" defer></script>
-<script src="/assets/js/site.js?v=20260819d" defer></script>
+<script src="/assets/js/site.js?v=20260819k" defer></script>
 </body>
 </html>

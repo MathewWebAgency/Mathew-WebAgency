@@ -439,17 +439,22 @@ a:not([class]):focus-visible {
 /* --- Typografische Klassen ---------------------------------------------- */
 
 /* Die Display-Grade tragen schwerer als der Fließtext-Schnitt: erst dadurch
-   wird der leichte Widerspruch in .claim-b als eigene Stimme lesbar. */
+   wird der leichte Widerspruch in .claim-b als eigene Stimme lesbar.
+
+   Zur Zeilenhoehe: Fraunces misst von Versalhoehe bis Unterlaenge 0,945 em,
+   mit Umlautpunkten darueber. Die frueheren Werte um 0,92 stammen von der
+   Grotesk und liessen auf schmalen Schirmen das g der einen Zeile in das i
+   der naechsten laufen. Unter 1,0 darf hier nichts mehr stehen. */
 .display-xl {
   font-size: var(--t-display-xl);
   font-weight: 700;
-  line-height: 0.92;
+  line-height: 1;
   letter-spacing: -0.042em;
 }
 .display-l {
   font-size: var(--t-display-l);
   font-weight: 700;
-  line-height: 0.96;
+  line-height: 1.02;
   letter-spacing: -0.036em;
 }
 .display-m {
@@ -488,7 +493,14 @@ a:not([class]):focus-visible {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  padding-bottom: 0.08em;
+  /* Fraunces hat deutlich tiefere Unterlaengen als die vorherige Grotesk:
+     bei 0.08em kappte die Maske das g in "gut." auf halber Hoehe. Der
+     negative Aussenabstand nimmt die Luft aus dem Zeilenfall wieder
+     heraus, damit der Satz gleich sitzt. Wer diesen Wert erhoeht, muss
+     auch den Startversatz in initHeadOpen() erhoehen — sonst lugt das
+     Wort vor der Bewegung unter der Kante hervor. */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
   padding-inline: 0.09em;
   margin-inline: -0.09em;
 }
@@ -791,7 +803,7 @@ a:not([class]):focus-visible {
 
 .hero__h {
   font-size: clamp(2.5rem, 6.9vw, 5rem);
-  line-height: 0.93;
+  line-height: 1;
   letter-spacing: -0.045em;
   font-weight: 700;
   /* Gemessen: Unter 22ch bricht schon die erste Zeile und die Aussage läuft
@@ -2223,11 +2235,7 @@ a:not([class]):focus-visible {
   position: absolute;
   left: -9999px;
 }
-.form__note {
-  font-family: var(--label);
-  font-size: var(--t-label);
-  color: var(--on-paper-dim);
-}
+
 .form__status:empty {
   display: none;
 }

@@ -94,20 +94,21 @@ ein Server ist deshalb nötig – Doppelklick auf die HTML-Datei reicht nicht.
 
 ## Offene TODOs vor dem Launch
 
-Alle Stellen sind im Code markiert: `grep -rn "TODO" *.html assets/`
+Erledigt am 2026-08-19: Formular an Formspree angeschlossen (`myeglzod`, per
+`fetch` mit Bestätigung auf der Seite, Endpoint durchgetestet, HTTP 200), Logo
+als Monogramm in Header und Footer, Anschrift im Schema-Markup, Teilbild und
+App-Symbol neu gebaut.
 
 1. **AGB abgleichen** – der Text wurde von der Live-Seite übertragen, ließ sich
    dort aber nur zusammengefasst abrufen. Vor dem Launch gegen den Originalwortlaut
-   prüfen.
-2. **Formular** – Formspree-Endpoint in `kontakt.html` eintragen (Platzhalter
-   `DEIN-FORMSPREE-ENDPOINT`). Solange er fehlt, zeigt das Formular einen Hinweis
-   mit Telefonnummer und E-Mail an, statt ins Leere zu senden. Danach den
-   Dienstleister in Abschnitt 4 der Datenschutzerklärung ergänzen.
-3. **Logo** – `assets/img/logo.svg` ablegen, dann Monogramm in Header und Footer
-   einsetzen (`.brand__mark` ist im CSS dafür reserviert).
-4. **Preise** – erst nennen, wenn das Modell final ist. Die Seite verkauft aktuell
+   prüfen. Der Hinweiskasten auf der Seite bleibt stehen, bis das erledigt ist.
+2. **Auftragsverarbeitungsvertrag mit Formspree schließen** – Abschnitt 4 der
+   Datenschutzerklärung nennt einen AV-Vertrag samt EU-Standardvertragsklauseln.
+   Der Satz ist erst wahr, wenn der Vertrag im Formspree-Konto tatsächlich
+   abgeschlossen ist. Bis dahin behauptet die Seite etwas, das es nicht gibt.
+3. **Preise** – erst nennen, wenn das Modell final ist. Die Seite verkauft aktuell
    das Modell, nicht die Zahlen.
-5. **Domain prüfen** – Canonical-, OG-URLs und `sitemap.xml` zeigen auf
+4. **Domain prüfen** – Canonical-, OG-URLs und `sitemap.xml` zeigen auf
    `https://mathew-webagency.de/`.
 
 ## Deployment

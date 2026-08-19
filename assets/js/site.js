@@ -229,7 +229,9 @@
       h.appendChild(lineEl);
     });
 
-    gsap.set(words, { yPercent: 108 });
+    /* 132 statt 108: die Maske hat unten 0.2em Luft fuer die Unterlaengen,
+       das Wort muss vor der Bewegung entsprechend tiefer stehen. */
+    gsap.set(words, { yPercent: 132 });
     gsap.to(words, {
       yPercent: 0,
       duration: 0.85,
@@ -683,10 +685,26 @@
 
   /* ---------------------------------------------------------------- 4 ---- */
 
+  /* Das Formular sendet ueber fetch, damit der Absender auf der Seite
+     bleibt und die Bestaetigung dort steht, wo er gerade geschrieben hat —
+     statt auf einer fremden Danke-Seite zu landen und zurueckfinden zu
+     muessen. Ohne JS bleibt der normale POST als Rueckfallebene bestehen;
+     dann uebernimmt der Anbieter die Bestaetigung. */
   function initForm() {
     var form = document.querySelector('.form');
     if (!form) return;
     var status = form.querySelector('.form__status');
+    var submit = form.querySelector('button[type="submit"]');
+    var busy = false;
+
+    function say(state, text) {
+      if (!status) return;
+      status.dataset.state = state;
+      status.textContent = text;
+    }
+
+    var DIREKT =
+      'Schreib uns bitte direkt: info@mathew-webagency.de oder +49 179 2382 180.';
 
     form.addEventListener('submit', function (e) {
       /* Honeypot: Bots füllen Felder, die Menschen nicht sehen. */
@@ -695,21 +713,53 @@
         e.preventDefault();
         return;
       }
+
       /* Ohne echten Endpoint nicht ins Leere senden. */
       var action = form.getAttribute('action') || '';
       if (!action || action.indexOf('DEIN-FORMSPREE-ENDPOINT') !== -1) {
         e.preventDefault();
-        if (status) {
-          status.dataset.state = 'err';
-          status.textContent =
-            'Das Formular ist noch nicht angeschlossen. Schreib uns bis dahin direkt: Mathew-WebAgency@web.de oder +49 179 2382 180.';
-        }
+        say(
+          'err',
+          'Das Formular ist noch nicht angeschlossen. ' + DIREKT
+        );
         return;
       }
-      if (status) {
-        status.dataset.state = '';
-        status.textContent = 'Wird gesendet …';
+
+      /* Ohne fetch laeuft der gewoehnliche POST weiter. */
+      if (!window.fetch) {
+        say('', 'Wird gesendet …');
+        return;
       }
+
+      e.preventDefault();
+      if (busy) return;
+      busy = true;
+      if (submit) submit.disabled = true;
+      say('', 'Wird gesendet …');
+
+      fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          say(
+            'ok',
+            'Angekommen. Wir melden uns innerhalb von 24 Stunden mit einem Terminvorschlag.'
+          );
+        })
+        .catch(function () {
+          /* Der Absender hat gerade Zeit investiert - er darf nicht mit
+             einer Fehlermeldung allein dastehen. Deshalb steht der Weg,
+             der sicher funktioniert, in derselben Zeile. */
+          say('err', 'Das hat nicht geklappt. ' + DIREKT);
+        })
+        .then(function () {
+          busy = false;
+          if (submit) submit.disabled = false;
+        });
     });
   }
 

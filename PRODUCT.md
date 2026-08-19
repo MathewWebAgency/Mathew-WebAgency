@@ -203,10 +203,23 @@ Seite `referenzen.html` sind entfernt; die Dateien existieren nicht mehr. Künft
 Arbeit ersetzt Platzhalter durch Belegtes oder entfernt sie — sie füllt sie nicht
 mit Plausiblem auf.
 
-`assets/img/team-placeholder.svg` ist ebenfalls unbelegt und derzeit ungenutzt.
+`assets/img/team-placeholder.svg` und `assets/img/hero-poster.jpg` waren unbelegt
+und von keiner Seite mehr eingebunden — beide sind entfernt.
+
+**Teilbild und App-Symbol (neu 2026-08-19):** `assets/img/og-image.png` (1200x630)
+und `assets/img/apple-touch-icon.png` (180x180) sind aus dem aktuellen System neu
+gebaut. Die Vorgaenger stammten von Mitte Juli und zeigten gesperrte Versalien, den
+gruenen Radial-Schein, das alte Marineblau und einen abgeloesten Slogan; das
+App-Symbol trug sogar ein voellig anderes Zeichen als der Browser-Tab. Gebaut werden
+sie aus einer SVG mit base64-eingebetteten Schriften, gerastert per
+`qlmanage -t -s <breite>` und zugeschnitten per `sips` — auf diesem Rechner gibt es
+weder Node noch ImageMagick noch rsvg. qlmanage polstert auf ein Quadrat, deshalb
+liegt das Motiv mittig auf einer 1200x1200-Buehne und wird danach mittig
+beschnitten.
 
 **Bilder allgemein:** Auf Wunsch des Inhabers (2026-08-18) wird noch keine Bildwelt
-erzeugt, solange keine Bildrichtung feststeht. Nicht ungefragt generieren.
+erzeugt, solange keine Bildrichtung feststeht. Nicht ungefragt generieren. Das gilt
+fuer Motive, nicht fuer Marken- und Teilbilder aus dem eigenen System.
 
 ## Product Principles
 
