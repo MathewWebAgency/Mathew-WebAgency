@@ -12,33 +12,80 @@
 /* --- Fonts ---------------------------------------------------------------- */
 /* Selbst gehostet: kein Google-Fonts-CDN (DSGVO) und keine externe Abhängigkeit. */
 
+/* Fraunces, variabel (Gewicht 100-900, optische Groesse 9-144, dazu die
+   Achsen SOFT und WONK). WONK laesst g, a und y aus der Achse kippen — das
+   ist der Grund fuer diese Schrift: eine Ueberschrift, die von Hand gesetzt
+   aussieht statt aus einer Bibliothek gegriffen. */
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/bricolage-grotesque-latin.woff2') format('woff2');
+  src: url('../fonts/fraunces-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');
+  src: url('../fonts/fraunces-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+/* Newsreader, variabel (Gewicht 200-800, optische Groesse 6-72). Fuer den
+   Bildschirm gezeichnet, offene Punzen, ruhiger Duktus — sie traegt lange
+   deutsche Woerter, ohne sich neben Fraunces in den Vordergrund zu stellen. */
 @font-face {
-  font-family: 'Instrument Sans';
+  font-family: 'Newsreader';
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 200 800;
   font-display: swap;
-  src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2');
+  src: url('../fonts/newsreader-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/newsreader-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Archivo gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
+   hat eine eigene Farbwelt — es braucht auch eine eigene Schrift, sonst
+   versprechen wir Gestaltung fuer genau diesen Betrieb und zeigen unsere. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/archivo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Space Mono bleibt, aber nur noch im Browserrahmen: Adresszeile, Besucher-
+   zaehler, Massangaben. Dort ist die Schreibmaschine eine echte Konvention.
+   In unserer eigenen Oberflaeche kam sie als gesperrte Versalie vor — genau
+   das Bauteil, das in jeder zweiten Vorlage steckt. Es ist raus. */
 @font-face {
   font-family: 'Space Mono';
   font-style: normal;
@@ -62,18 +109,32 @@
   --on-paper: #10171a;
   --on-paper-dim: #59635f;
   --on-ink: #eef1ec;
-  --on-ink-dim: #97a49d;
+  /* Aus der Sand-Familie getönt, nicht grau: auf dunklem Grund liest sich
+     Grau tot, ein Papierton liest sich wie Bleistift auf Tonpapier. 7.9:1. */
+  --on-ink-dim: #b0ab99;
 
-  /* Akzente */
-  --gruen: #14523a; /* Tiefgrün — die einzige Aktionsfarbe */
+  /* Akzente — zwei Stimmen, klar getrennte Rollen.
+     Grün sagt, was der Besucher tun kann: Schaltflächen, Links, Marker,
+     Fokus. Rost sagt, was wir sagen: der Widerspruch im Satzpaar, die
+     Zeile "Dein Part". Rost ist nie anklickbar — wo es steht, gibt es
+     nichts zu drücken. Dadurch bleibt Grün als Handlungssignal eindeutig,
+     obwohl die Seite mehr Farbe trägt. */
+  --gruen: #14523a; /* Tiefgrün — die Aktionsfarbe */
   --gruen-2: #1d7a54; /* Hover */
   --gruen-hell: #7dc9a3; /* Grün auf dunklem Grund (Kontrast) */
+  --rost: #a8452a; /* Gegenstimme auf Papier — 4.9:1 */
+  --rost-hell: #e0906b; /* Gegenstimme auf Tinte — 7.2:1 */
   --sand: #c8b48c; /* Papierton auf dunklem Grund — nur Linien & Labels */
 
   /* Linien */
   --line-paper: rgba(16, 23, 26, 0.14);
   --line-paper-stark: rgba(16, 23, 26, 0.32);
   --line-ink: rgba(238, 241, 236, 0.16);
+
+  /* Der Marker, den der Zeiger über einen Link zieht. Auf Papier ein
+     verdünntes Tiefgrün, auf Tinte das hellere Grün — beide so schwach,
+     dass die Schrift darüber lesbar bleibt. */
+  --wash: rgba(29, 122, 84, 0.2);
 
   /* Radien — klein, plus echte Pillen. Nichts dazwischen. */
   --r-xs: 3px;
@@ -82,23 +143,36 @@
   --r-pill: 999px;
 
   /* Typo */
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
-  --body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
-  --mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Beschriftungen laufen in der Fließtextschrift. Es gibt keine dritte
+     Schrift mehr in unserer eigenen Oberfläche: die Spalte trägt die
+     Information über ihre Position, nicht über einen Effekt. */
+  --label: var(--body);
+  /* Nur im Browserrahmen des Beispiels. */
+  --code: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+  /* Die Tischlerei Brinkmann setzt ihre eigene Schrift. */
+  --bk-font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
 
   --t-display-xl: clamp(2.6rem, 8.4vw, 7rem);
   --t-display-l: clamp(2.15rem, 5.2vw, 4.1rem);
   --t-display-m: clamp(1.75rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.25rem, 1.9vw, 1.6rem);
-  --t-lead: clamp(1.06rem, 1.5vw, 1.34rem);
-  --t-body: 1.0625rem;
-  --t-small: 0.9375rem;
-  --t-mono: 0.75rem;
+  /* Newsreader hat eine große x-Höhe und trägt lange deutsche Wörter,
+     braucht dafür aber etwas mehr Grad als eine Grotesk. */
+  --t-lead: clamp(1.1rem, 1.55vw, 1.4rem);
+  --t-body: 1.125rem;
+  --t-small: 1rem;
+  --t-label: 0.9rem;
 
   /* Raster */
   --wrap: 1240px;
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --section-y: clamp(5rem, 11vh, 9rem);
+  /* Der Header liegt fest über allem. Gepinnte Bühnen kleben bei top:0 und
+     schoben ihren Kopf sonst darunter — auf dem Handy verschwand dadurch
+     die Überschrift der Baustelle komplett. Gemessen: 79px. */
+  --hdr-h: 79px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -123,8 +197,13 @@ body {
   color: var(--on-paper);
   font-family: var(--body);
   font-size: var(--t-body);
-  line-height: 1.62;
+  font-variation-settings: 'opsz' 16;
+  /* Die Serif hat eine kleinere x-Höhe als die vorherige Grotesk und
+     verträgt deshalb etwas weniger Durchschuss bei gleicher Lesbarkeit.
+     Die optische Achse folgt der Schriftgröße automatisch. */
+  line-height: 1.56;
   font-weight: 400;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* clip statt hidden: hidden würde einen Scroll-Container erzeugen und
@@ -146,11 +225,18 @@ h3,
 h4 {
   font-family: var(--display);
   font-weight: 600;
-  letter-spacing: -0.032em;
-  line-height: 0.98;
+  /* Eine Antiqua vertraegt weniger Engstand als die vorherige Grotesk:
+     -0.032em liess die Serifen ineinanderlaufen. */
+  letter-spacing: -0.015em;
+  line-height: 1.02;
   margin: 0;
   text-wrap: balance;
   font-optical-sizing: auto;
+  /* SOFT rundet die Ecken, WONK kippt g, a und y aus der Achse. Das ist
+     der Grund fuer diese Schrift: eine Ueberschrift, die gesetzt aussieht
+     statt gegriffen. Beide Achsen bleiben dezent - WONK ist ein Schalter,
+     SOFT der Regler, mit dem er ertraeglich wird. */
+  font-variation-settings: 'SOFT' 28, 'WONK' 1;
 }
 
 p {
@@ -179,6 +265,117 @@ button {
   outline: 2px solid var(--gruen-2);
   outline-offset: 3px;
   border-radius: var(--r-xs);
+}
+
+/* --- Zeiger --------------------------------------------------------------- */
+/* Ein nachlaufender Ring, kein Ersatz für den Systemzeiger: der bleibt
+   sichtbar, damit Zielgenauigkeit und Textcursor erhalten bleiben.
+   mix-blend-mode: difference erledigt hell und dunkel in einem — über
+   Kalkgrau erscheint der Ring dunkel, über Tinte hell. Zwei gepflegte
+   Fassungen wären dieselbe Wirkung mit doppelter Arbeit.
+   Wird nur bei feiner Zeigereingabe eingehängt (siehe site.js). */
+
+.cur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 0.3s var(--ease), width 0.3s var(--ease),
+    height 0.3s var(--ease), margin 0.3s var(--ease),
+    background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.cur.is-on {
+  opacity: 1;
+}
+/* Über Bedienelementen füllt sich der Ring und wird kleiner: das Ziel ist
+   erfasst, der Zeiger quittiert es. */
+.cur.is-hot {
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: #fff;
+}
+/* Über Text wird aus dem Ring ein schmaler Strich, der die Schreibrichtung
+   aufnimmt, statt den Satz zu verdecken. */
+.cur.is-text {
+  width: 2px;
+  height: 26px;
+  margin: -13px 0 0 -1px;
+  border-radius: 1px;
+  background: #fff;
+}
+
+/* --- Browser-Oberflächen ------------------------------------------------- */
+/* Auswahl, Cursor, Scrollleiste und Unterlängen gehören zur Gestaltung.
+   Werksseitig kommen sie in Systemblau und gehören damit zu keinem
+   Designsystem — hier stehen sie in der Palette der Seite. */
+
+::selection {
+  background: var(--gruen);
+  color: #fff;
+}
+.band--ink ::selection,
+.phead ::selection,
+.ftr ::selection {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+html {
+  scrollbar-color: var(--on-paper-dim) transparent;
+  scrollbar-width: thin;
+}
+
+input,
+textarea {
+  caret-color: var(--gruen-2);
+}
+
+/* Keine Striche. Unter dem Zeiger wächst ein Marker von der Grundlinie
+   hoch — wie über einer Zeile, die man auf Papier anstreicht. Der Verlauf
+   läuft über background-size statt über eine eigene Ebene: so entsteht
+   kein Stapelkontext, der sich mit dem Zeiger-Ring beißt. */
+a:not([class]) {
+  text-decoration: none;
+  background-image: linear-gradient(var(--wash), var(--wash));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0%;
+  padding-inline: 0.14em;
+  margin-inline: -0.14em;
+  border-radius: 2px;
+  transition: background-size 0.3s var(--ease), color 0.25s var(--ease);
+}
+a:not([class]):hover,
+a:not([class]):focus-visible {
+  background-size: 100% 100%;
+}
+
+/* Links mitten im Fließtext brauchen ein Merkmal im Ruhezustand. Farbe
+   allein trägt es nicht: Tiefgrün steht nur 1,47:1 gegen den Fließtext,
+   nötig wären 3:1 — wer Farben schlecht unterscheidet, fände sie nicht.
+   Das Gewicht leistet es und funktioniert auch in Graustufen. */
+.prose a,
+.faq p a,
+.check a,
+.lgl a {
+  font-weight: 600;
+  color: var(--gruen);
+}
+.band--ink .prose a,
+.band--ink .faq p a,
+.band--ink .check a,
+.band--ink .lgl a {
+  color: var(--gruen-hell);
 }
 
 .skip {
@@ -217,11 +414,17 @@ button {
   padding-block: var(--section-y);
   position: relative;
 }
+/* Direkt unter dem Seitenkopf traegt die volle Bandhoehe nicht: der harte
+   Wechsel von Tinte auf Papier trennt bereits. */
+.phead + .band {
+  padding-top: clamp(2.25rem, 5vh, 3.5rem);
+}
 
 /* Umgekehrte Bänder: der Seitenrhythmus lebt vom harten Wechsel. */
 .band--ink {
   background: var(--ink);
   color: var(--on-ink);
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .band--ink h1,
 .band--ink h2,
@@ -233,36 +436,19 @@ button {
   padding-block: clamp(3rem, 7vh, 5rem);
 }
 
-/* --- Eyebrow ------------------------------------------------------------ */
-/* Der Stufengiebel als Sektionszeichen ist entfallen: er war aus Münster
-   hergeleitet, und die Agentur arbeitet ortsunabhängig. Die Eyebrows selbst
-   stehen auf Abruf — auf Startseite und in der Baustelle sind sie bereits
-   weg, die Überschrift trägt dort allein. */
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-paper-dim);
-  margin-bottom: 1.5rem;
-}
-.band--ink .eyebrow {
-  color: var(--sand);
-}
-
 /* --- Typografische Klassen ---------------------------------------------- */
 
+/* Die Display-Grade tragen schwerer als der Fließtext-Schnitt: erst dadurch
+   wird der leichte Widerspruch in .claim-b als eigene Stimme lesbar. */
 .display-xl {
   font-size: var(--t-display-xl);
+  font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.042em;
 }
 .display-l {
   font-size: var(--t-display-l);
+  font-weight: 700;
   line-height: 0.96;
   letter-spacing: -0.036em;
 }
@@ -271,15 +457,44 @@ button {
   line-height: 1.02;
 }
 
-/* Der Weight-Wechsel innerhalb einer Headline nutzt die Variable-Achse:
-   Behauptung schwer, Widerspruch leicht und grün. */
+/* Behauptung und Widerspruch als Satzpaar — das rhetorische Muster der Marke.
+   Der Widerspruch trägt über die Variable-Achse und einen optischen Versatz,
+   nicht über eine zweite Farbe: Grün ist die Farbe, in der man unterschreibt,
+   und verliert seine Bedeutung, wenn es in jeder Überschrift dekoriert. */
 .claim-b {
   display: block;
   font-weight: 400;
-  color: var(--gruen);
+  letter-spacing: -0.015em;
+  color: var(--rost);
 }
-.band--ink .claim-b {
-  color: var(--gruen-hell);
+.band--ink .claim-b,
+.phead .claim-b {
+  color: var(--rost-hell);
+}
+
+/* --- Kopf-Öffnung -------------------------------------------------------- */
+/* Die Wörter fahren unter ihrer eigenen Oberkante hervor. Die Maske ist nur
+   während der Bewegung nötig, bleibt aber stehen — sie kostet nichts und
+   verhindert, dass Unterlängen bei Zoom abgeschnitten wirken. */
+
+.ko__line {
+  display: block;
+}
+/* Die Maske muss senkrecht kappen, waagerecht aber nicht: Buchstaben ragen
+   bei negativer Laufweite über ihre Dickte hinaus, und ohne die seitliche
+   Luft schneidet die Maske Wortanfänge ab. Der negative Außenabstand nimmt
+   die Luft aus dem Satz wieder heraus, damit die Zeile gleich bleibt. */
+.ko__mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  padding-inline: 0.09em;
+  margin-inline: -0.09em;
+}
+.ko__w {
+  display: inline-block;
+  will-change: transform;
 }
 
 .lead {
@@ -293,10 +508,8 @@ button {
 }
 
 .meta {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .band--ink .meta {
@@ -404,9 +617,13 @@ button {
   justify-content: space-between;
   gap: 1rem;
 }
+/* Der Balken muss decken. Unter ihm zieht die gebaute Beispielseite in
+   Tiefblau durch – schimmert sie durch, steht die Wortmarke in einer
+   Farbe, die niemand gewählt hat. Deshalb hoher Deckungsgrad und, wo
+   backdrop-filter fehlt, volle Deckung. */
 .hdr.is-stuck {
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
+  background: color-mix(in srgb, var(--paper) 96%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
   border-bottom-color: var(--line-paper);
 }
 /* Über dem dunklen Hero läuft der Header in Tinte-Optik. */
@@ -414,8 +631,12 @@ button {
   color: var(--on-ink);
 }
 .hdr.on-dark.is-stuck {
-  background: color-mix(in srgb, var(--ink) 86%, transparent);
+  background: color-mix(in srgb, var(--ink) 94%, transparent);
   border-bottom-color: var(--line-ink);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .hdr.is-stuck { background: var(--paper); }
+  .hdr.on-dark.is-stuck { background: var(--ink); }
 }
 
 .brand {
@@ -455,7 +676,14 @@ button {
 .nav a:hover,
 .nav a[aria-current='page'] {
   opacity: 1;
-  background: color-mix(in srgb, currentColor 10%, transparent);
+  /* background-color statt der Kurzform: background hätte den Marker
+     aus der Link-Grundregel mitgelöscht und durch eine graue Fläche
+     aus currentColor ersetzt. */
+  background-color: color-mix(in srgb, var(--gruen) 14%, transparent);
+}
+.hdr.on-dark .nav a:hover,
+.hdr.on-dark .nav a[aria-current='page'] {
+  background-color: color-mix(in srgb, var(--gruen-hell) 20%, transparent);
 }
 
 .hdr__cta {
@@ -550,7 +778,10 @@ button {
   background: var(--paper);
   color: var(--on-paper);
   padding-top: clamp(6.5rem, 13vh, 9rem);
-  padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  /* Knapp gehalten: die Baustelle darunter bringt ihren eigenen Innenabstand
+     mit, und beide zusammen rissen ein Loch zwischen Unterschriftszeile und
+     Folgesektion. */
+  padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
 }
 
 .hero__sheet {
@@ -562,7 +793,7 @@ button {
   font-size: clamp(2.5rem, 6.9vw, 5rem);
   line-height: 0.93;
   letter-spacing: -0.045em;
-  font-weight: 600;
+  font-weight: 700;
   /* Gemessen: Unter 22ch bricht schon die erste Zeile und die Aussage läuft
      auf drei Zeilen — damit rutscht die Unterschriftszeile aus dem ersten
      Bildschirm. Bei 22ch steht jede der beiden Aussagen auf ihrer Zeile. */
@@ -592,10 +823,8 @@ button {
   border-bottom: 1px solid var(--line-paper);
 }
 .terms dt {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .terms dd {
@@ -611,14 +840,6 @@ button {
   align-items: center;
   gap: 0.9rem 1.75rem;
   padding-top: 0.35rem;
-}
-.hero__note {
-  flex-basis: 100%;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-paper-dim);
 }
 
 /* Der eine choreografierte Moment im Hero: Das Blatt schreibt sich.
@@ -685,7 +906,9 @@ button {
   grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: clamp(1rem, 3vh, 2rem);
-  padding-block: clamp(1.5rem, 5vh, 3rem);
+  /* Oben Platz für den festen Header, sonst liegt der Titel darunter. */
+  padding-top: calc(var(--hdr-h) + clamp(0.5rem, 2vh, 1.25rem));
+  padding-bottom: clamp(1.5rem, 5vh, 3rem);
   overflow: hidden;
 }
 
@@ -704,9 +927,8 @@ button {
 /* Der Beispielbetrieb ist erfunden. Das steht dran, wo er auftaucht. */
 .rb__disclaimer {
   margin-top: 0.7rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .rb__side {
@@ -720,10 +942,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.45rem 0.9rem;
   border: 1px solid var(--line-paper);
   border-radius: var(--r-pill);
@@ -774,6 +994,10 @@ button {
   max-width: 100%;
   display: flex;
   justify-content: center;
+  /* Fluchtpunkt für die Kippung während des Umbaus: der Rahmen steht im
+     Raum, statt flach auf dem Bildschirm zu kleben. */
+  perspective: 1800px;
+  perspective-origin: 50% 45%;
 }
 
 /* Der Browser-Rahmen */
@@ -793,6 +1017,7 @@ button {
   display: grid;
   grid-template-rows: auto 1fr;
   will-change: transform;
+  transform-style: preserve-3d;
 }
 .rb__chrome {
   display: flex;
@@ -814,7 +1039,7 @@ button {
 }
 .rb__url {
   flex: 1;
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: 0.6875rem;
   color: var(--on-paper-dim);
   background: #fff;
@@ -898,7 +1123,7 @@ button {
   border: 1px solid #c4c4bb;
   display: grid;
   place-items: center;
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: clamp(0.5rem, 1vw, 0.65rem);
   color: #8b8b82;
 }
@@ -915,7 +1140,7 @@ button {
   position: absolute;
   right: 0.6rem;
   bottom: 0.5rem;
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: clamp(0.45rem, 0.85vw, 0.6rem);
   color: #8b8b82;
 }
@@ -948,11 +1173,26 @@ button {
 /* Die Beispielseite ist die Arbeitsprobe: eigene Navigation, ein Bildfeld
    mit Tiefe, Leistungszeile, Kontakt. Sie muss zeigen, was ein Kunde
    bekommt — „besser als die alte" reicht als Anspruch nicht. */
+/* Brinkmann bekommt eine eigene Welt — Werkstattlicht am Abend: Tiefblau,
+   Papierweiß, Messing. Das ist der Kern der Arbeitsprobe: Wir behaupten
+   Gestaltung für genau diesen Betrieb und dürfen dann nicht unser eigenes
+   Kalkgrau-Tiefgrün vorführen. Die Tokens gelten nur innerhalb der
+   Miniatur und der Handyfassung. */
+.new,
+.rb__phone .ph {
+  --bk-grund: #14202e;
+  --bk-ink: #f2ece1;
+  --bk-akzent: #c8863c;
+  --bk-dim: rgba(242, 236, 225, 0.66);
+  --bk-line: rgba(242, 236, 225, 0.18);
+  font-family: var(--bk-font);
+}
+
 .new {
   position: absolute;
   inset: 0;
-  background: var(--paper);
-  color: var(--on-paper);
+  background: var(--bk-grund);
+  color: var(--bk-ink);
   padding: clamp(0.8rem, 2.2vw, 1.7rem);
   display: grid;
   grid-template-columns: 1.02fr 0.98fr;
@@ -969,10 +1209,10 @@ button {
   align-items: center;
   gap: clamp(0.5rem, 1.5vw, 1.1rem);
   padding-bottom: clamp(0.35rem, 0.9vw, 0.6rem);
-  border-bottom: 1px solid var(--line-paper);
+  border-bottom: 1px solid var(--bk-line);
 }
 .new__brand {
-  font-family: var(--display);
+  font-family: var(--bk-font);
   font-size: clamp(0.55rem, 1.15vw, 0.82rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -986,22 +1226,22 @@ button {
   font-style: normal;
   font-size: clamp(0.36rem, 0.72vw, 0.52rem);
   letter-spacing: 0.04em;
-  color: var(--on-paper-dim);
+  color: var(--bk-dim);
 }
 .new__pill {
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: clamp(0.32rem, 0.66vw, 0.48rem);
   letter-spacing: 0.05em;
   padding: 0.22em 0.7em;
   border-radius: var(--r-pill);
-  border: 1px solid var(--line-paper-stark);
+  border: 1px solid var(--bk-line);
   white-space: nowrap;
 }
 
 .new__h {
   grid-column: 1;
   grid-row: 2;
-  font-family: var(--display);
+  font-family: var(--bk-font);
   font-size: clamp(0.95rem, 2.9vw, 2rem);
   font-weight: 600;
   line-height: 0.95;
@@ -1010,7 +1250,7 @@ button {
 .new__h em {
   font-style: normal;
   font-weight: 400;
-  color: var(--gruen);
+  color: var(--bk-akzent);
   display: block;
 }
 .new__copy {
@@ -1019,7 +1259,7 @@ button {
   align-self: start;
   font-size: clamp(0.44rem, 0.92vw, 0.64rem);
   line-height: 1.5;
-  color: var(--on-paper-dim);
+  color: var(--bk-dim);
   max-width: 32ch;
 }
 /* Das Bildfeld zeigt das Material des Betriebs: Holz mit Maserung und Tiefe,
@@ -1083,11 +1323,21 @@ button {
 .new__shelf i:nth-child(4) {
   width: 74%;
 }
+/* Das Aufmaß an den Böden: eine Zahl statt eines leeren Balkens. */
+.new__dim {
+  justify-self: end;
+  margin-top: 0.35em;
+  font-family: var(--code);
+  font-size: clamp(0.32rem, 0.66vw, 0.48rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--bk-akzent);
+}
 .new__tag {
   position: absolute;
   left: 7%;
   top: 7%;
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: clamp(0.3rem, 0.62vw, 0.45rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1116,8 +1366,9 @@ button {
   font-weight: 600;
   padding: 0.45rem 1rem;
   border-radius: var(--r-pill);
-  background: var(--gruen);
-  color: #fff;
+  background: var(--bk-akzent);
+  color: var(--bk-grund);
+  font-weight: 700;
   transform: scale(0.5);
   opacity: 0;
 }
@@ -1129,14 +1380,14 @@ button {
   flex-wrap: wrap;
   gap: 0.3em 1.1em;
   padding-top: clamp(0.3rem, 0.8vw, 0.55rem);
-  border-top: 1px solid var(--line-paper);
+  border-top: 1px solid var(--bk-line);
 }
 .new__strip span {
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: clamp(0.32rem, 0.66vw, 0.48rem);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--on-paper-dim);
+  color: var(--bk-dim);
 }
 
 /* Handy-Ansicht, die zum Schluss andockt */
@@ -1146,7 +1397,9 @@ button {
   bottom: -5%;
   width: clamp(74px, 15%, 124px);
   aspect-ratio: 9 / 18;
-  background: var(--ink);
+  /* Gerätegehäuse, nicht Markenfarbe — deshalb ein neutrales Schwarz und
+     kein Token aus unserer Palette. */
+  background: #101012;
   border-radius: 14px;
   padding: 5px;
   box-shadow: 0 18px 40px -18px rgba(16, 23, 26, 0.55);
@@ -1158,7 +1411,11 @@ button {
 .rb__phone .ph {
   height: 100%;
   border-radius: 10px;
-  background: var(--paper);
+  background: var(--bk-grund);
+  /* Ohne diese Zeile erbte die Handyfassung unser Tinte-Schwarz und setzte
+     Name und Ueberschrift unsichtbar auf den dunkelblauen Grund. Nur das
+     Bildfeld und die Schaltflaeche brachten ihre Farbe selbst mit. */
+  color: var(--bk-ink);
   padding: 9px 7px;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -1167,19 +1424,27 @@ button {
   overflow: hidden;
 }
 .ph__brand {
-  font-family: var(--display);
+  font-family: var(--bk-font);
   font-size: 6px;
   font-weight: 700;
   letter-spacing: -0.01em;
   padding-bottom: 4px;
-  border-bottom: 1px solid var(--line-paper);
+  border-bottom: 1px solid var(--bk-line);
 }
 .ph__h {
-  font-family: var(--display);
+  font-family: var(--bk-font);
   font-size: 11px;
   font-weight: 600;
   line-height: 0.95;
   letter-spacing: -0.035em;
+}
+/* Dieselbe Gegenzeile wie in der Breitfassung: die Handyfassung ist
+   dieselbe Seite, nicht eine gekuerzte. */
+.ph__h em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--bk-akzent);
+  display: block;
 }
 .ph__img {
   position: relative;
@@ -1203,39 +1468,59 @@ button {
     transparent 4px 8px
   );
 }
-.ph__img i {
+/* Statt dreier leerer Balken eine Bildunterschrift, wie sie auf der
+   Handyfassung tatsächlich stünde. */
+.ph__img b {
   position: relative;
-  height: 2.5px;
-  border-radius: 1px;
-  background: rgba(233, 223, 202, 0.85);
-}
-.ph__img i:nth-child(2) {
-  width: 78%;
-}
-.ph__img i:nth-child(3) {
-  width: 54%;
+  font-family: var(--code);
+  font-size: 4.5px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--bk-ink);
 }
 .ph__cta {
   font-size: 5.5px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   padding: 4px 0;
   border-radius: var(--r-pill);
-  background: var(--gruen);
-  color: #fff;
+  background: var(--bk-akzent);
+  color: var(--bk-grund);
 }
 
-/* Bauline: grüner Strich, der den Abriss vom Aufbau trennt */
+/* Bauline: die Kante, hinter der freigelegt wird. Der Strich selbst ist
+   schmal; was ihn sichtbar macht, ist der Span, den er hinter sich herzieht
+   — so liest er sich als Werkzeug und nicht als Leuchteffekt. */
 .rb__sweep {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gruen-2);
-  box-shadow: 0 0 24px 6px rgba(29, 122, 84, 0.5);
+  top: -4%;
+  bottom: -4%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--gruen-2) 12%,
+    var(--gruen-2) 88%,
+    transparent
+  );
   left: 0;
   opacity: 0;
   z-index: 5;
+  will-change: transform;
+}
+.rb__sweep::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 78px;
+  background: linear-gradient(
+    to left,
+    rgba(29, 122, 84, 0.22),
+    transparent
+  );
 }
 
 /* Bildunterschrift: kommentiert den jeweiligen Bauzustand */
@@ -1276,126 +1561,47 @@ button {
 /* Kein Icon-Grid. Eine Liste wie ein Leistungsverzeichnis: Zeilen, die
    sich beim Aufklappen mit Grün füllen. */
 
-.lv {
+/* --- Leistungen als Zeilen ------------------------------------------- */
+/* Kein Akkordeon mehr: das Aufklappen verbarg den Inhalt hinter einem Klick
+   und der grüne Kopfbalken beherrschte die Sektion. Drei Zeilen im selben
+   Takt wie Konditionen, Grundsätze und Phasen — der Seitenrhythmus lebt von
+   der Wiederholung dieser Form, nicht von einem Sonderbauteil. */
+
+.svc {
+  display: grid;
   border-top: 1px solid var(--line-paper);
 }
-.lv__item {
+.svc__row {
+  display: grid;
+  gap: 0.4rem clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(1.5rem, 3.5vh, 2.5rem);
   border-bottom: 1px solid var(--line-paper);
+  align-items: baseline;
 }
-.lv__btn {
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(0.75rem, 2.5vw, 2rem);
-  padding: clamp(1.15rem, 2.6vw, 1.8rem) 0;
-  background: none;
-  border: 0;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.4s var(--ease), padding-inline 0.4s var(--ease);
+.svc__row h3 {
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.032em;
 }
-/* Grüne Füllung wischt von links herein */
-.lv__btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gruen);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s var(--ease);
-  z-index: -1;
+.svc__row p {
+  color: var(--on-paper-dim);
+  max-width: 48ch;
 }
-.lv__item:hover .lv__btn::before,
-.lv__btn:focus-visible::before,
-.lv__item.is-open .lv__btn::before {
-  transform: scaleX(1);
-}
-.lv__item:hover .lv__btn,
-.lv__btn:focus-visible,
-.lv__item.is-open .lv__btn {
-  color: var(--paper-2);
-  padding-inline: clamp(0.6rem, 1.6vw, 1.25rem);
-}
-.lv__btn > * {
-  position: relative;
+.svc__more {
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
 }
 
-.lv__name {
-  font-family: var(--display);
-  font-size: clamp(1.15rem, 2.3vw, 1.6rem);
-  font-weight: 500;
-  letter-spacing: -0.038em;
-  line-height: 1;
-}
-.lv__sign {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  position: relative;
-  opacity: 0.5;
-  transition: opacity 0.4s, transform 0.5s var(--ease);
-}
-.lv__item:hover .lv__sign,
-.lv__item.is-open .lv__sign {
-  opacity: 1;
-}
-.lv__sign::before,
-.lv__sign::after {
-  content: '';
-  position: absolute;
-  inset: 50% 9px auto;
-  height: 1.5px;
-  background: currentColor;
-}
-.lv__sign::after {
-  transition: transform 0.4s var(--ease);
-  transform: rotate(90deg);
-}
-.lv__item.is-open .lv__sign::after {
-  transform: rotate(0deg);
-}
-
-.lv__panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.55s var(--ease);
-}
-.lv__item.is-open .lv__panel {
-  grid-template-rows: 1fr;
-}
-.lv__panel > div {
-  overflow: hidden;
-}
-.lv__inner {
-  display: grid;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  padding: clamp(1.25rem, 2.5vw, 1.85rem) 0 clamp(1.5rem, 3vw, 2.25rem);
-  grid-template-columns: minmax(0, 1fr);
-}
-.lv__claim {
-  font-size: var(--t-lead);
-  line-height: 1.45;
-  letter-spacing: -0.012em;
-  max-width: 34ch;
-}
 .lv__cols {
   display: grid;
   gap: clamp(1rem, 2.5vw, 2rem);
   grid-template-columns: minmax(0, 1fr);
 }
 .lv__col h4 {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
+  font-family: var(--label);
+  font-size: var(--t-label);
   font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--on-paper-dim);
   margin-bottom: 0.85rem;
-  letter-spacing: 0.14em;
 }
 .lv__col li {
   font-size: var(--t-small);
@@ -1428,9 +1634,6 @@ button {
 }
 .band--ink .lv__col li::before {
   background: var(--gruen-hell);
-}
-.band--ink .lv__claim {
-  color: var(--on-ink);
 }
 
 /* --- Karten-Raster (Garantien, Referenzen, Team) ----------------------- */
@@ -1470,27 +1673,39 @@ button {
   color: var(--on-ink-dim);
 }
 .card__label {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--gruen);
-}
-/* Die Gegenüberstellung auf "Über uns": unsere Seite steht in Grün. */
-.card .card__vs,
-.band--ink .card .card__vs {
-  margin-top: 0.4rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--line-paper);
-  font-size: var(--t-small);
-  color: var(--gruen);
-}
-.band--ink .card .card__vs {
-  border-top-color: var(--line-ink);
-  color: var(--gruen-hell);
 }
 .band--ink .card__label {
-  color: var(--gruen-hell);
+  color: var(--sand);
+}
+
+/* --- Grundsätze: gesetzte Aussagen, kein Kartenraster ------------------ */
+/* Drei Sätze, für die niemand einen Rahmen braucht. Die Trennlinie und der
+   Weißraum leisten, wofür vorher eine Karte gebaut wurde. */
+
+.tenets {
+  display: grid;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--line-ink);
+}
+.tenet {
+  display: grid;
+  gap: 0.5rem clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(1.75rem, 4vh, 2.75rem);
+  border-bottom: 1px solid var(--line-ink);
+  align-items: baseline;
+}
+.tenet h3 {
+  font-size: clamp(1.35rem, 2.6vw, 1.95rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.tenet p {
+  font-size: var(--t-small);
+  color: var(--on-ink-dim);
+  max-width: 42ch;
 }
 
 /* --- Ablauf: echte Sequenz, deshalb echte Nummern ---------------------- */
@@ -1515,9 +1730,9 @@ button {
   border-bottom: 1px solid var(--line-ink);
 }
 .step__no {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
+  font-family: var(--label);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--t-label);
   color: var(--sand);
   display: flex;
   align-items: baseline;
@@ -1546,19 +1761,187 @@ button {
 /* Spezifisch genug, um .step__body p zu schlagen */
 .step__body .step__part {
   margin-top: 0.85rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
-  color: var(--gruen-hell);
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--rost-hell);
 }
 .step__dur {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-ink-dim);
   white-space: nowrap;
   align-self: start;
+}
+
+/* --- Ablauf-Signature: "Die Spur" ------------------------------------- */
+/* Eine Linie zieht sich beim Scrollen durch fünf Knoten. Die Sequenz ist
+   hier die eigentliche Aussage — deshalb bekommt sie die Bewegung und
+   nicht die Überschrift. Gepinnt nach demselben Prinzip wie die Baustelle:
+   die Sektion trägt die Scrollstrecke, die Bühne klebt per sticky. */
+
+/* Der Standardzustand ist die ruhige Liste, nicht die Bühne: erst wenn das
+   Skript die Steuerung übernommen hat, setzt es .is-live. Andersherum wäre
+   die Seite leer, sobald GSAP nicht lädt — die Tafeln sind ja versteckt,
+   bis jemand sie schaltet. */
+.track {
+  position: relative;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.track__stage {
+  display: none;
+}
+.track.is-live {
+  /* Fünf Phasen brauchen Strecke: unter ~500vh rauschen sie in wenigen
+     Mausrad-Rasten durch und keine steht lange genug, um gelesen zu werden. */
+  height: 520vh;
+}
+.track.is-live .track__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  /* Wie bei der Baustelle: der feste Header darf die Bühne nicht anschneiden. */
+  padding-top: var(--hdr-h);
+  overflow: hidden;
+}
+.track.is-live .track__static {
+  display: none;
+}
+.track__grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+/* Die Schiene: Grundlinie, gezeichnete Linie, fünf Knoten. */
+.rail {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.5rem;
+}
+.rail__base,
+.rail__draw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  translate: 0 -50%;
+}
+.rail__base {
+  background: var(--line-ink);
+}
+.rail__draw {
+  background: var(--gruen-hell);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+.rail__node {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px solid var(--line-ink);
+  font-family: var(--label);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--t-label);
+  color: var(--on-ink-dim);
+  transition: border-color 0.45s var(--ease), color 0.45s var(--ease),
+    background 0.45s var(--ease), scale 0.45s var(--ease);
+}
+.rail__node.is-on {
+  border-color: var(--gruen-hell);
+  color: var(--ink);
+  background: var(--gruen-hell);
+  scale: 1.14;
+}
+.rail__node.is-done {
+  border-color: var(--gruen-hell);
+  color: var(--gruen-hell);
+}
+
+/* Die Tafeln: immer nur eine sichtbar, gestapelt im selben Raster. */
+.track__panels {
+  display: grid;
+  min-height: 19rem;
+}
+.tp {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 14px;
+  transition: opacity 0.5s var(--ease), translate 0.5s var(--ease),
+    visibility 0.5s;
+}
+.tp.is-on {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+.tp__lead {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+}
+.tp__body {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+  max-width: 44ch;
+}
+.tp__icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  fill: none;
+  stroke: var(--gruen-hell);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+.tp h3 {
+  font-size: clamp(2.2rem, 5.2vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.038em;
+  line-height: 0.95;
+}
+.tp__body p {
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--on-ink-dim);
+}
+.tp__body .tp__part {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--rost-hell);
+}
+.tp__dur {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--sand);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line-ink);
+  border-radius: var(--r-pill);
+}
+
+/* Ruhige Fassung — der Ausgangszustand, den .is-live ablöst */
+.track__static {
+  display: block;
+  padding-block: var(--section-y);
 }
 
 /* --- Referenzen -------------------------------------------------------- */
@@ -1592,10 +1975,8 @@ button {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .case h3 {
@@ -1614,9 +1995,8 @@ button {
   margin-top: 0.2rem;
 }
 .case__result span {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.3rem 0.7rem;
   border-radius: var(--r-pill);
   background: color-mix(in srgb, var(--gruen) 12%, transparent);
@@ -1679,10 +2059,8 @@ button {
 .ba__tag {
   position: absolute;
   bottom: 0.85rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.3rem 0.7rem;
   border-radius: var(--r-pill);
   background: rgba(16, 23, 26, 0.72);
@@ -1772,22 +2150,7 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem clamp(1.5rem, 4vw, 3rem);
-  padding-top: clamp(1rem, 2.5vw, 1.75rem);
-  border-top: 1px solid var(--line-paper-stark);
   margin-bottom: clamp(2rem, 5vw, 3.25rem);
-}
-.band--ink .pos {
-  border-top-color: var(--line-ink);
-}
-.pos__no {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.14em;
-  color: var(--on-paper-dim);
-  white-space: nowrap;
-}
-.band--ink .pos__no {
-  color: var(--sand);
 }
 .pos h2 {
   font-size: var(--t-display-m);
@@ -1796,6 +2159,7 @@ button {
 .pos .lead {
   max-width: 58ch;
 }
+
 .split__side {
   display: grid;
   gap: 1.25rem;
@@ -1813,10 +2177,8 @@ button {
   gap: 0.45rem;
 }
 .field > span {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .field input,
@@ -1855,19 +2217,19 @@ button {
   margin: 0.15rem 0 0;
   accent-color: var(--gruen);
 }
-.check a {
-  color: var(--gruen);
-  text-decoration: underline;
-}
+/* Farbe und Gewicht kommen aus der Link-Grundregel; hier stand vorher
+   zusätzlich ein fester Unterstrich, der sie überstimmt hat. */
 .hp {
   position: absolute;
   left: -9999px;
 }
 .form__note {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
+}
+.form__status:empty {
+  display: none;
 }
 .form__status {
   font-size: var(--t-small);
@@ -1896,27 +2258,56 @@ button {
 .band--ink .direct a {
   border-color: var(--line-ink);
 }
+/* Die Kontaktwege sind der Zweck dieser Seite — sie sollen sich wie
+   Schalter anfassen, nicht wie eine Liste lesen. Der Versatz läuft über
+   transform statt über padding: Letzteres treibt das Layout und ruckelt. */
 .direct a {
+  position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--line-paper);
-  transition: padding-inline 0.4s var(--ease), color 0.3s;
 }
-.direct a:hover {
-  padding-inline: 0.75rem;
+/* Die zweite Fassung schlägt .rev.is-revealed, das sonst seine 0,8 s auch
+   dem Hover aufzwingt — ein Schalter, der eine Sekunde braucht, fühlt sich
+   kaputt an. */
+.direct a,
+.direct a.rev.is-revealed {
+  transition: transform 0.4s var(--ease), color 0.3s var(--ease),
+    opacity 0.6s var(--ease);
+}
+.direct a::before {
+  content: '';
+  position: absolute;
+  left: -0.9rem;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  translate: 0 -50%;
+  background: var(--gruen);
+  transition: height 0.4s var(--ease);
+}
+.band--ink .direct a::before {
+  background: var(--gruen-hell);
+}
+.direct a:hover,
+.direct a:focus-visible {
+  transform: translateX(0.6rem);
   color: var(--gruen);
 }
-.band--ink .direct a:hover {
+.direct a:hover::before,
+.direct a:focus-visible::before {
+  height: 1.6rem;
+}
+.band--ink .direct a:hover,
+.band--ink .direct a:focus-visible {
   color: var(--gruen-hell);
 }
 .direct b {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   font-weight: 400;
   color: var(--on-paper-dim);
 }
@@ -1944,6 +2335,12 @@ button {
   max-width: 26ch;
 }
 
+/* Die Sektion vor dem Footer teilt dessen Farbe – der Abstand darf nicht
+   doppelt gezählt werden, sonst wirkt der Übergang wie eine leere Seite. */
+.band--ink:has(.finale) {
+  padding-bottom: clamp(2rem, 4vh, 3rem);
+}
+
 /* --- Footer ----------------------------------------------------------- */
 
 .ftr {
@@ -1951,6 +2348,7 @@ button {
   color: var(--on-ink);
   padding-block: clamp(3.5rem, 8vh, 5.5rem) 2rem;
   border-top: 1px solid var(--line-ink);
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .ftr__top {
   display: grid;
@@ -1977,11 +2375,9 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 .ftr h4 {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
+  font-family: var(--label);
+  font-size: var(--t-label);
   font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--sand);
   margin-bottom: 1rem;
 }
@@ -1996,6 +2392,9 @@ button {
 .ftr li a:hover {
   color: var(--on-ink);
 }
+.ftr li a {
+  --wash: rgba(125, 201, 163, 0.26);
+}
 .ftr__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -2004,9 +2403,8 @@ button {
   align-items: center;
   padding-top: 1.75rem;
   border-top: 1px solid var(--line-ink);
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.08em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-ink-dim);
 }
 
@@ -2025,6 +2423,10 @@ button {
 
 /* --- Seitenkopf für Unterseiten -------------------------------------- */
 
+/* Der Kopf liest sich wie der Kopf eines Angebots: Linienpapier, eine
+   Kennung am Rand, darunter die Aussage. Der grüne Lichtfleck, der hier
+   stand, ist ersatzlos entfallen — er war Dekor ohne Herleitung und das
+   deutlichste Vorlagen-Signal der ganzen Seite. */
 .phead {
   background: var(--ink);
   color: var(--on-ink);
@@ -2033,23 +2435,27 @@ button {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .phead::before {
   content: '';
   position: absolute;
   z-index: -1;
-  right: -10%;
-  top: -40%;
-  width: min(900px, 90vw);
-  aspect-ratio: 1;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(29, 122, 84, 0.34) 0%,
-    transparent 66%
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--line-ink) 0 1px,
+    transparent 1px 2.75rem
   );
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+  opacity: 0.5;
+}
+.phead .wrap {
+  position: relative;
 }
 .phead h1 {
   font-size: var(--t-display-l);
+  font-weight: 700;
   max-width: 24ch;
 }
 .phead .lead {
@@ -2096,11 +2502,8 @@ button {
   height: 1.5px;
   background: var(--gruen);
 }
-.prose a {
-  color: var(--gruen);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
+/* Auch hier trägt die Link-Grundregel: Gewicht statt Unterstrich, der
+   Marker kommt unter dem Zeiger. */
 .prose strong {
   color: var(--on-paper);
 }
@@ -2165,14 +2568,17 @@ button {
   .split {
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   }
-  .lv__inner {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  .svc__row {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   }
   .rb__head {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
-  .pos {
-    grid-template-columns: 8rem minmax(0, 1fr);
+  .tenet {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .tp {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
   .ftr__top {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
@@ -2210,6 +2616,18 @@ button {
   .rb__caption {
     min-height: 0;
   }
+  /* Die Spur braucht Breite für Schiene und Tafel nebeneinander. Auf
+     schmalen Schirmen liest sich die ruhige Liste ohnehin besser — auch
+     dann, wenn das Skript beim Laden noch auf Desktop-Breite lief. */
+  .track.is-live {
+    height: auto;
+  }
+  .track.is-live .track__stage {
+    display: none;
+  }
+  .track.is-live .track__static {
+    display: block;
+  }
 }
 
 @media (max-width: 620px) {
@@ -2224,12 +2642,6 @@ button {
 }
 
 @media (max-width: 560px) {
-  .lv__btn {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .lv__sign {
-    display: none;
-  }
   .direct a {
     flex-direction: column;
     gap: 0.3rem;
@@ -2306,5 +2718,15 @@ button {
   .rb__static-head {
     grid-column: 1 / -1;
     margin-bottom: 0.75rem;
+  }
+  /* Dasselbe für die Spur: die fünf Phasen stehen ruhig untereinander. */
+  .track.is-live {
+    height: auto;
+  }
+  .track.is-live .track__stage {
+    display: none;
+  }
+  .track.is-live .track__static {
+    display: block;
   }
 }

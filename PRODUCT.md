@@ -22,8 +22,9 @@ ohne sich dafür in einen sechsmonatigen Prozess zu begeben.
 
 ## Product Purpose
 
-Websites (plus lokale Auffindbarkeit, laufende Betreuung, Videoproduktion und digitales
-Marketing) für Betriebe, die mehr wollen als „online sein".
+Websites, lokale Auffindbarkeit und laufende Betreuung — drei Leistungen, mehr nicht.
+Videoproduktion und digitales Marketing gehören ausdrücklich **nicht** dazu (siehe
+Capabilities and Constraints); die frühere Aufzählung hier war ein Widerspruch dazu.
 
 Diese Website selbst ist das Verkaufsinstrument der Agentur: Sie muss Vertrauen herstellen
 und zu genau einer Handlung führen — dem kostenlosen 30-Minuten-Erstgespräch. Erfolg ist
@@ -39,16 +40,28 @@ dürfen nicht zurückkehren, auch nicht in abgewandelter Form.
 
 Was stattdessen trägt und wahr bleibt: Die Seite entsteht **für diesen einen Betrieb**,
 nicht aus einer Vorlage und nicht in einem Baukasten — das ist eine Aussage über das
-Produkt, nicht über die Werkzeuge, und ein Wettbewerber auf WordPress-Themes kann sie
-nicht wahrheitsgemäß machen. Dazu die Konditionen, die eine klassische Agentur nicht
-halten kann:
+Produkt, nicht über die Werkzeuge.
 
-Vier konkrete Gegenpositionen zur klassischen Agentur, alle bestätigt und alle einlösbar:
+**Keine Vergleiche. Bestätigt vom Inhaber (2026-08-18):** Die Website vergleicht sich
+nicht mit Wettbewerbern und verteidigt sich nicht gegen Einwände. Wörtlich: *„Wir sind
+überzeugt, dass wir Profis in unserem Gebiet sind. Wir müssen uns an vielen Stellen
+nicht erklären."* Entfernt und nicht zurückzuholen: die Sektion „Klassische Agentur.
+Und dann wir." mit ihren „Anderswo …"-Karten, der Beruhigungsblock „Warum du dabei
+nichts verlieren kannst", und Verneinungsketten wie „kein Video, keine
+Social-Media-Pakete, kein Weiterreichen an Freelancer, kein Ticketsystem, keine
+Warteschleife".
 
-- Festpreis **vor** Projektstart statt Abrechnung nach Aufwand; Mehrarbeit trägt die Agentur.
-- Zwei bis vier Wochen bis Launch (Regelfall drei) statt sechs Monate Projektlaufzeit.
-- Direkte Handynummer und WhatsApp statt Ticketsystem und Hotline.
-- Klare Sprache statt Marketing-Sprech; Betreuung monatlich kündbar statt Knebelvertrag.
+Die vier Konditionen bleiben als **Fakten** gültig und einlösbar — sie werden positiv
+formuliert, nie als Abgrenzung gegen andere:
+
+- Festpreis **vor** Projektstart; Mehrarbeit trägt die Agentur.
+- Zwei bis vier Wochen bis Launch (Regelfall drei).
+- Direkte Handynummer, auch per WhatsApp; ein Ansprechpartner.
+- Klare Sprache; Betreuung monatlich kündbar.
+
+Neu bestätigt (2026-08-18): **Auch Konzept und Entwurf sind kostenlos und
+unverbindlich.** Die feste Entscheidung fällt erst, nachdem der Kunde seinen echten
+Entwurf gesehen hat.
 
 ## Operating Context
 
@@ -136,30 +149,64 @@ Außer 30 Minuten.") sind das wiederkehrende rhetorische Muster.
 bestätigt und bleibt. Hergeleitet ist sie jetzt aus dem Angebot auf Papier, nicht
 mehr aus Münster.
 
+**Schriften (Stand 2026-08-19, vom Inhaber gewählt):** Display **Fraunces**
+(variabel, Achsen `opsz`, `SOFT`, `WONK`), Fließtext **Newsreader** (variabel,
+200–800). **Es gibt keine dritte Schrift in unserer eigenen Oberfläche.** Die
+Beschriftungen (`FESTPREIS`, `ANSPRECHPARTNER`, `DANACH`, `ANTWORT INNERHALB VON
+24 STUNDEN`) liefen in gesperrten Versalien in Space Mono — der Inhaber hat genau
+diese Stellen als KI-Look markiert. Sie laufen jetzt in der Fließtextschrift, in
+normaler Schreibweise, ohne Sperrung. Space Mono bleibt ausschließlich im
+Browserrahmen des Beispiels (Adresszeile, Besucherzähler, Maßangaben), wo die
+Schreibmaschine eine echte Konvention ist. Instrument Sans, Bricolage Grotesque
+und Source Serif 4 wurden nacheinander als KI-typisch abgelehnt und sind restlos
+entfernt — keine davon zurückholen. Alle Schriften sind selbst gehostet; das ist
+eine DSGVO-Entscheidung, kein Geschmack.
+
+**Grün ist Aktionsfarbe, kein Dekor.** Betonung in Überschriften kommt aus dem
+Schriftgewicht (700 gegen 400), nicht aus einer zweiten Farbe. Der frühere grüne
+Radial-Glow im Seitenkopf und die mintgrüne zweite Headline-Zeile waren die
+deutlichsten Vorlagen-Signale und sind entfernt.
+
+**Links tragen keine Unterstriche.** Unter dem Zeiger wächst ein grüner Marker von
+der Grundlinie hoch. Links mitten im Fließtext bekommen zusätzlich Gewicht 600 als
+ruhendes Merkmal — Farbe allein trägt nicht (Tiefgrün steht nur 1,47:1 gegen den
+Fließtext, nötig wären 3:1).
+
+**Die Beispiel-Website „Tischlerei Brinkmann" hat eine eigene Farbwelt** (Tiefblau
+`#14202e`, Papierweiß `#f2ece1`, Messing `#c8863c`) **und eine eigene Schrift**
+(**Archivo**, Token `--bk-font`) und darf **nie** unsere Palette oder Schrift
+tragen: Wir versprechen Gestaltung für genau diesen einen Betrieb — die Arbeitsprobe
+muss das vorführen, statt unser eigenes Kalkgrau-Tiefgrün zu wiederholen.
+
 **Logo:** ein M-Monogramm mit Wortmarke, vom Nutzer geliefert. Die Datei liegt noch
 nicht im Projekt (erwartet als `assets/img/logo.svg`). Zwei offene Punkte dazu: Das
 Monogramm lebt von schmalen Schlitzen zwischen den Diagonalen und braucht für
 Header-Größe (22 px) eine vereinfachte Fassung; und die Wortmarke setzt „WebAgency"
-in einer kontrastreichen Serif, die im Typo-System der Seite (Bricolage Grotesque,
-Instrument Sans) keine Entsprechung hat — im Header deshalb nur das Monogramm plus
-Seitenschrift, das volle Lockup für Impressum, Rechnungen und OG-Bild.
+in einer kontrastreichen Serif. Mit Fraunces und Newsreader hat sie im
+Typo-System eine Entsprechung — ob das Lockup dadurch im Header tragbar wird, ist
+noch nicht geprüft. Bis dahin bleibt es beim Monogramm plus Seitenschrift, das
+volle Lockup für Impressum, Rechnungen und OG-Bild.
 
 ## Evidence on Hand
 
 **Vorhanden:** ein bis zwei echte, abgeschlossene Kundenprojekte. Screenshots davon liegen
 noch nicht im Repo.
 
-**Nicht vorhanden, und deshalb nicht erfindbar:** Die drei Projektkarten auf `index.html`
-und `referenzen.html` zeigen SVG-Platzhalter (`assets/img/case-*.svg`) mit ausgedachten
-Kurztexten für Handwerk, GaLaBau und Kanzlei. Es gibt keine belegten Ergebniszahlen, keine
-Testimonials, keine Kundennamen, keine Fallstudien, keine Ladezeit- oder
-Ranking-Messungen. Die Kennwerte in der Baustellen-Animation („0,7 s Ladezeit", „24 h
-Antwort") sind Beispielinhalt einer fiktiven Musterseite, keine Messwerte.
+**Nicht vorhanden, und deshalb nicht erfindbar:** Es gibt keine belegten
+Ergebniszahlen, keine Testimonials, keine Kundennamen, keine Fallstudien, keine
+Ladezeit- oder Ranking-Messungen. Alles, was in der Baustellen-Animation an Zahlen
+auftaucht, ist Beispielinhalt einer erfundenen Musterseite (Tischlerei Brinkmann) —
+keine Messwerte. Der Hinweis darauf steht sichtbar an der Animation und bleibt dort.
 
-Für die dritte Projektkarte existiert damit keine Deckung. Künftige Arbeit ersetzt
-Platzhalter durch Belegtes oder entfernt sie — sie füllt sie nicht mit Plausiblem auf.
+Die früheren Projektkarten mit SVG-Platzhaltern (`assets/img/case-*.svg`) und die
+Seite `referenzen.html` sind entfernt; die Dateien existieren nicht mehr. Künftige
+Arbeit ersetzt Platzhalter durch Belegtes oder entfernt sie — sie füllt sie nicht
+mit Plausiblem auf.
 
 `assets/img/team-placeholder.svg` ist ebenfalls unbelegt und derzeit ungenutzt.
+
+**Bilder allgemein:** Auf Wunsch des Inhabers (2026-08-18) wird noch keine Bildwelt
+erzeugt, solange keine Bildrichtung feststeht. Nicht ungefragt generieren.
 
 ## Product Principles
 

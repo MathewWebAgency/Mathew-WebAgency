@@ -47,10 +47,18 @@ reserviert.
 
 Schriften (selbst gehostet in `assets/fonts/`):
 
-- **Bricolage Grotesque** (variabel 400–800) für Display – der Name heißt
-  „Bastelei“ – eine Grotesk mit Eigenheiten statt einer glatten Systemschrift
-- **Instrument Sans** (variabel) für Fließtext und Bedienelemente
-- **Space Mono** für Labels, Kennwerte und Koordinaten
+- **Fraunces** (variabel 100–900, Achsen `opsz`, `SOFT`, `WONK`) für Display.
+  `WONK` kippt g, a und y aus der Achse – Überschriften sollen gesetzt
+  aussehen, nicht gegriffen. Gesetzt über `font-variation-settings`.
+- **Newsreader** (variabel 200–800) für Fließtext und Bedienelemente
+- **Keine dritte Schrift für Beschriftungen.** `FESTPREIS`, `ANSPRECHPARTNER`
+  und Verwandte liefen in gesperrten Versalien in Space Mono – das Bauteil,
+  das in jeder zweiten Vorlage steckt. Sie laufen jetzt in Newsreader, in
+  normaler Schreibweise, ohne Sperrung (`--label`).
+- **Space Mono** nur noch im Browserrahmen des Beispiels: Adresszeile,
+  Besucherzähler, Maßangaben (`--code`).
+- **Archivo** gehört nicht uns, sondern der Tischlerei Brinkmann (`--bk-font`).
+  Das Beispiel hat eine eigene Farbwelt und braucht auch eine eigene Schrift.
 
 Radien: nur `3px`, `6px`, `10px` und echte Pillen. Nichts dazwischen.
 

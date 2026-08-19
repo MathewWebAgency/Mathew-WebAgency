@@ -118,26 +118,124 @@
     });
   }
 
-  /* Leistungsverzeichnis: eine Zeile offen, wie eine Akkordeon-Mappe. */
-  function initLv() {
-    var items = document.querySelectorAll('.lv__item');
-    items.forEach(function (item) {
-      var btn = item.querySelector('.lv__btn');
-      var panel = item.querySelector('.lv__panel');
-      if (!btn || !panel) return;
-      btn.addEventListener('click', function () {
-        var open = item.classList.contains('is-open');
-        items.forEach(function (o) {
-          o.classList.remove('is-open');
-          var b = o.querySelector('.lv__btn');
-          if (b) b.setAttribute('aria-expanded', 'false');
-        });
-        if (!open) {
-          item.classList.add('is-open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-        if (hasST) ScrollTrigger.refresh();
+  /* Zeiger: ein Ring, der dem Systemzeiger mit leichter Verzögerung folgt
+     und über Bedienelementen zufasst. Bei reduzierter Bewegung entfällt er
+     — eine nachlaufende Ebene ist genau das, was der Nutzer abbestellt hat.
+
+     Die Zeigerart wird nicht über eine Media Query entschieden, sondern am
+     Ereignis selbst: `(pointer: fine)` meldet grob, sobald ein Browser
+     Touch nachstellt — in der Handy-Vorschau am Rechner steckt aber weiter
+     eine Maus dahinter, und der Ring fehlte dort. Gebaut wird der Ring
+     deshalb erst bei der ersten echten Mausbewegung. Auf einem Gerät ohne
+     Maus tritt sie nie ein, dort entsteht auch kein Ring. */
+  function initCursor() {
+    if (reduced) return;
+
+    var el = null;
+    var tx = 0, ty = 0, x = 0, y = 0, started = false;
+
+    function build() {
+      el = document.createElement('div');
+      el.className = 'cur';
+      el.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(el);
+
+      (function loop() {
+        x += (tx - x) * 0.18;
+        y += (ty - y) * 0.18;
+        el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+        requestAnimationFrame(loop);
+      })();
+
+      document.addEventListener('mouseleave', function () {
+        el.classList.remove('is-on');
       });
+      document.addEventListener('mouseenter', function () {
+        if (started) el.classList.add('is-on');
+      });
+    }
+
+    document.addEventListener(
+      'pointermove',
+      function (e) {
+        if (e.pointerType !== 'mouse') return;
+        if (!el) build();
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!started) {
+          started = true;
+          x = tx;
+          y = ty;
+          el.classList.add('is-on');
+        }
+        var t = e.target;
+        var hot = t.closest('a, button, summary, input, textarea, label, [role="button"]');
+        var text = t.closest('input[type="text"], input[type="email"], input[type="tel"], textarea');
+        el.classList.toggle('is-text', !!text);
+        el.classList.toggle('is-hot', !!hot && !text);
+      },
+      { passive: true }
+    );
+  }
+
+  /* Kopf-Öffnung: die erste Überschrift der Seite wird gesetzt, Wort für
+     Wort unter der eigenen Kante hervor. Läuft beim Laden, nicht beim
+     Scrollen — der Besucher soll etwas sehen, bevor er etwas liest.
+
+     Der Screenreader bekommt den Satz am Stück über aria-label; die
+     Wort-Container sind für ihn nicht vorhanden. Ohne JS oder bei
+     reduzierter Bewegung steht die Überschrift unverändert da. */
+  function initHeadOpen() {
+    var h = document.querySelector('.hero__h, .phead h1');
+    if (!h || reduced || !hasGsap) return;
+
+    var text = h.textContent.replace(/\s+/g, ' ').trim();
+
+    /* Zeilen bleiben Zeilen: .claim-b trägt den Widerspruch und muss seinen
+       eigenen Umbruch behalten. */
+    var lines = [];
+    h.childNodes.forEach(function (node) {
+      if (node.nodeType === 3) {
+        var t = node.textContent.replace(/\s+/g, ' ').trim();
+        if (t) lines.push({ text: t, cls: '' });
+      } else if (node.nodeType === 1) {
+        lines.push({ text: node.textContent.trim(), cls: node.className });
+      }
+    });
+    if (!lines.length) return;
+
+    h.setAttribute('aria-label', text);
+    h.innerHTML = '';
+
+    var words = [];
+    lines.forEach(function (line) {
+      var lineEl = document.createElement('span');
+      lineEl.className = 'ko__line ' + line.cls;
+      lineEl.setAttribute('aria-hidden', 'true');
+      line.text.split(' ').forEach(function (w, i) {
+        /* Das Trennzeichen steht zwischen den Masken, nicht in ihnen: nur
+           so verwirft der Browser es am Zeilenumbruch, statt die Folgezeile
+           einzurücken. */
+        if (i > 0) lineEl.appendChild(document.createTextNode(' '));
+        var mask = document.createElement('span');
+        mask.className = 'ko__mask';
+        var inner = document.createElement('span');
+        inner.className = 'ko__w';
+        inner.textContent = w;
+        mask.appendChild(inner);
+        lineEl.appendChild(mask);
+        words.push(inner);
+      });
+      h.appendChild(lineEl);
+    });
+
+    gsap.set(words, { yPercent: 108 });
+    gsap.to(words, {
+      yPercent: 0,
+      duration: 0.85,
+      ease: 'expo.out',
+      stagger: 0.055,
+      delay: 0.12
     });
   }
 
@@ -256,9 +354,16 @@
     var newCta = neu.querySelector('.new__cta');
     var newStrip = neu.querySelectorAll('.new__strip span');
 
-    gsap.set(neu, { opacity: 0 });
+    /* Die neue Seite liegt von Anfang an fertig da, nur abgeschnitten. Sie
+       wird von der Bauline freigelegt, nicht eingeblendet — deshalb clipPath
+       statt opacity. */
+    gsap.set(neu, { opacity: 1, clipPath: 'inset(0% 100% 0% 0%)' });
     gsap.set(grid, { opacity: 0 });
-    gsap.set([newBar, newHParts, newCopy, newStrip], { opacity: 0, y: 14 });
+    /* Die Kopfleiste steht schon, bevor die Bauline kommt: sie ist Teil
+       dessen, was freigelegt wird, nicht Teil des Aufbaus. Sonst legt der
+       Wischer eine leere Fläche frei und übergibt nichts. */
+    gsap.set(newBar, { opacity: 1, y: 0 });
+    gsap.set([newHParts, newCopy, newStrip], { opacity: 0, y: 14 });
     gsap.set(newShelves, { opacity: 0, x: -18 });
     gsap.set(newImg, { clipPath: 'inset(0% 0% 100% 0%)' });
     gsap.set(newCta, { opacity: 0, scale: 0.5 });
@@ -280,70 +385,133 @@
       }
     });
 
-    /* --- Bestand: nur leichtes Heranfahren, damit es "lebt" ------------ */
-    tl.to(frame, { scale: 1.015, duration: 0.18 }, 0);
+    /* --- Bestand: leichtes Heranfahren, der Raum kippt kaum merklich --- */
+    tl.to(frame, { scale: 1.015, duration: 0.18 }, 0).to(
+      frame,
+      { rotateY: -7, rotateX: 3, duration: 0.26 },
+      0.16
+    );
 
-    /* --- Abriss: Cookie-Wand kippt weg, dann fliegt der Rest ---------- */
+    /* --- Abriss: nichts blendet aus, alles fällt. Die Unschärfe wächst
+           mit der Fallgeschwindigkeit, der Schatten mit der Fallhöhe. --- */
     tl.to(
       oldCookie,
-      { y: 90, opacity: 0, rotate: 2, duration: 0.08, ease: 'power2.in' },
+      {
+        y: 130,
+        rotate: 5,
+        opacity: 0,
+        filter: 'blur(7px)',
+        duration: 0.09,
+        ease: 'power2.in'
+      },
       0.18
     )
-      .to(
-        oldCounter,
-        { opacity: 0, scale: 0.7, duration: 0.06 },
-        0.2
-      )
+      .to(oldCounter, { opacity: 0, scale: 0.7, duration: 0.06 }, 0.2)
       .to(
         oldLines,
         {
           opacity: 0,
           x: function (i) {
-            return (i % 2 ? -1 : 1) * (40 + i * 12);
+            return (i % 2 ? -1 : 1) * (60 + i * 16);
           },
-          scaleX: 0.2,
-          duration: 0.14,
-          stagger: { each: 0.006, from: 'end' },
+          y: function (i) {
+            return 30 + i * 9;
+          },
+          rotate: function (i) {
+            return (i % 2 ? -1 : 1) * (5 + i);
+          },
+          scaleX: 0.3,
+          filter: 'blur(4px)',
+          duration: 0.16,
+          stagger: { each: 0.007, from: 'end' },
           ease: 'power2.in'
         },
         0.21
       )
       .to(
         oldPhoto,
-        { opacity: 0, y: 60, rotate: -7, duration: 0.13, ease: 'power2.in' },
+        {
+          y: 150,
+          rotate: -14,
+          scale: 0.86,
+          opacity: 0,
+          filter: 'blur(8px)',
+          duration: 0.15,
+          ease: 'power2.in'
+        },
         0.25
       )
       .to(
         oldBtn,
-        { opacity: 0, y: 40, duration: 0.1, ease: 'power2.in' },
+        {
+          y: 110,
+          rotate: 9,
+          opacity: 0,
+          filter: 'blur(5px)',
+          duration: 0.12,
+          ease: 'power2.in'
+        },
         0.27
       )
       .to(
         oldBar,
-        { opacity: 0, y: -50, duration: 0.11, ease: 'power2.in' },
+        {
+          y: -80,
+          rotate: -3,
+          opacity: 0,
+          filter: 'blur(5px)',
+          duration: 0.12,
+          ease: 'power2.in'
+        },
         0.29
       )
       .to(
         oldTitle,
-        { opacity: 0, scale: 0.86, filter: 'blur(6px)', duration: 0.13 },
+        {
+          y: 90,
+          scale: 0.8,
+          opacity: 0,
+          filter: 'blur(10px)',
+          duration: 0.14,
+          ease: 'power2.in'
+        },
         0.31
       )
-      .to(old, { opacity: 0, duration: 0.06 }, 0.42);
+      .to(old, { opacity: 0, duration: 0.05 }, 0.43);
 
-    /* --- Bauline: der Wischer, der den Schnitt macht ------------------ */
-    tl.set(sweep, { opacity: 1, left: '-2%' }, 0.44)
-      .to(sweep, { left: '102%', duration: 0.08, ease: 'power1.inOut' }, 0.44)
-      .to(sweep, { opacity: 0, duration: 0.02 }, 0.52)
+    /* --- Bauline: die Kante läuft durch, und hinter ihr liegt die neue
+           Seite frei. Freilegen und Durchlauf teilen sich exakt dasselbe
+           Zeitfenster — sonst löst sich die Kante vom Ergebnis. --- */
+    tl.set(sweep, { opacity: 1, left: '-3%' }, 0.44)
+      .to(sweep, { left: '103%', duration: 0.1, ease: 'power1.inOut' }, 0.44)
+      .to(
+        neu,
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          duration: 0.1,
+          ease: 'power1.inOut'
+        },
+        0.44
+      )
+      .to(sweep, { opacity: 0, duration: 0.02 }, 0.54)
       /* Bauraster blitzt auf und verschwindet wieder */
       .to(grid, { opacity: 1, duration: 0.05 }, 0.45)
       .to(grid, { opacity: 0, duration: 0.12 }, 0.66);
 
     /* --- Aufbau: von oben nach unten, wie ein echtes Layout ---------- */
-    tl.to(neu, { opacity: 1, duration: 0.04 }, 0.5)
-      .to(newBar, { opacity: 1, y: 0, duration: 0.06 }, 0.53)
-      .to(
+    /* Die Headline wird gesetzt, nicht eingeblendet: jede Zeile kommt
+       in Leserichtung unter ihrer eigenen Kante hervor. */
+    tl.fromTo(
         newHParts,
-        { opacity: 1, y: 0, duration: 0.1, stagger: 0.05 },
+        { clipPath: 'inset(0% 100% 0% 0%)' },
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: 'inset(0% 0% 0% 0%)',
+          duration: 0.11,
+          stagger: 0.05,
+          ease: 'power2.out'
+        },
         0.57
       )
       .to(
@@ -369,7 +537,7 @@
       )
       .to(
         newCta,
-        { opacity: 1, scale: 1, duration: 0.1, ease: 'back.out(2.4)' },
+        { opacity: 1, scale: 1, duration: 0.1, ease: 'power3.out' },
         0.78
       );
 
@@ -381,18 +549,116 @@
       );
     }
 
+    /* --- Landung: der Raum stellt sich gerade, der Schatten setzt sich.
+           Das ist der Moment, in dem etwas fertig wird. --- */
     tl.to(newCopy, { opacity: 1, y: 0, duration: 0.07 }, 0.84)
+      .to(newStrip, { opacity: 1, y: 0, duration: 0.07, stagger: 0.02 }, 0.88)
       .to(
-        newStrip,
-        { opacity: 1, y: 0, duration: 0.07, stagger: 0.02 },
+        frame,
+        {
+          scale: 1,
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.12,
+          ease: 'power2.out'
+        },
         0.88
       )
-      .to(frame, { scale: 1, duration: 0.1 }, 0.9);
+      .to(
+        frame,
+        {
+          boxShadow: '0 46px 90px -34px rgba(16, 23, 26, 0.66)',
+          duration: 0.07
+        },
+        0.9
+      )
+      .to(
+        frame,
+        {
+          boxShadow: '0 24px 60px -30px rgba(16, 23, 26, 0.4)',
+          duration: 0.08
+        },
+        0.97
+      );
 
     /* Für Tests: erlaubt es, die Timeline von außen abzuspielen. */
     window.__rb = tl;
 
     paintBeat(0);
+  }
+
+  /* ------------------------------------------------------------- 2b ---- */
+  /* SIGNATURE (Ablauf) — "Die Spur"
+     Die Linie zieht sich am Scrollfortschritt durch fünf Knoten. Anders als
+     bei der Baustelle gibt es keine Timeline: der Fortschritt schaltet nur
+     zwischen fünf Zuständen, und die Übergänge gehören dem CSS. Das hält
+     die Sache billig und macht sie unterbrechungsfest. */
+  function initTrack() {
+    var track = document.querySelector('.track');
+    if (!track || reduced || !hasST) return;
+    /* Unter 900px zeigt das CSS die ruhige Liste — dann gibt es keine
+       Bühne zu steuern. */
+    if (window.matchMedia('(max-width: 899px)').matches) return;
+
+    var draw = track.querySelector('.rail__draw');
+    var nodes = track.querySelectorAll('.rail__node');
+    var panels = track.querySelectorAll('.tp');
+    if (!draw || !nodes.length || nodes.length !== panels.length) return;
+
+    var count = nodes.length;
+
+    /* Ab hier übernimmt das Skript: erst jetzt darf die Bühne die ruhige
+       Liste ablösen. */
+    track.classList.add('is-live');
+
+    /* Jedes Icon zeichnet sich beim Aktivwerden selbst. Die Pfadlänge steht
+       erst nach dem Layout fest, deshalb hier und nicht im CSS. */
+    var icons = [];
+    panels.forEach(function (p) {
+      var path = p.querySelector('.tp__icon path');
+      if (!path) {
+        icons.push(null);
+        return;
+      }
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'stroke-dashoffset 0.75s var(--ease)';
+      icons.push({ el: path, len: len });
+    });
+
+    var current = -1;
+    function activate(i) {
+      if (i === current) return;
+      current = i;
+      nodes.forEach(function (n, k) {
+        n.classList.toggle('is-on', k === i);
+        n.classList.toggle('is-done', k < i);
+      });
+      panels.forEach(function (p, k) {
+        p.classList.toggle('is-on', k === i);
+      });
+      icons.forEach(function (ic, k) {
+        if (!ic) return;
+        ic.el.style.strokeDashoffset = k === i ? 0 : ic.len;
+      });
+    }
+
+    ScrollTrigger.create({
+      trigger: track,
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: function (self) {
+        var p = self.progress;
+        draw.style.transform = 'scaleX(' + p + ')';
+        /* Der letzte Knoten soll erreicht sein, bevor die Sektion endet —
+           sonst steht Phase 05 nur einen Wimpernschlag. */
+        var i = Math.min(count - 1, Math.floor(p * count * 1.08));
+        activate(i);
+      }
+    });
+
+    activate(0);
   }
 
   /* ---------------------------------------------------------------- 3 ---- */
@@ -453,12 +719,14 @@
     initLenis();
     initHeader();
     initMenu();
+    initCursor();
+    initHeadOpen();
     initReveals();
-    initLv();
     initFaq();
     initBeforeAfter();
     initForm();
     initRebuild();
+    initTrack();
     /* Nach dem Laden der Schriften verschieben sich Höhen. */
     if (document.fonts && hasST) {
       document.fonts.ready.then(function () {
