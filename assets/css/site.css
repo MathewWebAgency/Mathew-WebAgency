@@ -2172,10 +2172,14 @@ a:not([class]):focus-visible {
   max-width: 58ch;
 }
 
+/* Die Nebenspalte traegt Fliesstext neben einer Ueberschrift. Sie beginnt
+   auf deren Hoehe, damit oben eine gemeinsame Kante entsteht — bei
+   align-content: end hing der Absatz frueher in der Luft, sobald die
+   Ueberschrift laenger war als er. */
 .split__side {
   display: grid;
-  gap: 1.25rem;
-  align-content: end;
+  gap: 1rem;
+  align-content: start;
 }
 
 /* --- Formular ---------------------------------------------------------- */
