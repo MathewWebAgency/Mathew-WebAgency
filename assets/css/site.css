@@ -1010,6 +1010,10 @@ a:not([class]):focus-visible {
   position: relative;
   align-self: stretch;
   justify-self: center;
+  /* Feste Bezugsbreite. Ohne width: 100% ist der Stapel schrumpfend und
+     das width: 100% des Rahmens laeuft ins Leere - er blieb dann auf
+     seiner Inhaltsbreite von 348px stehen. */
+  width: 100%;
   max-width: 100%;
   display: flex;
   justify-content: center;
@@ -1025,25 +1029,21 @@ a:not([class]):focus-visible {
 /* Der Browser-Rahmen */
 .rb__frame {
   position: relative;
-  /* Der Rahmen muss in BEIDE Richtungen passen. Frueher stand hier nur
-     height: 100% mit max-width: 100%. Sobald max-width griff, blieb die
-     Hoehe auf 100 Prozent stehen und das Seitenverhaeltnis wurde ignoriert -
-     auf jedem hohen Fenster wurde der Rahmen fast quadratisch (740x700,
-     889x831) und der Inhalt darin gestaucht. Genau das war die als
-     "verzerrte Hochformatansicht" gemeldete Stoerung.
+  /* Breitengesteuert, in JEDER Ansicht. Vorher war der Rahmen
+     hoehengesteuert (height gesetzt, width: auto, aspect-ratio). Das
+     funktioniert in Chromium, aber nicht in Safari: dort leitet ein
+     Flex-Kind bei width: auto die Breite NICHT aus dem Seitenverhaeltnis
+     ab, sondern schrumpft auf seine Inhaltsbreite. Ergebnis in Safari war
+     ein 250x705-Rahmen - hochkant und gestaucht, auf allen Geraeten.
 
-     Jetzt wird die Hoehe gegen beide Achsen gerechnet: sie ist das Kleinere
-     aus der Feldhoehe und dem, was die Feldbreite beim gewuenschten
-     Verhaeltnis zulaesst. Die Feldbreite ist bekannt, sie folgt aus --wrap
-     und --gutter. Die Breite ergibt sich dann aus dem Verhaeltnis, und das
-     bleibt in jedem Fenster erhalten. */
-  --rb-feldbreite: min(
-    calc(100vw - 2 * var(--gutter)),
-    calc(var(--wrap) - 2 * var(--gutter))
-  );
-  height: min(100%, calc(var(--rb-feldbreite) * 10.2 / 16));
-  width: auto;
-  max-width: 100%;
+     Jetzt gibt die Breite den Takt vor und die Hoehe folgt dem
+     Verhaeltnis; das verhalten sich alle Browser gleich. Damit der Rahmen
+     auf flachen Fenstern nicht zu hoch wird, misst initStageFit() in
+     site.js die tatsaechlich freie Hoehe und setzt --rb-max darauf.
+     Ohne JavaScript bleibt es bei voller Feldbreite - die Buehne schneidet
+     Ueberstand ab, die ruhige Fassung greift ohnehin. */
+  width: min(100%, calc(var(--rb-max, 100vh) * 16 / 10.2));
+  height: auto;
   aspect-ratio: 16 / 10.2;
   background: #fff;
   border: 1px solid var(--line-paper-stark);

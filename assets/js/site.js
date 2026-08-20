@@ -267,6 +267,41 @@
        0.52–0.86  Aufbau  – Raster, Headline, Bildfeld, Button, Handy
        0.86–1.00  Fertig  – Kennwerte setzen sich, Rahmen atmet aus
   */
+  /* Die Buehne der Baustelle misst sich selbst.
+
+     Der Rahmen ist breitengesteuert (siehe .rb__frame im CSS), damit sich
+     alle Browser gleich verhalten - Safari leitet bei width: auto die
+     Breite eines Flex-Kindes nicht aus dem Seitenverhaeltnis ab und
+     schrumpfte den Rahmen auf 250px. Breitengesteuert kann er dafuer auf
+     flachen Fenstern zu hoch werden. Wie hoch er hoechstens sein darf,
+     laesst sich in CSS nicht ausdruecken: es ist die Buehnenhoehe minus
+     Kopf, minus Abstaende, und der Kopf bricht je nach Breite anders um.
+     Also wird gemessen statt gerechnet. */
+  function initStageFit() {
+    var feld = document.querySelector('.rb__field');
+    if (!feld) return;
+    var stapel = feld.querySelector('.rb__stack');
+    if (!stapel) return;
+
+    function passe() {
+      /* Unterhalb des Umschaltpunkts regelt das CSS die Groesse. */
+      if (window.matchMedia('(max-width: 819px)').matches) {
+        stapel.style.removeProperty('--rb-max');
+        return;
+      }
+      var hoehe = feld.clientHeight;
+      if (!hoehe) return;
+      stapel.style.setProperty('--rb-max', hoehe + 'px');
+    }
+
+    passe();
+    window.addEventListener('resize', passe, { passive: true });
+    window.addEventListener('orientationchange', passe);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(passe);
+    }
+  }
+
   function initRebuild() {
     var rb = document.querySelector('.rb');
     if (!rb || reduced || !hasST) return;
@@ -775,6 +810,7 @@
     initFaq();
     initBeforeAfter();
     initForm();
+    initStageFit();
     initRebuild();
     initTrack();
     /* Nach dem Laden der Schriften verschieben sich Höhen. */
