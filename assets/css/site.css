@@ -636,6 +636,7 @@ a:not([class]):focus-visible {
    backdrop-filter fehlt, volle Deckung. */
 .hdr.is-stuck {
   background: color-mix(in srgb, var(--paper) 96%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   backdrop-filter: blur(16px) saturate(140%);
   border-bottom-color: var(--line-paper);
 }
@@ -647,7 +648,7 @@ a:not([class]):focus-visible {
   background: color-mix(in srgb, var(--ink) 94%, transparent);
   border-bottom-color: var(--line-ink);
 }
-@supports not (backdrop-filter: blur(1px)) {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .hdr.is-stuck { background: var(--paper); }
   .hdr.on-dark.is-stuck { background: var(--ink); }
 }
@@ -1654,6 +1655,7 @@ a:not([class]):focus-visible {
      Wort ueber die ganze Spanne innerhalb der Spalte. Silbentrennung
      bleibt als Notausgang, falls je ein laengerer Name dazukommt. */
   font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  -webkit-hyphens: auto;
   hyphens: auto;
 }
 .lvx__body {
@@ -1705,6 +1707,84 @@ a:not([class]):focus-visible {
 }
 .band--ink .lvx__list--nutzen li {
   color: var(--on-ink);
+}
+
+/* --- Die Spur auf schmalen Schirmen ------------------------------------- */
+/* Auf dem Telefon lief die Ablaufseite bisher ganz ohne Bewegung: die
+   gepinnte Buehne braucht Breite fuer Schiene und Tafel nebeneinander, also
+   uebernahm die ruhige Liste - und damit fehlte der Seite ihr einziger
+   Moment. Statt die Buehne zu erzwingen (gepinntes Scrollen ist auf
+   mobilem Safari heikel) bekommt die Liste eine eigene Spur: eine
+   senkrechte Linie zeichnet sich beim Scrollen durch die fuenf Phasen,
+   und jede Phase setzt sich, sobald sie ins Bild kommt. Dieselbe Aussage
+   wie am Rechner, nur in der Achse, in der auf dem Telefon ohnehin
+   gescrollt wird. */
+
+.steps {
+  position: relative;
+}
+.steps__base,
+.steps__draw {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  pointer-events: none;
+}
+.steps__base {
+  height: 100%;
+  background: var(--line-ink);
+}
+.steps__draw {
+  height: 100%;
+  background: var(--gruen-hell);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  will-change: transform;
+}
+/* Der Schritt setzt sich: Ziffer und Text kommen aus dem Gedaempften
+   nach vorn. Kein Hereinfliegen - die Linie traegt die Bewegung. */
+.track__static .step {
+  padding-left: 1.5rem;
+  transition: opacity 0.5s var(--ease);
+  opacity: 0.45;
+}
+.track__static .step.is-on {
+  opacity: 1;
+}
+.track__static .step__no b {
+  transition: color 0.5s var(--ease);
+}
+.track__static .step.is-on .step__no b {
+  color: var(--gruen-hell);
+}
+/* Der Knoten auf der Linie, auf Hoehe der Ziffer. */
+.track__static .step::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: clamp(1.75rem, 4vw, 2.75rem);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--line-ink);
+  transition: border-color 0.5s var(--ease), background 0.5s var(--ease);
+}
+.track__static .step.is-on::after {
+  background: var(--gruen-hell);
+  border-color: var(--gruen-hell);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Ohne Bewegung steht alles gleich da - die Linie waere dann eine
+     Behauptung ohne Anlass. */
+  .steps__draw {
+    transform: scaleY(1);
+  }
+  .track__static .step {
+    opacity: 1;
+  }
 }
 
 /* --- Karten-Raster (Garantien, Referenzen, Team) ----------------------- */
@@ -2579,6 +2659,9 @@ a:not([class]):focus-visible {
      320px-Telefon: ein Grid-Element schrumpft nie unter seine
      min-content-Breite, also schob das eine Wort die ganze Spalte auf.
      hyphens braucht das lang-Attribut, das steht im html-Tag. */
+  /* -webkit- zuerst: ohne den Praefix trennt Safari nicht, und dann sprengt
+     "Verbraucherstreitbeilegung" als Ueberschrift wieder jedes Telefon. */
+  -webkit-hyphens: auto;
   hyphens: auto;
   overflow-wrap: break-word;
 }
@@ -2821,10 +2904,13 @@ a:not([class]):focus-visible {
     width: 100%;
     align-items: center;
   }
+  /* max-height plus aspect-ratio ist dieselbe Falle wie am Rechner: greift
+     die Hoehenbegrenzung, ignoriert Safari das Verhaeltnis und staucht den
+     Rahmen. Stattdessen begrenzt die gemessene Hoehe die Breite - dieselbe
+     Mechanik wie oben, nur mit dem Hochformat-Verhaeltnis. */
   .rb__frame {
-    width: 100%;
+    width: min(100%, calc(var(--rb-max, 100vh) * 4 / 5));
     height: auto;
-    max-height: 100%;
   }
   .rb__caption {
     min-height: 0;

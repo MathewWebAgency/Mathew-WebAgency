@@ -277,6 +277,70 @@
      laesst sich in CSS nicht ausdruecken: es ist die Buehnenhoehe minus
      Kopf, minus Abstaende, und der Kopf bricht je nach Breite anders um.
      Also wird gemessen statt gerechnet. */
+  /* Die Spur auf schmalen Schirmen.
+
+     Am Rechner laeuft die Ablaufseite ueber eine gepinnte Buehne. Die
+     braucht Breite fuer Schiene und Tafel nebeneinander, weshalb auf dem
+     Telefon die ruhige Liste uebernimmt - und damit lief die Seite dort
+     ganz ohne Bewegung. Statt die Buehne zu erzwingen (gepinntes Scrollen
+     ist auf mobilem Safari heikel) zeichnet sich hier eine senkrechte
+     Linie durch die Liste, und jede Phase setzt sich beim Erreichen.
+
+     Bewusst ohne ScrollTrigger: die Ablaufseite laedt GSAP zwar, aber
+     diese Spur soll auch dann laufen, wenn die gepinnte Fassung nicht
+     greift. Ein Scroll-Horcher mit requestAnimationFrame reicht. */
+  function initStepTrail() {
+    var liste = document.querySelector('.track__static .steps');
+    if (!liste) return;
+    var schritte = [].slice.call(liste.querySelectorAll('.step'));
+    if (!schritte.length) return;
+
+    var grund = document.createElement('span');
+    grund.className = 'steps__base';
+    grund.setAttribute('aria-hidden', 'true');
+    var linie = document.createElement('span');
+    linie.className = 'steps__draw';
+    linie.setAttribute('aria-hidden', 'true');
+    liste.appendChild(grund);
+    liste.appendChild(linie);
+
+    if (reduced) {
+      schritte.forEach(function (el) {
+        el.classList.add('is-on');
+      });
+      return;
+    }
+
+    var wartet = false;
+
+    function zeichne() {
+      wartet = false;
+      var r = liste.getBoundingClientRect();
+      if (!r.height) return;
+      /* Die Linie folgt einem Punkt bei 55 Prozent der Bildhoehe: dort
+         landet beim Scrollen das, was man gerade liest. */
+      var marke = window.innerHeight * 0.55;
+      var p = (marke - r.top) / r.height;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      linie.style.transform = 'scaleY(' + p + ')';
+
+      schritte.forEach(function (el) {
+        var er = el.getBoundingClientRect();
+        el.classList.toggle('is-on', er.top < marke);
+      });
+    }
+
+    function beiScroll() {
+      if (wartet) return;
+      wartet = true;
+      requestAnimationFrame(zeichne);
+    }
+
+    window.addEventListener('scroll', beiScroll, { passive: true });
+    window.addEventListener('resize', beiScroll, { passive: true });
+    zeichne();
+  }
+
   function initStageFit() {
     var feld = document.querySelector('.rb__field');
     if (!feld) return;
@@ -284,11 +348,9 @@
     if (!stapel) return;
 
     function passe() {
-      /* Unterhalb des Umschaltpunkts regelt das CSS die Groesse. */
-      if (window.matchMedia('(max-width: 819px)').matches) {
-        stapel.style.removeProperty('--rb-max');
-        return;
-      }
+      /* Gilt in jeder Ansicht. Das CSS waehlt nur das Verhaeltnis - quer am
+         Rechner, hochkant auf dem Telefon -, die Grenze ist immer die
+         gemessene freie Hoehe. */
       var hoehe = feld.clientHeight;
       if (!hoehe) return;
       stapel.style.setProperty('--rb-max', hoehe + 'px');
@@ -811,6 +873,7 @@
     initBeforeAfter();
     initForm();
     initStageFit();
+    initStepTrail();
     initRebuild();
     initTrack();
     /* Nach dem Laden der Schriften verschieben sich Höhen. */
