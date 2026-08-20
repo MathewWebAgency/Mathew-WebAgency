@@ -598,9 +598,9 @@
   function initTrack() {
     var track = document.querySelector('.track');
     if (!track || reduced || !hasST) return;
-    /* Unter 900px zeigt das CSS die ruhige Liste – dann gibt es keine
+    /* Unter 820px zeigt das CSS die ruhige Liste – dann gibt es keine
        Bühne zu steuern. */
-    if (window.matchMedia('(max-width: 899px)').matches) return;
+    if (window.matchMedia('(max-width: 819px)').matches) return;
 
     var draw = track.querySelector('.rail__draw');
     var nodes = track.querySelectorAll('.rail__node');

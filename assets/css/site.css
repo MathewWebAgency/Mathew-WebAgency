@@ -1017,7 +1017,7 @@ a:not([class]):focus-visible {
 .rb__frame {
   position: relative;
   /* Höhengesteuert: die Bühne gibt die Höhe vor, die Breite folgt dem
-     Seitenverhältnis. Unter 900px wird auf breitengesteuert gewechselt. */
+     Seitenverhältnis. Unter 820px wird auf breitengesteuert gewechselt. */
   height: 100%;
   width: auto;
   max-width: 100%;
@@ -2658,7 +2658,12 @@ a:not([class]):focus-visible {
   }
 }
 
-@media (min-width: 900px) {
+/* Die Grenze zwischen Handy- und Rechnerfassung. 900px war zu hoch
+   gegriffen: ein nicht maximiertes Fenster oder 125 Prozent Zoom fallen
+   schnell darunter, und dann bekommt ein Rechner die Handyfassung der
+   Baustelle. Live nachgemessen sitzt die Rechnerfassung auch bei 820px
+   noch sauber - Rahmen und angedocktes Handy haben dort Platz. */
+@media (min-width: 820px) {
   .burger {
     display: none;
   }
@@ -2685,8 +2690,8 @@ a:not([class]):focus-visible {
   }
 }
 
-/* Kompakte Navigation: unter 900px wird zum Burger gewechselt */
-@media (max-width: 899px) {
+/* Kompakte Navigation: unter 820px wird zum Burger gewechselt */
+@media (max-width: 819px) {
   .nav,
   .hdr__cta .btn {
     display: none;
