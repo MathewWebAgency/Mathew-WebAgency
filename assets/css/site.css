@@ -1196,7 +1196,8 @@ a:not([class]):focus-visible {
   --bk-grund: #14202e;
   --bk-ink: #f2ece1;
   --bk-akzent: #c8863c;
-  --bk-dim: rgba(242, 236, 225, 0.66);
+  /* 0.66 war auf Miniaturgroesse nicht mehr lesbar. */
+  --bk-dim: rgba(242, 236, 225, 0.82);
   --bk-line: rgba(242, 236, 225, 0.18);
   font-family: var(--bk-font);
 }
@@ -1226,7 +1227,7 @@ a:not([class]):focus-visible {
 }
 .new__brand {
   font-family: var(--bk-font);
-  font-size: clamp(0.55rem, 1.15vw, 0.82rem);
+  font-size: clamp(0.7rem, 1.4vw, 1rem);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -1237,14 +1238,14 @@ a:not([class]):focus-visible {
 }
 .new__nav i {
   font-style: normal;
-  font-size: clamp(0.36rem, 0.72vw, 0.52rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(0.5rem, 0.95vw, 0.7rem);
+  letter-spacing: 0.01em;
   color: var(--bk-dim);
 }
 .new__pill {
   font-family: var(--code);
-  font-size: clamp(0.32rem, 0.66vw, 0.48rem);
-  letter-spacing: 0.05em;
+  font-size: clamp(0.48rem, 0.92vw, 0.68rem);
+  letter-spacing: 0.01em;
   padding: 0.22em 0.7em;
   border-radius: var(--r-pill);
   border: 1px solid var(--bk-line);
@@ -1270,7 +1271,7 @@ a:not([class]):focus-visible {
   grid-column: 1;
   grid-row: 3;
   align-self: start;
-  font-size: clamp(0.44rem, 0.92vw, 0.64rem);
+  font-size: clamp(0.56rem, 1.1vw, 0.78rem);
   line-height: 1.5;
   color: var(--bk-dim);
   max-width: 32ch;
@@ -1336,23 +1337,14 @@ a:not([class]):focus-visible {
 .new__shelf i:nth-child(4) {
   width: 74%;
 }
-/* Das Aufmaß an den Böden: eine Zahl statt eines leeren Balkens. */
-.new__dim {
-  justify-self: end;
-  margin-top: 0.35em;
-  font-family: var(--code);
-  font-size: clamp(0.32rem, 0.66vw, 0.48rem);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--bk-akzent);
-}
+
 .new__tag {
   position: absolute;
   left: 7%;
   top: 7%;
   font-family: var(--code);
-  font-size: clamp(0.3rem, 0.62vw, 0.45rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(0.44rem, 0.86vw, 0.62rem);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: rgba(245, 238, 224, 0.9);
 }
@@ -1365,17 +1357,20 @@ a:not([class]):focus-visible {
   right: 0;
   bottom: 0;
   padding: 1.4em 7% 0.6em;
-  font-size: clamp(0.34rem, 0.7vw, 0.5rem);
+  font-size: clamp(0.48rem, 0.94vw, 0.68rem);
   line-height: 1.35;
   color: rgba(247, 242, 232, 0.94);
   background: linear-gradient(to top, rgba(24, 15, 6, 0.78), transparent);
+  /* Heller Text auf gemasertem Holz: eine dunkle Kante haelt ihn lesbar,
+     egal welche Maserungsstelle darunter liegt. */
+  text-shadow: 0 1px 2px rgba(16, 12, 6, 0.75);
 }
 .new__cta {
   grid-column: 1;
   grid-row: 4;
   align-self: end;
   justify-self: start;
-  font-size: clamp(0.44rem, 0.95vw, 0.66rem);
+  font-size: clamp(0.56rem, 1.12vw, 0.8rem);
   font-weight: 600;
   padding: 0.45rem 1rem;
   border-radius: var(--r-pill);
@@ -1397,8 +1392,11 @@ a:not([class]):focus-visible {
 }
 .new__strip span {
   font-family: var(--code);
-  font-size: clamp(0.32rem, 0.66vw, 0.48rem);
-  letter-spacing: 0.09em;
+  font-size: clamp(0.46rem, 0.9vw, 0.66rem);
+  /* line-height 1: die Zeile ragte auf Handybreite sonst 1px unter den
+     Rahmen des Nachbaus. */
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--bk-dim);
 }
