@@ -1,10 +1,10 @@
 /* ==========================================================================
-   Mathew WebAgency — site.js
+   Mathew WebAgency – site.js
    Vanilla JS. GSAP + ScrollTrigger + Lenis sind lokal eingebunden.
 
    Reihenfolge:
    1. Grundlagen (Header, Menü, Reveals, FAQ)
-   2. Signature: "Die Baustelle" — gepinnt und scroll-gescrubbt
+   2. Signature: "Die Baustelle" – gepinnt und scroll-gescrubbt
    3. Vorher/Nachher-Schieber
    4. Formular
    ========================================================================== */
@@ -120,11 +120,11 @@
 
   /* Zeiger: ein Ring, der dem Systemzeiger mit leichter Verzögerung folgt
      und über Bedienelementen zufasst. Bei reduzierter Bewegung entfällt er
-     — eine nachlaufende Ebene ist genau das, was der Nutzer abbestellt hat.
+     – eine nachlaufende Ebene ist genau das, was der Nutzer abbestellt hat.
 
      Die Zeigerart wird nicht über eine Media Query entschieden, sondern am
      Ereignis selbst: `(pointer: fine)` meldet grob, sobald ein Browser
-     Touch nachstellt — in der Handy-Vorschau am Rechner steckt aber weiter
+     Touch nachstellt – in der Handy-Vorschau am Rechner steckt aber weiter
      eine Maus dahinter, und der Ring fehlte dort. Gebaut wird der Ring
      deshalb erst bei der ersten echten Mausbewegung. Auf einem Gerät ohne
      Maus tritt sie nie ein, dort entsteht auch kein Ring. */
@@ -180,7 +180,7 @@
 
   /* Kopf-Öffnung: die erste Überschrift der Seite wird gesetzt, Wort für
      Wort unter der eigenen Kante hervor. Läuft beim Laden, nicht beim
-     Scrollen — der Besucher soll etwas sehen, bevor er etwas liest.
+     Scrollen – der Besucher soll etwas sehen, bevor er etwas liest.
 
      Der Screenreader bekommt den Satz am Stück über aria-label; die
      Wort-Container sind für ihn nicht vorhanden. Ohne JS oder bei
@@ -255,17 +255,17 @@
   }
 
   /* ---------------------------------------------------------------- 2 ---- */
-  /* SIGNATURE — "Die Baustelle"
+  /* SIGNATURE – "Die Baustelle"
      Eine Baukastenseite wird beim Scrollen abgerissen und neu gebaut.
      Echtes Scrubbing: die Timeline hängt am Scrollfortschritt, nicht an
      einem Timer, damit das Tempo dem Nutzer gehört.
 
      Phasen:
-       0.00–0.18  Bestand — die alte Seite steht, Cookie-Wand verdeckt sie
-       0.18–0.44  Abriss  — Elemente fliegen gestaffelt heraus
-       0.44–0.52  Bauline — grüner Strich wischt durchs Bild
-       0.52–0.86  Aufbau  — Raster, Headline, Bildfeld, Button, Handy
-       0.86–1.00  Fertig  — Kennwerte setzen sich, Rahmen atmet aus
+       0.00–0.18  Bestand – die alte Seite steht, Cookie-Wand verdeckt sie
+       0.18–0.44  Abriss  – Elemente fliegen gestaffelt heraus
+       0.44–0.52  Bauline – grüner Strich wischt durchs Bild
+       0.52–0.86  Aufbau  – Raster, Headline, Bildfeld, Button, Handy
+       0.86–1.00  Fertig  – Kennwerte setzen sich, Rahmen atmet aus
   */
   function initRebuild() {
     var rb = document.querySelector('.rb');
@@ -357,7 +357,7 @@
     var newStrip = neu.querySelectorAll('.new__strip span');
 
     /* Die neue Seite liegt von Anfang an fertig da, nur abgeschnitten. Sie
-       wird von der Bauline freigelegt, nicht eingeblendet — deshalb clipPath
+       wird von der Bauline freigelegt, nicht eingeblendet – deshalb clipPath
        statt opacity. */
     gsap.set(neu, { opacity: 1, clipPath: 'inset(0% 100% 0% 0%)' });
     gsap.set(grid, { opacity: 0 });
@@ -483,7 +483,7 @@
 
     /* --- Bauline: die Kante läuft durch, und hinter ihr liegt die neue
            Seite frei. Freilegen und Durchlauf teilen sich exakt dasselbe
-           Zeitfenster — sonst löst sich die Kante vom Ergebnis. --- */
+           Zeitfenster – sonst löst sich die Kante vom Ergebnis. --- */
     tl.set(sweep, { opacity: 1, left: '-3%' }, 0.44)
       .to(sweep, { left: '103%', duration: 0.1, ease: 'power1.inOut' }, 0.44)
       .to(
@@ -525,7 +525,7 @@
         },
         0.63
       )
-      /* Die Regalböden schieben sich ein — wie beim Einbauen. */
+      /* Die Regalböden schieben sich ein – wie beim Einbauen. */
       .to(
         newShelves,
         {
@@ -590,7 +590,7 @@
   }
 
   /* ------------------------------------------------------------- 2b ---- */
-  /* SIGNATURE (Ablauf) — "Die Spur"
+  /* SIGNATURE (Ablauf) – "Die Spur"
      Die Linie zieht sich am Scrollfortschritt durch fünf Knoten. Anders als
      bei der Baustelle gibt es keine Timeline: der Fortschritt schaltet nur
      zwischen fünf Zuständen, und die Übergänge gehören dem CSS. Das hält
@@ -598,7 +598,7 @@
   function initTrack() {
     var track = document.querySelector('.track');
     if (!track || reduced || !hasST) return;
-    /* Unter 900px zeigt das CSS die ruhige Liste — dann gibt es keine
+    /* Unter 900px zeigt das CSS die ruhige Liste – dann gibt es keine
        Bühne zu steuern. */
     if (window.matchMedia('(max-width: 899px)').matches) return;
 
@@ -653,7 +653,7 @@
       onUpdate: function (self) {
         var p = self.progress;
         draw.style.transform = 'scaleX(' + p + ')';
-        /* Der letzte Knoten soll erreicht sein, bevor die Sektion endet —
+        /* Der letzte Knoten soll erreicht sein, bevor die Sektion endet –
            sonst steht Phase 05 nur einen Wimpernschlag. */
         var i = Math.min(count - 1, Math.floor(p * count * 1.08));
         activate(i);
@@ -686,7 +686,7 @@
   /* ---------------------------------------------------------------- 4 ---- */
 
   /* Das Formular sendet ueber fetch, damit der Absender auf der Seite
-     bleibt und die Bestaetigung dort steht, wo er gerade geschrieben hat —
+     bleibt und die Bestaetigung dort steht, wo er gerade geschrieben hat –
      statt auf einer fremden Danke-Seite zu landen und zurueckfinden zu
      muessen. Ohne JS bleibt der normale POST als Rueckfallebene bestehen;
      dann uebernimmt der Anbieter die Bestaetigung. */

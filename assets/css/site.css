@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Mathew WebAgency — Designsystem "Kalkgrau & Tiefgrün"
+   Mathew WebAgency – Designsystem "Kalkgrau & Tiefgrün"
    Kein Framework, keine Utility-Klassen, kein Build-Step.
 
    Herleitung der Palette: das Angebot auf Papier. Kalkgrau ist der kühle
-   Bogen, auf dem eine Kalkulation steht — bewusst kein Creme, weil Creme
+   Bogen, auf dem eine Kalkulation steht – bewusst kein Creme, weil Creme
    nach Einladung aussieht und nicht nach Zusage. Tiefgrün ist die einzige
    Aktionsfarbe: die Farbe, in der man unterschreibt. Sand trägt nur Linien
    und Marginalien auf dunklem Grund.
@@ -13,7 +13,7 @@
 /* Selbst gehostet: kein Google-Fonts-CDN (DSGVO) und keine externe Abhängigkeit. */
 
 /* Fraunces, variabel (Gewicht 100-900, optische Groesse 9-144, dazu die
-   Achsen SOFT und WONK). WONK laesst g, a und y aus der Achse kippen — das
+   Achsen SOFT und WONK). WONK laesst g, a und y aus der Achse kippen – das
    ist der Grund fuer diese Schrift: eine Ueberschrift, die von Hand gesetzt
    aussieht statt aus einer Bibliothek gegriffen. */
 @font-face {
@@ -37,7 +37,7 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* Newsreader, variabel (Gewicht 200-800, optische Groesse 6-72). Fuer den
-   Bildschirm gezeichnet, offene Punzen, ruhiger Duktus — sie traegt lange
+   Bildschirm gezeichnet, offene Punzen, ruhiger Duktus – sie traegt lange
    deutsche Woerter, ohne sich neben Fraunces in den Vordergrund zu stellen. */
 @font-face {
   font-family: 'Newsreader';
@@ -60,7 +60,7 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* Archivo gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
-   hat eine eigene Farbwelt — es braucht auch eine eigene Schrift, sonst
+   hat eine eigene Farbwelt – es braucht auch eine eigene Schrift, sonst
    versprechen wir Gestaltung fuer genau diesen Betrieb und zeigen unsere. */
 @font-face {
   font-family: 'Archivo';
@@ -84,7 +84,7 @@
 }
 /* Space Mono bleibt, aber nur noch im Browserrahmen: Adresszeile, Besucher-
    zaehler, Massangaben. Dort ist die Schreibmaschine eine echte Konvention.
-   In unserer eigenen Oberflaeche kam sie als gesperrte Versalie vor — genau
+   In unserer eigenen Oberflaeche kam sie als gesperrte Versalie vor – genau
    das Bauteil, das in jeder zweiten Vorlage steckt. Es ist raus. */
 @font-face {
   font-family: 'Space Mono';
@@ -98,7 +98,7 @@
 
 :root {
   /* Flächen */
-  --paper: #e7eae4; /* Kalkgrau, kühl — bewusst kein Creme */
+  --paper: #e7eae4; /* Kalkgrau, kühl – bewusst kein Creme */
   --paper-2: #f3f5f0; /* aufgehellte Karte */
   --paper-3: #dbdfd7; /* eingesenkte Fläche, Hover */
   --ink: #10171a; /* kühles Fast-Schwarz */
@@ -113,18 +113,18 @@
      Grau tot, ein Papierton liest sich wie Bleistift auf Tonpapier. 7.9:1. */
   --on-ink-dim: #b0ab99;
 
-  /* Akzente — zwei Stimmen, klar getrennte Rollen.
+  /* Akzente – zwei Stimmen, klar getrennte Rollen.
      Grün sagt, was der Besucher tun kann: Schaltflächen, Links, Marker,
      Fokus. Rost sagt, was wir sagen: der Widerspruch im Satzpaar, die
-     Zeile "Dein Part". Rost ist nie anklickbar — wo es steht, gibt es
+     Zeile "Dein Part". Rost ist nie anklickbar – wo es steht, gibt es
      nichts zu drücken. Dadurch bleibt Grün als Handlungssignal eindeutig,
      obwohl die Seite mehr Farbe trägt. */
-  --gruen: #14523a; /* Tiefgrün — die Aktionsfarbe */
+  --gruen: #14523a; /* Tiefgrün – die Aktionsfarbe */
   --gruen-2: #1d7a54; /* Hover */
   --gruen-hell: #7dc9a3; /* Grün auf dunklem Grund (Kontrast) */
-  --rost: #a8452a; /* Gegenstimme auf Papier — 4.9:1 */
-  --rost-hell: #e0906b; /* Gegenstimme auf Tinte — 7.2:1 */
-  --sand: #c8b48c; /* Papierton auf dunklem Grund — nur Linien & Labels */
+  --rost: #a8452a; /* Gegenstimme auf Papier – 4.9:1 */
+  --rost-hell: #e0906b; /* Gegenstimme auf Tinte – 7.2:1 */
+  --sand: #c8b48c; /* Papierton auf dunklem Grund – nur Linien & Labels */
 
   /* Linien */
   --line-paper: rgba(16, 23, 26, 0.14);
@@ -132,11 +132,11 @@
   --line-ink: rgba(238, 241, 236, 0.16);
 
   /* Der Marker, den der Zeiger über einen Link zieht. Auf Papier ein
-     verdünntes Tiefgrün, auf Tinte das hellere Grün — beide so schwach,
+     verdünntes Tiefgrün, auf Tinte das hellere Grün – beide so schwach,
      dass die Schrift darüber lesbar bleibt. */
   --wash: rgba(29, 122, 84, 0.2);
 
-  /* Radien — klein, plus echte Pillen. Nichts dazwischen. */
+  /* Radien – klein, plus echte Pillen. Nichts dazwischen. */
   --r-xs: 3px;
   --r-sm: 6px;
   --r-md: 10px;
@@ -170,7 +170,7 @@
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --section-y: clamp(5rem, 11vh, 9rem);
   /* Der Header liegt fest über allem. Gepinnte Bühnen kleben bei top:0 und
-     schoben ihren Kopf sonst darunter — auf dem Handy verschwand dadurch
+     schoben ihren Kopf sonst darunter – auf dem Handy verschwand dadurch
      die Überschrift der Baustelle komplett. Gemessen: 79px. */
   --hdr-h: 79px;
 
@@ -270,7 +270,7 @@ button {
 /* --- Zeiger --------------------------------------------------------------- */
 /* Ein nachlaufender Ring, kein Ersatz für den Systemzeiger: der bleibt
    sichtbar, damit Zielgenauigkeit und Textcursor erhalten bleiben.
-   mix-blend-mode: difference erledigt hell und dunkel in einem — über
+   mix-blend-mode: difference erledigt hell und dunkel in einem – über
    Kalkgrau erscheint der Ring dunkel, über Tinte hell. Zwei gepflegte
    Fassungen wären dieselbe Wirkung mit doppelter Arbeit.
    Wird nur bei feiner Zeigereingabe eingehängt (siehe site.js). */
@@ -317,7 +317,7 @@ button {
 /* --- Browser-Oberflächen ------------------------------------------------- */
 /* Auswahl, Cursor, Scrollleiste und Unterlängen gehören zur Gestaltung.
    Werksseitig kommen sie in Systemblau und gehören damit zu keinem
-   Designsystem — hier stehen sie in der Palette der Seite. */
+   Designsystem – hier stehen sie in der Palette der Seite. */
 
 ::selection {
   background: var(--gruen);
@@ -341,7 +341,7 @@ textarea {
 }
 
 /* Keine Striche. Unter dem Zeiger wächst ein Marker von der Grundlinie
-   hoch — wie über einer Zeile, die man auf Papier anstreicht. Der Verlauf
+   hoch – wie über einer Zeile, die man auf Papier anstreicht. Der Verlauf
    läuft über background-size statt über eine eigene Ebene: so entsteht
    kein Stapelkontext, der sich mit dem Zeiger-Ring beißt. */
 a:not([class]) {
@@ -362,7 +362,7 @@ a:not([class]):focus-visible {
 
 /* Links mitten im Fließtext brauchen ein Merkmal im Ruhezustand. Farbe
    allein trägt es nicht: Tiefgrün steht nur 1,47:1 gegen den Fließtext,
-   nötig wären 3:1 — wer Farben schlecht unterscheidet, fände sie nicht.
+   nötig wären 3:1 – wer Farben schlecht unterscheidet, fände sie nicht.
    Das Gewicht leistet es und funktioniert auch in Graustufen. */
 .prose a,
 .faq p a,
@@ -462,7 +462,7 @@ a:not([class]):focus-visible {
   line-height: 1.02;
 }
 
-/* Behauptung und Widerspruch als Satzpaar — das rhetorische Muster der Marke.
+/* Behauptung und Widerspruch als Satzpaar – das rhetorische Muster der Marke.
    Der Widerspruch trägt über die Variable-Achse und einen optischen Versatz,
    nicht über eine zweite Farbe: Grün ist die Farbe, in der man unterschreibt,
    und verliert seine Bedeutung, wenn es in jeder Überschrift dekoriert. */
@@ -479,7 +479,7 @@ a:not([class]):focus-visible {
 
 /* --- Kopf-Öffnung -------------------------------------------------------- */
 /* Die Wörter fahren unter ihrer eigenen Oberkante hervor. Die Maske ist nur
-   während der Bewegung nötig, bleibt aber stehen — sie kostet nichts und
+   während der Bewegung nötig, bleibt aber stehen – sie kostet nichts und
    verhindert, dass Unterlängen bei Zoom abgeschnitten wirken. */
 
 .ko__line {
@@ -497,7 +497,7 @@ a:not([class]):focus-visible {
      bei 0.08em kappte die Maske das g in "gut." auf halber Hoehe. Der
      negative Aussenabstand nimmt die Luft aus dem Zeilenfall wieder
      heraus, damit der Satz gleich sitzt. Wer diesen Wert erhoeht, muss
-     auch den Startversatz in initHeadOpen() erhoehen — sonst lugt das
+     auch den Startversatz in initHeadOpen() erhoehen – sonst lugt das
      Wort vor der Bewegung unter der Kante hervor. */
   padding-bottom: 0.2em;
   margin-bottom: -0.2em;
@@ -721,7 +721,7 @@ a:not([class]):focus-visible {
   position: absolute;
   left: 13px;
   width: 18px;
-  height: 1.5px;
+  height: 2px;
   background: currentColor;
   transition: transform 0.35s var(--ease), opacity 0.2s;
 }
@@ -783,7 +783,7 @@ a:not([class]):focus-visible {
 /* --- Hero: das Angebotsblatt -------------------------------------------- */
 /* Papier statt Tinte. Die Struktur kommt aus Haarlinien und Positionen,
    nicht aus einem Leuchten hinter der Schrift. Der Seitenrhythmus lebt
-   weiter vom Wechsel — nur beginnt er jetzt hell und kippt später. */
+   weiter vom Wechsel – nur beginnt er jetzt hell und kippt später. */
 
 .hero {
   position: relative;
@@ -807,7 +807,7 @@ a:not([class]):focus-visible {
   letter-spacing: -0.045em;
   font-weight: 700;
   /* Gemessen: Unter 22ch bricht schon die erste Zeile und die Aussage läuft
-     auf drei Zeilen — damit rutscht die Unterschriftszeile aus dem ersten
+     auf drei Zeilen – damit rutscht die Unterschriftszeile aus dem ersten
      Bildschirm. Bei 22ch steht jede der beiden Aussagen auf ihrer Zeile. */
   max-width: 22ch;
 }
@@ -895,7 +895,7 @@ a:not([class]):focus-visible {
 
 /* --- SIGNATURE: Die Baustelle ------------------------------------------ */
 /* Gepinnter Abschnitt. Eine Baukasten-Website wird abgerissen und neu
-   gebaut — scroll-gescrubbt, damit das Tempo am Rad des Nutzers hängt. */
+   gebaut – scroll-gescrubbt, damit das Tempo am Rad des Nutzers hängt. */
 
 /* Hero und Baustelle stehen beide auf Papier. Der volle Sektionsabstand
    liest sich hier als Loch, weil keine Farbkante dazwischenliegt. */
@@ -1184,8 +1184,8 @@ a:not([class]):focus-visible {
 
 /* Die Beispielseite ist die Arbeitsprobe: eigene Navigation, ein Bildfeld
    mit Tiefe, Leistungszeile, Kontakt. Sie muss zeigen, was ein Kunde
-   bekommt — „besser als die alte" reicht als Anspruch nicht. */
-/* Brinkmann bekommt eine eigene Welt — Werkstattlicht am Abend: Tiefblau,
+   bekommt – „besser als die alte" reicht als Anspruch nicht. */
+/* Brinkmann bekommt eine eigene Welt – Werkstattlicht am Abend: Tiefblau,
    Papierweiß, Messing. Das ist der Kern der Arbeitsprobe: Wir behaupten
    Gestaltung für genau diesen Betrieb und dürfen dann nicht unser eigenes
    Kalkgrau-Tiefgrün vorführen. Die Tokens gelten nur innerhalb der
@@ -1275,7 +1275,7 @@ a:not([class]):focus-visible {
   max-width: 32ch;
 }
 /* Das Bildfeld zeigt das Material des Betriebs: Holz mit Maserung und Tiefe,
-   dazu eine Bildunterschrift — so, wie eine echte Projektaufnahme säße. */
+   dazu eine Bildunterschrift – so, wie eine echte Projektaufnahme säße. */
 .new__img {
   grid-column: 2;
   grid-row: 2 / 5;
@@ -1409,7 +1409,7 @@ a:not([class]):focus-visible {
   bottom: -5%;
   width: clamp(74px, 15%, 124px);
   aspect-ratio: 9 / 18;
-  /* Gerätegehäuse, nicht Markenfarbe — deshalb ein neutrales Schwarz und
+  /* Gerätegehäuse, nicht Markenfarbe – deshalb ein neutrales Schwarz und
      kein Token aus unserer Palette. */
   background: #101012;
   border-radius: 14px;
@@ -1503,7 +1503,7 @@ a:not([class]):focus-visible {
 
 /* Bauline: die Kante, hinter der freigelegt wird. Der Strich selbst ist
    schmal; was ihn sichtbar macht, ist der Span, den er hinter sich herzieht
-   — so liest er sich als Werkzeug und nicht als Leuchteffekt. */
+   – so liest er sich als Werkzeug und nicht als Leuchteffekt. */
 .rb__sweep {
   position: absolute;
   top: -4%;
@@ -1564,7 +1564,7 @@ a:not([class]):focus-visible {
   color: var(--on-paper);
 }
 
-/* Statische Alternative — für reduced-motion und als No-JS-Fallback */
+/* Statische Alternative – für reduced-motion und als No-JS-Fallback */
 .rb__static {
   display: none;
 }
@@ -1576,7 +1576,7 @@ a:not([class]):focus-visible {
 /* --- Leistungen als Zeilen ------------------------------------------- */
 /* Kein Akkordeon mehr: das Aufklappen verbarg den Inhalt hinter einem Klick
    und der grüne Kopfbalken beherrschte die Sektion. Drei Zeilen im selben
-   Takt wie Konditionen, Grundsätze und Phasen — der Seitenrhythmus lebt von
+   Takt wie Konditionen, Grundsätze und Phasen – der Seitenrhythmus lebt von
    der Wiederholung dieser Form, nicht von einem Sonderbauteil. */
 
 .svc {
@@ -1621,6 +1621,17 @@ a:not([class]):focus-visible {
   position: relative;
   color: var(--on-paper-dim);
 }
+/* "Das hast du davon" ist der Grund, warum jemand liest. "Das steckt drin"
+   ist die Auflistung dahinter. Vorher standen beide im selben Grad und in
+   derselben Farbe - drei Bloecke Spezifikation, gleich laut. Jetzt fuehrt
+   der Nutzen, der Umfang folgt. */
+.lv__col:first-child li {
+  font-size: var(--t-body);
+  color: var(--on-paper);
+}
+.band--ink .lv__col:first-child li {
+  color: var(--on-ink);
+}
 .lv__col li strong {
   color: var(--on-paper);
   font-weight: 600;
@@ -1631,7 +1642,11 @@ a:not([class]):focus-visible {
   left: 0;
   top: 1.05em;
   width: 7px;
-  height: 1.5px;
+  /* Ganze Pixel. Bei 1.5px liegt die Kante auf einem halben Geraetepixel und
+     der Browser rechnet je nach Position der Zeile mal auf 1px ab, mal auf
+     2px hoch - dann sind die Striche einer Liste sichtbar unterschiedlich
+     dick. Gilt fuer jeden Haarstrich in diesem Blatt. */
+  height: 2px;
   background: var(--gruen);
 }
 
@@ -1787,13 +1802,13 @@ a:not([class]):focus-visible {
 
 /* --- Ablauf-Signature: "Die Spur" ------------------------------------- */
 /* Eine Linie zieht sich beim Scrollen durch fünf Knoten. Die Sequenz ist
-   hier die eigentliche Aussage — deshalb bekommt sie die Bewegung und
+   hier die eigentliche Aussage – deshalb bekommt sie die Bewegung und
    nicht die Überschrift. Gepinnt nach demselben Prinzip wie die Baustelle:
    die Sektion trägt die Scrollstrecke, die Bühne klebt per sticky. */
 
 /* Der Standardzustand ist die ruhige Liste, nicht die Bühne: erst wenn das
    Skript die Steuerung übernommen hat, setzt es .is-live. Andersherum wäre
-   die Seite leer, sobald GSAP nicht lädt — die Tafeln sind ja versteckt,
+   die Seite leer, sobald GSAP nicht lädt – die Tafeln sind ja versteckt,
    bis jemand sie schaltet. */
 .track {
   position: relative;
@@ -1950,7 +1965,7 @@ a:not([class]):focus-visible {
   border-radius: var(--r-pill);
 }
 
-/* Ruhige Fassung — der Ausgangszustand, den .is-live ablöst */
+/* Ruhige Fassung – der Ausgangszustand, den .is-live ablöst */
 .track__static {
   display: block;
   padding-block: var(--section-y);
@@ -2173,13 +2188,42 @@ a:not([class]):focus-visible {
 }
 
 /* Die Nebenspalte traegt Fliesstext neben einer Ueberschrift. Sie beginnt
-   auf deren Hoehe, damit oben eine gemeinsame Kante entsteht — bei
+   auf deren Hoehe, damit oben eine gemeinsame Kante entsteht – bei
    align-content: end hing der Absatz frueher in der Luft, sobald die
    Ueberschrift laenger war als er. */
 .split__side {
   display: grid;
   gap: 1rem;
   align-content: start;
+}
+
+/* --- Thesenblatt -------------------------------------------------------- */
+/* Die staerkste Aussage einer Seite steht nicht neben ihrer Begruendung,
+   sondern ueber ihr. Vorher lief die Ueberschrift links dreizeilig, der
+   Absatz stand oben rechts daneben und darunter war ein Loch - zwei
+   Spalten, die um dieselbe Aufmerksamkeit konkurrierten. Jetzt: Satz
+   allein, Haarlinie quer, Begruendung leise darunter in zwei Spalten.
+   Die Linie ist dasselbe Bauteil wie im Leistungsverzeichnis. */
+
+.thesis {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+.thesis h2 {
+  max-width: 24ch;
+}
+.thesis__body {
+  display: grid;
+  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--line-paper-stark);
+}
+.band--ink .thesis__body,
+.phead .thesis__body {
+  border-top-color: var(--line-ink);
+}
+.thesis__body .lead {
+  max-width: none;
 }
 
 /* --- Formular ---------------------------------------------------------- */
@@ -2270,7 +2314,7 @@ a:not([class]):focus-visible {
 .band--ink .direct a {
   border-color: var(--line-ink);
 }
-/* Die Kontaktwege sind der Zweck dieser Seite — sie sollen sich wie
+/* Die Kontaktwege sind der Zweck dieser Seite – sie sollen sich wie
    Schalter anfassen, nicht wie eine Liste lesen. Der Versatz läuft über
    transform statt über padding: Letzteres treibt das Layout und ruckelt. */
 .direct a {
@@ -2283,7 +2327,7 @@ a:not([class]):focus-visible {
   border-bottom: 1px solid var(--line-paper);
 }
 /* Die zweite Fassung schlägt .rev.is-revealed, das sonst seine 0,8 s auch
-   dem Hover aufzwingt — ein Schalter, der eine Sekunde braucht, fühlt sich
+   dem Hover aufzwingt – ein Schalter, der eine Sekunde braucht, fühlt sich
    kaputt an. */
 .direct a,
 .direct a.rev.is-revealed {
@@ -2420,7 +2464,7 @@ a:not([class]):focus-visible {
   color: var(--on-ink-dim);
 }
 
-/* --- Reveal (dezent — die Energie steckt in der Baustelle) ------------ */
+/* --- Reveal (dezent – die Energie steckt in der Baustelle) ------------ */
 
 .rev {
   opacity: 0;
@@ -2437,7 +2481,7 @@ a:not([class]):focus-visible {
 
 /* Der Kopf liest sich wie der Kopf eines Angebots: Linienpapier, eine
    Kennung am Rand, darunter die Aussage. Der grüne Lichtfleck, der hier
-   stand, ist ersatzlos entfallen — er war Dekor ohne Herleitung und das
+   stand, ist ersatzlos entfallen – er war Dekor ohne Herleitung und das
    deutlichste Vorlagen-Signal der ganzen Seite. */
 .phead {
   background: var(--ink);
@@ -2511,7 +2555,7 @@ a:not([class]):focus-visible {
   left: -1.35rem;
   top: 0.72em;
   width: 7px;
-  height: 1.5px;
+  height: 2px;
   background: var(--gruen);
 }
 /* Auch hier trägt die Link-Grundregel: Gewicht statt Unterstrich, der
@@ -2547,7 +2591,7 @@ a:not([class]):focus-visible {
 }
 
 /* ======================================================================
-   Breakpoints — Mobile First, deshalb erweitern wir nach oben
+   Breakpoints – Mobile First, deshalb erweitern wir nach oben
    ====================================================================== */
 
 @media (min-width: 620px) {
@@ -2555,14 +2599,19 @@ a:not([class]):focus-visible {
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .lv__cols {
+  .thesis__body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Der Nutzen traegt mehr Gewicht als die Auflistung des Umfangs:
+     ungleiche Spalten, damit das Auge weiss, wo es anfangen soll. */
+  .lv__cols {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   }
   .step {
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: start;
   }
-  /* Position links, Zusage rechts — erst ab hier passt beides nebeneinander,
+  /* Position links, Zusage rechts – erst ab hier passt beides nebeneinander,
      und erst so bleibt die Unterschriftszeile im ersten Bildschirm. */
   .terms__row {
     grid-template-columns: 12.5rem minmax(0, 1fr);
@@ -2629,7 +2678,7 @@ a:not([class]):focus-visible {
     min-height: 0;
   }
   /* Die Spur braucht Breite für Schiene und Tafel nebeneinander. Auf
-     schmalen Schirmen liest sich die ruhige Liste ohnehin besser — auch
+     schmalen Schirmen liest sich die ruhige Liste ohnehin besser – auch
      dann, wenn das Skript beim Laden noch auf Desktop-Breite lief. */
   .track.is-live {
     height: auto;
