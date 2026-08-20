@@ -984,6 +984,12 @@ a:not([class]):focus-visible {
 .rb__field {
   position: relative;
   display: grid;
+  /* minmax(0, 1fr) statt der impliziten auto-Spalte: auto heisst
+     max-content, und daran rechnet sich das max-width: 100% des Stapels.
+     Ohne diese Zeile wurde der Stapel auf einem hochkant gehaltenen Tablet
+     1018px breit in einem 823px breiten Feld - sein "hoechstens 100 Prozent"
+     bezog sich auf eine Spalte, die selbst schon zu breit war. */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   min-height: 0;
 }
@@ -2627,6 +2633,20 @@ a:not([class]):focus-visible {
    Breakpoints – Mobile First, deshalb erweitern wir nach oben
    ====================================================================== */
 
+/* Lesegrade auf dem Telefon. Gemessen liefen Fließtext und Listen dort auf
+   16px und Beschriftungen auf 14,4px - neben einer 40px-Überschrift wirkt
+   das klein, und für eingeschränktes Sehvermögen ist es zu wenig. Auf dem
+   kleinen Schirm ist Platz kein Argument: dort wird ohnehin gescrollt.
+   Am Rechner bleiben die Werte, dort stimmt das Verhältnis. */
+@media (max-width: 619px) {
+  :root {
+    --t-body: 1.2rem;
+    --t-small: 1.1rem;
+    --t-label: 0.95rem;
+    --t-lead: 1.18rem;
+  }
+}
+
 @media (min-width: 620px) {
   .cards--3,
   .cards {
@@ -2691,6 +2711,60 @@ a:not([class]):focus-visible {
 }
 
 /* Kompakte Navigation: unter 820px wird zum Burger gewechselt */
+/* Hochkant gehaltenes Tablet. Der Rahmen ist hoehengesteuert: die Buehne
+   gibt die Hoehe, die Breite folgt dem Seitenverhaeltnis. Auf einem hohen,
+   schmalen Fenster rechnete er sich damit auf 1098px bei 834px Fenster -
+   132 Prozent, er lief aus dem Bild. Hier wird auf breitengesteuert
+   gewechselt, wie unterhalb von 820px auch. Das Seitenverhaeltnis bleibt
+   quer, nur flacher, damit nichts gestaucht wird. */
+@media (min-width: 820px) and (max-aspect-ratio: 1 / 1) {
+  /* Wie unterhalb von 820px: der Stapel nimmt die volle Breite, damit das
+     width: 100% des Rahmens eine echte Bezugsgroesse hat, und zentriert
+     statt zu strecken - Strecken ueberschreibt sonst height: auto und mit
+     ihm das Seitenverhaeltnis. */
+  .rb__stack {
+    width: 100%;
+    align-items: center;
+  }
+  .rb__frame {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    aspect-ratio: 16 / 11;
+  }
+}
+
+/* Flache Fenster: Laptops mit wenig Hoehe und Tablets im Querformat. Dort
+   nahm der Kopf 158 von 744 Pixeln und der Rahmen kam auf 54 Prozent der
+   Fensterbreite - er wirkte verloren. Der Kopf wird enger, der Rahmen
+   bekommt die Hoehe. */
+@media (min-width: 820px) and (max-height: 820px) {
+  .rb__stage {
+    padding-top: calc(var(--hdr-h) + 0.35rem);
+    gap: 0.7rem;
+  }
+  .rb__head {
+    gap: 0.4rem;
+  }
+  .rb__head h2 {
+    font-size: clamp(1.15rem, 1.85vw, 1.6rem);
+  }
+  .rb__disclaimer {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+  }
+  .rb__caption {
+    min-height: 0;
+  }
+  .rb__caption strong {
+    font-size: 0.98rem;
+  }
+  .rb__caption p {
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+}
+
 @media (max-width: 819px) {
   .nav,
   .hdr__cta .btn {
