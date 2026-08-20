@@ -117,6 +117,20 @@ Zielumgebung ist FTP auf Hostinger: den kompletten Ordnerinhalt in `public_html/
 hochladen. Es gibt keinen Build-Schritt – was im Repo liegt, ist was live geht.
 `.claude/` muss nicht mit hochgeladen werden.
 
+**`.htaccess` unbedingt mit hochladen.** Die Datei beginnt mit einem Punkt und wird
+von vielen FTP-Programmen standardmäßig ausgeblendet – im FileZilla unter
+*Server → Versteckte Dateien anzeigen* einschalten. Ohne sie fehlen Komprimierung
+(CSS geht dann mit 72 statt 20 KB über die Leitung), Zwischenspeicher-Regeln, die
+Weiterleitung auf https und ohne `www`, die Sicherheits-Kopfzeilen und die
+404-Seite. Sie ist der größte einzelne Hebel für die Ladezeit.
+
+**Nach dem ersten Upload prüfen:**
+
+1. `https://mathew-webagency.de` lädt und leitet von `http://` und von `www.` weiter
+2. Kontaktformular einmal echt absenden – kommt die Mail an?
+3. In der Google Search Console `sitemap.xml` einreichen
+4. Rich-Results-Test für Start- und Kontaktseite (dort liegt das FAQ-Markup)
+
 **Vor jedem Upload: Cache-Version hochzählen.** `site.css` und `site.js` sind in
 allen HTML-Dateien mit `?v=JJJJMMTT` verlinkt. Ohne Bump bekommen wiederkehrende
 Besucher altes CSS zu neuem HTML serviert – der Browser hält die Dateien sonst
@@ -128,3 +142,15 @@ sed -i '' 's|site\.css?v=[0-9]*|site.css?v=20260810|g; s|site\.js?v=[0-9]*|site.
 
 Die Bibliotheken in `assets/js/` (GSAP, ScrollTrigger, Lenis) ändern sich nicht und
 brauchen keine Version.
+
+**Die Skripte werden nicht überall geladen.** GSAP und ScrollTrigger kosten zusammen
+45 KB komprimiert und werden nur dort eingebunden, wo sie etwas tun:
+
+| Seite | geladen |
+|---|---|
+| `index`, `ablauf` | GSAP + ScrollTrigger + Lenis (gepinnte Features) |
+| `leistungen`, `ueber-uns`, `kontakt` | GSAP + Lenis (nur die Kopf-Öffnung) |
+| `impressum`, `datenschutz`, `agb`, `404` | nur Lenis |
+
+Die Reveals laufen über `IntersectionObserver` und brauchen kein GSAP. Wer einer
+Seite eine gepinnte Animation gibt, muss ScrollTrigger dort ergänzen.

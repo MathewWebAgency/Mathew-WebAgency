@@ -2700,6 +2700,46 @@ a:not([class]):focus-visible {
   .rb__phone {
     display: none; /* auf kleinen Bühnen würde das Handy nur stören */
   }
+  /* Auf 375x812 nahm der Kopf 320 von 812 Pixeln - 40 Prozent des Schirms
+     fuer Titel und Kommentar, waehrend der Nachbau, um den es geht, mit
+     308 auskommen musste. Deshalb wirkte er zusammengequetscht: nicht die
+     Abstaende darin waren zu klein, sondern der Kasten drumherum.
+     Der Kopf wird enger, der Rahmen bekommt die Hoehe. */
+  .rb__stage {
+    gap: clamp(0.55rem, 1.6vh, 1rem);
+  }
+  .rb__head {
+    gap: 0.45rem;
+  }
+  .rb__head h2 {
+    line-height: 1.06;
+  }
+  .rb__disclaimer {
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+  }
+  .rb__side {
+    gap: 0.55rem;
+  }
+  .rb__state {
+    padding: 0.3rem 0.7rem;
+  }
+  .rb__caption {
+    min-height: 0;
+    gap: 0.2rem;
+  }
+  .rb__caption strong {
+    font-size: 0.95rem;
+  }
+  .rb__caption p {
+    font-size: 0.9rem;
+    line-height: 1.42;
+  }
+  /* Mit mehr Rahmenhoehe darf der Nachbau selbst wieder atmen. */
+  .new {
+    padding: 0.95rem 0.9rem;
+    gap: 0.5rem 0.8rem;
+  }
   .rb__stage {
     height: 100svh;
   }
@@ -2732,9 +2772,11 @@ a:not([class]):focus-visible {
 
 @media (max-width: 620px) {
   /* Hochkant statt Breitwand: auf dem Handy hat der Rahmen sonst zu wenig
-     Höhe für den Inhalt der Beispielseite. */
+     Höhe für den Inhalt der Beispielseite. 1/1 deckelte ihn auf 335px und
+     liess den Platz, den der schlankere Kopf freigibt, ungenutzt - der
+     Nachbau blieb gequetscht, obwohl darueber Luft war. */
   .rb__frame {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
   }
   .rb__head h2 {
     font-size: 1.35rem;
