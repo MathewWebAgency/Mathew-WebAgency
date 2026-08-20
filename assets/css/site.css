@@ -232,6 +232,7 @@ h4 {
   margin: 0;
   text-wrap: balance;
   font-optical-sizing: auto;
+  overflow-wrap: break-word;
   /* SOFT rundet die Ecken, WONK kippt g, a und y aus der Achse. Das ist
      der Grund fuer diese Schrift: eine Ueberschrift, die gesetzt aussieht
      statt gegriffen. Beide Achsen bleiben dezent - WONK ist ein Schalter,
@@ -1603,64 +1604,78 @@ a:not([class]):focus-visible {
   margin-top: clamp(1.75rem, 4vh, 2.75rem);
 }
 
-.lv__cols {
+/* --- Leistungsblatt ----------------------------------------------------- */
+/* Die Leistungsseite war die einzige Seite ohne einen einzigen starken Zug
+   des Systems: keine gepinnte Bewegung, kein Haarlinien-Verzeichnis,
+   Display-Schrift nur auf halber Kraft. Drei gleich laute Bloecke
+   untereinander. Jetzt leiht sie sich beides, was die Seite ohnehin
+   besitzt: das Kleben aus der Baustelle und der Spur (position: sticky)
+   und das Verzeichnis aus dem Hero (Zeile, Haarlinie, naechste Zeile).
+   Der Name bleibt stehen, waehrend sein Inhalt vorbeizieht. */
+
+.lvx {
   display: grid;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
 }
-.lv__col h4 {
+.lvx__name h2 {
+  /* Nicht --t-display-l: "Auffindbarkeit" ist als ein Wort 386px breit und
+     passte damit 13px zu knapp nicht in seine Spalte - der harte Umbruch
+     zerlegte es zu "Auffindbarkei / t". Dieser Grad haelt das laengste
+     Wort ueber die ganze Spanne innerhalb der Spalte. Silbentrennung
+     bleibt als Notausgang, falls je ein laengerer Name dazukommt. */
+  font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  hyphens: auto;
+}
+.lvx__body {
+  display: grid;
+  gap: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+.lvx__body .lead {
+  max-width: 46ch;
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+}
+.lvx__label {
   font-family: var(--label);
   font-size: var(--t-label);
   font-weight: 400;
   color: var(--on-paper-dim);
-  margin-bottom: 0.85rem;
+  margin-bottom: -0.4rem;
 }
-.lv__col li {
+.band--ink .lvx__label {
+  color: var(--on-ink-dim);
+}
+
+/* Zeile, Haarlinie, naechste Zeile - dasselbe Bauteil wie die Konditionen
+   auf der Startseite. Bullet-Punkte sagen "Liste", Haarlinien sagen
+   "Verzeichnis", und ein Verzeichnis ist das, was hier steht. */
+.lvx__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-paper);
+}
+.band--ink .lvx__list {
+  border-top-color: var(--line-ink);
+}
+.lvx__list li {
+  padding-block: clamp(0.6rem, 1.3vw, 0.85rem);
+  border-bottom: 1px solid var(--line-paper);
   font-size: var(--t-small);
-  padding: 0.4rem 0 0.4rem 1.35rem;
-  position: relative;
   color: var(--on-paper-dim);
 }
-/* "Das hast du davon" ist der Grund, warum jemand liest. "Das steckt drin"
-   ist die Auflistung dahinter. Vorher standen beide im selben Grad und in
-   derselben Farbe - drei Bloecke Spezifikation, gleich laut. Jetzt fuehrt
-   der Nutzen, der Umfang folgt. */
-.lv__col:first-child li {
+.band--ink .lvx__list li {
+  border-bottom-color: var(--line-ink);
+  color: var(--on-ink-dim);
+}
+/* Der Nutzen ist der Grund, warum jemand liest. Der Umfang ist die
+   Auflistung dahinter. Beide standen vorher im selben Grad. */
+.lvx__list--nutzen li {
   font-size: var(--t-body);
   color: var(--on-paper);
 }
-.band--ink .lv__col:first-child li {
+.band--ink .lvx__list--nutzen li {
   color: var(--on-ink);
-}
-.lv__col li strong {
-  color: var(--on-paper);
-  font-weight: 600;
-}
-.lv__col li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 1.05em;
-  width: 7px;
-  /* Ganze Pixel. Bei 1.5px liegt die Kante auf einem halben Geraetepixel und
-     der Browser rechnet je nach Position der Zeile mal auf 1px ab, mal auf
-     2px hoch - dann sind die Striche einer Liste sichtbar unterschiedlich
-     dick. Gilt fuer jeden Haarstrich in diesem Blatt. */
-  height: 2px;
-  background: var(--gruen);
-}
-
-/* Auf dunklem Grund muss die ganze Spalte umschlagen. Ohne das stand
-   li strong in --on-paper auf --ink: Kontrast 1.0, also unsichtbar. */
-.band--ink .lv__col h4,
-.band--ink .lv__col li {
-  color: var(--on-ink-dim);
-}
-.band--ink .lv__col li strong {
-  color: var(--on-ink);
-}
-.band--ink .lv__col li::before {
-  background: var(--gruen-hell);
 }
 
 /* --- Karten-Raster (Garantien, Referenzen, Team) ----------------------- */
@@ -1774,7 +1789,7 @@ a:not([class]):focus-visible {
   color: var(--on-ink);
   opacity: 0.22;
 }
-.step__body h3 {
+.step__body h2 {
   font-size: var(--t-h3);
   font-weight: 600;
   letter-spacing: -0.028em;
@@ -1940,7 +1955,7 @@ a:not([class]):focus-visible {
   stroke-linejoin: round;
   overflow: visible;
 }
-.tp h3 {
+.tp h2 {
   font-size: clamp(2.2rem, 5.2vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.038em;
@@ -2430,7 +2445,7 @@ a:not([class]):focus-visible {
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
-.ftr h4 {
+.ftr__cols h2 {
   font-family: var(--label);
   font-size: var(--t-label);
   font-weight: 400;
@@ -2438,9 +2453,14 @@ a:not([class]):focus-visible {
   margin-bottom: 1rem;
 }
 .ftr li {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.25rem;
 }
+/* Die Zeilen sind 16px hoch; als eigenstaendige Ziele verlangt WCAG 2.2
+   mindestens 24px. Der Innenabstand vergroessert die Tippflaeche, ohne die
+   Schrift anzufassen - auf dem Telefon trifft man sonst den Nachbarn. */
 .ftr li a {
+  display: inline-block;
+  padding-block: 0.3rem;
   font-size: var(--t-small);
   color: var(--on-ink-dim);
   transition: color 0.3s;
@@ -2525,6 +2545,13 @@ a:not([class]):focus-visible {
   max-width: 68ch;
   display: grid;
   gap: 1.1rem;
+  /* Deutsche Rechtstexte bestehen aus Komposita. "Verbraucher-
+     streitbeilegung" misst als Ueberschrift 361px und sprengte damit jedes
+     320px-Telefon: ein Grid-Element schrumpft nie unter seine
+     min-content-Breite, also schob das eine Wort die ganze Spalte auf.
+     hyphens braucht das lang-Attribut, das steht im html-Tag. */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 .prose h2 {
   font-size: var(--t-display-m);
@@ -2602,10 +2629,16 @@ a:not([class]):focus-visible {
   .thesis__body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  /* Der Nutzen traegt mehr Gewicht als die Auflistung des Umfangs:
-     ungleiche Spalten, damit das Auge weiss, wo es anfangen soll. */
-  .lv__cols {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  .lvx {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: clamp(2rem, 6vw, 5rem);
+  }
+  /* Der Name bleibt unter dem festen Header stehen, waehrend sein
+     Verzeichnis vorbeizieht. Kein Skript noetig - dieselbe Technik wie
+     die gepinnten Buehnen, nur ohne Scrollstrecke. */
+  .lvx__name {
+    position: sticky;
+    top: calc(var(--hdr-h) + clamp(1.5rem, 4vh, 3rem));
   }
   .step {
     grid-template-columns: auto minmax(0, 1fr) auto;
