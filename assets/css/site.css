@@ -1042,10 +1042,17 @@ a:not([class]):focus-visible {
      auf flachen Fenstern nicht zu hoch wird, misst initStageFit() in
      site.js die tatsaechlich freie Hoehe und setzt --rb-max darauf.
      Ohne JavaScript bleibt es bei voller Feldbreite - die Buehne schneidet
-     Ueberstand ab, die ruhige Fassung greift ohnehin. */
-  width: min(100%, calc(var(--rb-max, 100vh) * 16 / 10.2));
+     Ueberstand ab, die ruhige Fassung greift ohnehin.
+
+     Das Verhaeltnis steht an genau EINER Stelle: Breitendeckel und
+     aspect-ratio lesen dieselbe Variable. Vorher standen beide getrennt da.
+     Wer unten nur die aspect-ratio umstellte, liess den Deckel weiter mit
+     dem Querformat rechnen - der Rahmen blieb schmaler als der Platz, den
+     er haette nehmen koennen. */
+  --rb-ratio: 16 / 10.2;
+  width: min(100%, calc(var(--rb-max, 100vh) * (var(--rb-ratio))));
   height: auto;
-  aspect-ratio: 16 / 10.2;
+  aspect-ratio: var(--rb-ratio);
   background: #fff;
   border: 1px solid var(--line-paper-stark);
   border-radius: var(--r-md);
@@ -2880,20 +2887,32 @@ a:not([class]):focus-visible {
      Abstaende darin waren zu klein, sondern der Kasten drumherum.
      Der Kopf wird enger, der Rahmen bekommt die Hoehe. */
   .rb__stage {
-    gap: clamp(0.55rem, 1.6vh, 1rem);
+    gap: 0.6rem;
+    padding-top: calc(var(--hdr-h) + 0.4rem);
+    padding-bottom: 0.75rem;
   }
   .rb__head {
     gap: 0.45rem;
   }
   .rb__head h2 {
     line-height: 1.06;
+    font-size: 1.35rem;
+    max-width: 26ch;
   }
   .rb__disclaimer {
-    margin-top: 0.35rem;
-    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
   }
   .rb__side {
-    gap: 0.55rem;
+    gap: 0.45rem;
+  }
+  /* Der Kopf nahm 254 von 713 nutzbaren Pixeln. Der laengste Brocken war der
+     erklaerende Absatz der Bildunterschrift: vier Zeilen. Die fette Zeile
+     darueber traegt die Aussage jedes Takts aber schon vollstaendig ("Alles
+     raus, was keine Anfrage bringt.") - der Absatz erlaeutert sie nur. Auf
+     dem Handy gewinnt der Rahmen, um den es in der Sektion geht. */
+  .rb__caption p {
+    display: none;
   }
   .rb__state {
     padding: 0.3rem 0.7rem;
@@ -2922,14 +2941,10 @@ a:not([class]):focus-visible {
     width: 100%;
     align-items: center;
   }
-  /* max-height plus aspect-ratio ist dieselbe Falle wie am Rechner: greift
-     die Hoehenbegrenzung, ignoriert Safari das Verhaeltnis und staucht den
-     Rahmen. Stattdessen begrenzt die gemessene Hoehe die Breite - dieselbe
-     Mechanik wie oben, nur mit dem Hochformat-Verhaeltnis. */
-  .rb__frame {
-    width: min(100%, calc(var(--rb-max, 100vh) * 4 / 5));
-    height: auto;
-  }
+  /* Breite und Verhaeltnis regelt die Grundregel ueber --rb-ratio. Hier
+     stand frueher ein zweiter Breitendeckel mit fest eingetragenem 4/5 -
+     der galt schon ab 819px, waehrend das Verhaeltnis erst ab 620px
+     umschlug. Dazwischen rechneten beide gegeneinander. */
   .rb__caption {
     min-height: 0;
   }
@@ -2953,10 +2968,23 @@ a:not([class]):focus-visible {
      liess den Platz, den der schlankere Kopf freigibt, ungenutzt - der
      Nachbau blieb gequetscht, obwohl darueber Luft war. */
   .rb__frame {
-    aspect-ratio: 4 / 5;
+    --rb-ratio: 4 / 5;
   }
   .rb__head h2 {
     font-size: 1.35rem;
+  }
+}
+
+/* Kurze Schirme (iPhone SE und Verwandte). Bei 4/5 deckelt die knappe Hoehe
+   die Breite auf 300 von 335 verfuegbaren Pixeln - der Rahmen stand klein in
+   der Mitte. Quadratisch nimmt er die volle Breite und ist damit
+   breitengesteuert: seine Groesse haengt dann nicht mehr daran, ob Safari
+   seine Leisten gerade ein- oder ausgeblendet hat. Die Schwelle liegt so,
+   dass kein Geraet sie beim Ein- und Ausblenden ueberschreitet (SE 667-715,
+   iPhone 15 745-852). */
+@media (max-width: 819px) and (max-height: 730px) {
+  .rb__frame {
+    --rb-ratio: 1 / 1;
   }
 }
 
