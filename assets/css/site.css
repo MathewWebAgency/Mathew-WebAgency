@@ -853,7 +853,12 @@ a:not([class]):focus-visible {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.9rem 1.75rem;
-  padding-top: 0.35rem;
+  /* Ohne die Telefonnummer traegt die Zeile nur noch den Knopf. Der volle
+     Rasterabstand des Hero-Blatts liess ihn als eigenen Block darunter
+     stehen; er gehoert aber an die Liste, aus der er folgt. Negativer
+     Rand, weil ein Grid keinen Abstand fuer ein einzelnes Kind kennt. */
+  margin-top: -0.55rem;
+  padding-top: 0;
 }
 
 /* Der eine choreografierte Moment im Hero: Das Blatt schreibt sich.
