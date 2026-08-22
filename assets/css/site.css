@@ -2579,13 +2579,6 @@ a:not([class]):focus-visible {
   font-size: var(--t-small);
   max-width: 34ch;
 }
-/* Der Ort gehoert auf jede Seite, nicht nur ins Impressum: Er ist das, was
-   jemand eintippt, der in der Naehe jemanden sucht. Leiser gesetzt als der
-   Anspruch darueber - aber ohne die Deckkraft anzufassen, sonst faellt der
-   Kontrast unter die 4,5:1, auf die --on-ink-dim eingestellt ist. */
-.ftr__ort {
-  font-size: var(--t-label);
-}
 .ftr__cols {
   display: grid;
   gap: 2rem;
