@@ -1,42 +1,91 @@
 /* ==========================================================================
-   Mathew WebAgency — Designsystem "Kalkgrau & Promenadengrün"
-   Handgeschrieben. Keine Utility-Klassen, kein Build-Step.
+   Mathew WebAgency – Designsystem "Kalkgrau & Tiefgrün"
+   Kein Framework, keine Utility-Klassen, kein Build-Step.
 
-   Herleitung der Palette: Münster nach dem Regen — nasser Kalkstein am
-   Prinzipalmarkt (Papier), das Laubdach der Promenade (Grün), Sandstein
-   der Giebel (Akzent auf dunklem Grund).
+   Herleitung der Palette: das Angebot auf Papier. Kalkgrau ist der kühle
+   Bogen, auf dem eine Kalkulation steht – bewusst kein Creme, weil Creme
+   nach Einladung aussieht und nicht nach Zusage. Tiefgrün ist die einzige
+   Aktionsfarbe: die Farbe, in der man unterschreibt. Sand trägt nur Linien
+   und Marginalien auf dunklem Grund.
    ========================================================================== */
 
 /* --- Fonts ---------------------------------------------------------------- */
 /* Selbst gehostet: kein Google-Fonts-CDN (DSGVO) und keine externe Abhängigkeit. */
 
+/* Fraunces, variabel (Gewicht 100-900, optische Groesse 9-144, dazu die
+   Achsen SOFT und WONK). WONK laesst g, a und y aus der Achse kippen – das
+   ist der Grund fuer diese Schrift: eine Ueberschrift, die von Hand gesetzt
+   aussieht statt aus einer Bibliothek gegriffen. */
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/bricolage-grotesque-latin.woff2') format('woff2');
+  src: url('../fonts/fraunces-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Bricolage Grotesque';
+  font-family: 'Fraunces';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/bricolage-grotesque-latin-ext.woff2') format('woff2');
+  src: url('../fonts/fraunces-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+/* Newsreader, variabel (Gewicht 200-800, optische Groesse 6-72). Fuer den
+   Bildschirm gezeichnet, offene Punzen, ruhiger Duktus – sie traegt lange
+   deutsche Woerter, ohne sich neben Fraunces in den Vordergrund zu stellen. */
 @font-face {
-  font-family: 'Instrument Sans';
+  font-family: 'Newsreader';
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 200 800;
   font-display: swap;
-  src: url('../fonts/instrument-sans-var-latin.woff2') format('woff2');
+  src: url('../fonts/newsreader-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('../fonts/newsreader-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Archivo gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
+   hat eine eigene Farbwelt – es braucht auch eine eigene Schrift, sonst
+   versprechen wir Gestaltung fuer genau diesen Betrieb und zeigen unsere. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/archivo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Space Mono bleibt, aber nur noch im Browserrahmen: Adresszeile, Besucher-
+   zaehler, Massangaben. Dort ist die Schreibmaschine eine echte Konvention.
+   In unserer eigenen Oberflaeche kam sie als gesperrte Versalie vor – genau
+   das Bauteil, das in jeder zweiten Vorlage steckt. Es ist raus. */
 @font-face {
   font-family: 'Space Mono';
   font-style: normal;
@@ -49,7 +98,7 @@
 
 :root {
   /* Flächen */
-  --paper: #e7eae4; /* Kalkgrau, kühl — bewusst kein Creme */
+  --paper: #e7eae4; /* Kalkgrau, kühl – bewusst kein Creme */
   --paper-2: #f3f5f0; /* aufgehellte Karte */
   --paper-3: #dbdfd7; /* eingesenkte Fläche, Hover */
   --ink: #10171a; /* kühles Fast-Schwarz */
@@ -60,43 +109,70 @@
   --on-paper: #10171a;
   --on-paper-dim: #59635f;
   --on-ink: #eef1ec;
-  --on-ink-dim: #97a49d;
+  /* Aus der Sand-Familie getönt, nicht grau: auf dunklem Grund liest sich
+     Grau tot, ein Papierton liest sich wie Bleistift auf Tonpapier. 7.9:1. */
+  --on-ink-dim: #b0ab99;
 
-  /* Akzente */
-  --gruen: #14523a; /* Promenadengrün — Aktionsfarbe */
+  /* Akzente – zwei Stimmen, klar getrennte Rollen.
+     Grün sagt, was der Besucher tun kann: Schaltflächen, Links, Marker,
+     Fokus. Rost sagt, was wir sagen: der Widerspruch im Satzpaar, die
+     Zeile "Dein Part". Rost ist nie anklickbar – wo es steht, gibt es
+     nichts zu drücken. Dadurch bleibt Grün als Handlungssignal eindeutig,
+     obwohl die Seite mehr Farbe trägt. */
+  --gruen: #14523a; /* Tiefgrün – die Aktionsfarbe */
   --gruen-2: #1d7a54; /* Hover */
   --gruen-hell: #7dc9a3; /* Grün auf dunklem Grund (Kontrast) */
-  --sand: #c8b48c; /* Sandstein der Giebel — nur Linien & Labels */
+  --rost: #a8452a; /* Gegenstimme auf Papier – 4.9:1 */
+  --rost-hell: #e0906b; /* Gegenstimme auf Tinte – 7.2:1 */
+  --sand: #c8b48c; /* Papierton auf dunklem Grund – nur Linien & Labels */
 
   /* Linien */
   --line-paper: rgba(16, 23, 26, 0.14);
   --line-paper-stark: rgba(16, 23, 26, 0.32);
   --line-ink: rgba(238, 241, 236, 0.16);
 
-  /* Radien — klein, plus echte Pillen. Nichts dazwischen. */
+  /* Der Marker, den der Zeiger über einen Link zieht. Auf Papier ein
+     verdünntes Tiefgrün, auf Tinte das hellere Grün – beide so schwach,
+     dass die Schrift darüber lesbar bleibt. */
+  --wash: rgba(29, 122, 84, 0.2);
+
+  /* Radien – klein, plus echte Pillen. Nichts dazwischen. */
   --r-xs: 3px;
   --r-sm: 6px;
   --r-md: 10px;
   --r-pill: 999px;
 
   /* Typo */
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
-  --body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
-  --mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Beschriftungen laufen in der Fließtextschrift. Es gibt keine dritte
+     Schrift mehr in unserer eigenen Oberfläche: die Spalte trägt die
+     Information über ihre Position, nicht über einen Effekt. */
+  --label: var(--body);
+  /* Nur im Browserrahmen des Beispiels. */
+  --code: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+  /* Die Tischlerei Brinkmann setzt ihre eigene Schrift. */
+  --bk-font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
 
   --t-display-xl: clamp(2.6rem, 8.4vw, 7rem);
   --t-display-l: clamp(2.15rem, 5.2vw, 4.1rem);
   --t-display-m: clamp(1.75rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.25rem, 1.9vw, 1.6rem);
-  --t-lead: clamp(1.06rem, 1.5vw, 1.34rem);
-  --t-body: 1.0625rem;
-  --t-small: 0.9375rem;
-  --t-mono: 0.75rem;
+  /* Newsreader hat eine große x-Höhe und trägt lange deutsche Wörter,
+     braucht dafür aber etwas mehr Grad als eine Grotesk. */
+  --t-lead: clamp(1.1rem, 1.55vw, 1.4rem);
+  --t-body: 1.125rem;
+  --t-small: 1rem;
+  --t-label: 0.9rem;
 
   /* Raster */
   --wrap: 1240px;
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --section-y: clamp(5rem, 11vh, 9rem);
+  /* Der Header liegt fest über allem. Gepinnte Bühnen kleben bei top:0 und
+     schoben ihren Kopf sonst darunter – auf dem Handy verschwand dadurch
+     die Überschrift der Baustelle komplett. Gemessen: 79px. */
+  --hdr-h: 79px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -121,8 +197,13 @@ body {
   color: var(--on-paper);
   font-family: var(--body);
   font-size: var(--t-body);
-  line-height: 1.62;
+  font-variation-settings: 'opsz' 16;
+  /* Die Serif hat eine kleinere x-Höhe als die vorherige Grotesk und
+     verträgt deshalb etwas weniger Durchschuss bei gleicher Lesbarkeit.
+     Die optische Achse folgt der Schriftgröße automatisch. */
+  line-height: 1.56;
   font-weight: 400;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* clip statt hidden: hidden würde einen Scroll-Container erzeugen und
@@ -144,11 +225,19 @@ h3,
 h4 {
   font-family: var(--display);
   font-weight: 600;
-  letter-spacing: -0.032em;
-  line-height: 0.98;
+  /* Eine Antiqua vertraegt weniger Engstand als die vorherige Grotesk:
+     -0.032em liess die Serifen ineinanderlaufen. */
+  letter-spacing: -0.015em;
+  line-height: 1.02;
   margin: 0;
   text-wrap: balance;
   font-optical-sizing: auto;
+  overflow-wrap: break-word;
+  /* SOFT rundet die Ecken, WONK kippt g, a und y aus der Achse. Das ist
+     der Grund fuer diese Schrift: eine Ueberschrift, die gesetzt aussieht
+     statt gegriffen. Beide Achsen bleiben dezent - WONK ist ein Schalter,
+     SOFT der Regler, mit dem er ertraeglich wird. */
+  font-variation-settings: 'SOFT' 28, 'WONK' 1;
 }
 
 p {
@@ -177,6 +266,117 @@ button {
   outline: 2px solid var(--gruen-2);
   outline-offset: 3px;
   border-radius: var(--r-xs);
+}
+
+/* --- Zeiger --------------------------------------------------------------- */
+/* Ein nachlaufender Ring, kein Ersatz für den Systemzeiger: der bleibt
+   sichtbar, damit Zielgenauigkeit und Textcursor erhalten bleiben.
+   mix-blend-mode: difference erledigt hell und dunkel in einem – über
+   Kalkgrau erscheint der Ring dunkel, über Tinte hell. Zwei gepflegte
+   Fassungen wären dieselbe Wirkung mit doppelter Arbeit.
+   Wird nur bei feiner Zeigereingabe eingehängt (siehe site.js). */
+
+.cur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 0.3s var(--ease), width 0.3s var(--ease),
+    height 0.3s var(--ease), margin 0.3s var(--ease),
+    background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.cur.is-on {
+  opacity: 1;
+}
+/* Über Bedienelementen füllt sich der Ring und wird kleiner: das Ziel ist
+   erfasst, der Zeiger quittiert es. */
+.cur.is-hot {
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: #fff;
+}
+/* Über Text wird aus dem Ring ein schmaler Strich, der die Schreibrichtung
+   aufnimmt, statt den Satz zu verdecken. */
+.cur.is-text {
+  width: 2px;
+  height: 26px;
+  margin: -13px 0 0 -1px;
+  border-radius: 1px;
+  background: #fff;
+}
+
+/* --- Browser-Oberflächen ------------------------------------------------- */
+/* Auswahl, Cursor, Scrollleiste und Unterlängen gehören zur Gestaltung.
+   Werksseitig kommen sie in Systemblau und gehören damit zu keinem
+   Designsystem – hier stehen sie in der Palette der Seite. */
+
+::selection {
+  background: var(--gruen);
+  color: #fff;
+}
+.band--ink ::selection,
+.phead ::selection,
+.ftr ::selection {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+html {
+  scrollbar-color: var(--on-paper-dim) transparent;
+  scrollbar-width: thin;
+}
+
+input,
+textarea {
+  caret-color: var(--gruen-2);
+}
+
+/* Keine Striche. Unter dem Zeiger wächst ein Marker von der Grundlinie
+   hoch – wie über einer Zeile, die man auf Papier anstreicht. Der Verlauf
+   läuft über background-size statt über eine eigene Ebene: so entsteht
+   kein Stapelkontext, der sich mit dem Zeiger-Ring beißt. */
+a:not([class]) {
+  text-decoration: none;
+  background-image: linear-gradient(var(--wash), var(--wash));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0%;
+  padding-inline: 0.14em;
+  margin-inline: -0.14em;
+  border-radius: 2px;
+  transition: background-size 0.3s var(--ease), color 0.25s var(--ease);
+}
+a:not([class]):hover,
+a:not([class]):focus-visible {
+  background-size: 100% 100%;
+}
+
+/* Links mitten im Fließtext brauchen ein Merkmal im Ruhezustand. Farbe
+   allein trägt es nicht: Tiefgrün steht nur 1,47:1 gegen den Fließtext,
+   nötig wären 3:1 – wer Farben schlecht unterscheidet, fände sie nicht.
+   Das Gewicht leistet es und funktioniert auch in Graustufen. */
+.prose a,
+.faq p a,
+.check a,
+.lgl a {
+  font-weight: 600;
+  color: var(--gruen);
+}
+.band--ink .prose a,
+.band--ink .faq p a,
+.band--ink .check a,
+.band--ink .lgl a {
+  color: var(--gruen-hell);
 }
 
 .skip {
@@ -215,11 +415,17 @@ button {
   padding-block: var(--section-y);
   position: relative;
 }
+/* Direkt unter dem Seitenkopf traegt die volle Bandhoehe nicht: der harte
+   Wechsel von Tinte auf Papier trennt bereits. */
+.phead + .band {
+  padding-top: clamp(2.25rem, 5vh, 3.5rem);
+}
 
 /* Umgekehrte Bänder: der Seitenrhythmus lebt vom harten Wechsel. */
 .band--ink {
   background: var(--ink);
   color: var(--on-ink);
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .band--ink h1,
 .band--ink h2,
@@ -231,56 +437,25 @@ button {
   padding-block: clamp(3rem, 7vh, 5rem);
 }
 
-/* --- Eyebrow mit Giebel-Glyph ------------------------------------------- */
-/* Der Stufengiebel ist die Silhouette der Prinzipalmarkt-Häuser.
-   Er markiert jede Sektion — ein Ortszeichen, kein Dekor-Icon. */
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-paper-dim);
-  margin-bottom: 1.5rem;
-}
-.band--ink .eyebrow {
-  color: var(--sand);
-}
-
-.gable {
-  flex: none;
-  width: 15px;
-  height: 13px;
-  background: currentColor;
-  /* Stufengiebel: Treppe links, Spitze, Treppe rechts */
-  clip-path: polygon(
-    0% 100%,
-    0% 62%,
-    20% 62%,
-    20% 34%,
-    40% 34%,
-    50% 0%,
-    60% 34%,
-    80% 34%,
-    80% 62%,
-    100% 62%,
-    100% 100%
-  );
-}
-
 /* --- Typografische Klassen ---------------------------------------------- */
 
+/* Die Display-Grade tragen schwerer als der Fließtext-Schnitt: erst dadurch
+   wird der leichte Widerspruch in .claim-b als eigene Stimme lesbar.
+
+   Zur Zeilenhoehe: Fraunces misst von Versalhoehe bis Unterlaenge 0,945 em,
+   mit Umlautpunkten darueber. Die frueheren Werte um 0,92 stammen von der
+   Grotesk und liessen auf schmalen Schirmen das g der einen Zeile in das i
+   der naechsten laufen. Unter 1,0 darf hier nichts mehr stehen. */
 .display-xl {
   font-size: var(--t-display-xl);
-  line-height: 0.92;
+  font-weight: 700;
+  line-height: 1;
   letter-spacing: -0.042em;
 }
 .display-l {
   font-size: var(--t-display-l);
-  line-height: 0.96;
+  font-weight: 700;
+  line-height: 1.02;
   letter-spacing: -0.036em;
 }
 .display-m {
@@ -288,15 +463,51 @@ button {
   line-height: 1.02;
 }
 
-/* Der Weight-Wechsel innerhalb einer Headline nutzt die Variable-Achse:
-   Behauptung schwer, Widerspruch leicht und grün. */
+/* Behauptung und Widerspruch als Satzpaar – das rhetorische Muster der Marke.
+   Der Widerspruch trägt über die Variable-Achse und einen optischen Versatz,
+   nicht über eine zweite Farbe: Grün ist die Farbe, in der man unterschreibt,
+   und verliert seine Bedeutung, wenn es in jeder Überschrift dekoriert. */
 .claim-b {
   display: block;
   font-weight: 400;
-  color: var(--gruen);
+  letter-spacing: -0.015em;
+  color: var(--rost);
 }
-.band--ink .claim-b {
-  color: var(--gruen-hell);
+.band--ink .claim-b,
+.phead .claim-b {
+  color: var(--rost-hell);
+}
+
+/* --- Kopf-Öffnung -------------------------------------------------------- */
+/* Die Wörter fahren unter ihrer eigenen Oberkante hervor. Die Maske ist nur
+   während der Bewegung nötig, bleibt aber stehen – sie kostet nichts und
+   verhindert, dass Unterlängen bei Zoom abgeschnitten wirken. */
+
+.ko__line {
+  display: block;
+}
+/* Die Maske muss senkrecht kappen, waagerecht aber nicht: Buchstaben ragen
+   bei negativer Laufweite über ihre Dickte hinaus, und ohne die seitliche
+   Luft schneidet die Maske Wortanfänge ab. Der negative Außenabstand nimmt
+   die Luft aus dem Satz wieder heraus, damit die Zeile gleich bleibt. */
+.ko__mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Fraunces hat deutlich tiefere Unterlaengen als die vorherige Grotesk:
+     bei 0.08em kappte die Maske das g in "gut." auf halber Hoehe. Der
+     negative Aussenabstand nimmt die Luft aus dem Zeilenfall wieder
+     heraus, damit der Satz gleich sitzt. Wer diesen Wert erhoeht, muss
+     auch den Startversatz in initHeadOpen() erhoehen – sonst lugt das
+     Wort vor der Bewegung unter der Kante hervor. */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+  padding-inline: 0.09em;
+  margin-inline: -0.09em;
+}
+.ko__w {
+  display: inline-block;
+  will-change: transform;
 }
 
 .lead {
@@ -310,10 +521,8 @@ button {
 }
 
 .meta {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .band--ink .meta {
@@ -421,9 +630,14 @@ button {
   justify-content: space-between;
   gap: 1rem;
 }
+/* Der Balken muss decken. Unter ihm zieht die gebaute Beispielseite in
+   Tiefblau durch – schimmert sie durch, steht die Wortmarke in einer
+   Farbe, die niemand gewählt hat. Deshalb hoher Deckungsgrad und, wo
+   backdrop-filter fehlt, volle Deckung. */
 .hdr.is-stuck {
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
+  background: color-mix(in srgb, var(--paper) 96%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
   border-bottom-color: var(--line-paper);
 }
 /* Über dem dunklen Hero läuft der Header in Tinte-Optik. */
@@ -431,8 +645,12 @@ button {
   color: var(--on-ink);
 }
 .hdr.on-dark.is-stuck {
-  background: color-mix(in srgb, var(--ink) 86%, transparent);
+  background: color-mix(in srgb, var(--ink) 94%, transparent);
   border-bottom-color: var(--line-ink);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hdr.is-stuck { background: var(--paper); }
+  .hdr.on-dark.is-stuck { background: var(--ink); }
 }
 
 .brand {
@@ -444,9 +662,12 @@ button {
   font-size: 1.0625rem;
   letter-spacing: -0.03em;
 }
+/* M-Monogramm. In em bemessen, damit es der Wortmarke folgt: im Header
+   steht sie auf 1.0625rem, im Footer auf 1.25rem. Die Marke ist breiter
+   als hoch (100:84), deshalb nur die Breite setzen. */
 .brand__mark {
-  width: 22px;
-  height: 22px;
+  width: 1.5em;
+  height: auto;
   flex: none;
 }
 .brand__mark path {
@@ -469,7 +690,14 @@ button {
 .nav a:hover,
 .nav a[aria-current='page'] {
   opacity: 1;
-  background: color-mix(in srgb, currentColor 10%, transparent);
+  /* background-color statt der Kurzform: background hätte den Marker
+     aus der Link-Grundregel mitgelöscht und durch eine graue Fläche
+     aus currentColor ersetzt. */
+  background-color: color-mix(in srgb, var(--gruen) 14%, transparent);
+}
+.hdr.on-dark .nav a:hover,
+.hdr.on-dark .nav a[aria-current='page'] {
+  background-color: color-mix(in srgb, var(--gruen-hell) 20%, transparent);
 }
 
 .hdr__cta {
@@ -495,7 +723,7 @@ button {
   position: absolute;
   left: 13px;
   width: 18px;
-  height: 1.5px;
+  height: 2px;
   background: currentColor;
   transition: transform 0.35s var(--ease), opacity 0.2s;
 }
@@ -534,7 +762,7 @@ button {
 .mnav__list a {
   display: block;
   font-family: var(--display);
-  font-size: clamp(1.9rem, 8vw, 2.8rem);
+  font-size: clamp(1.35rem, 4.4vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.035em;
   padding: 0.35rem 0;
@@ -554,143 +782,133 @@ button {
   color: var(--gruen-hell);
 }
 
-/* --- Hero --------------------------------------------------------------- */
+/* --- Hero: das Angebotsblatt -------------------------------------------- */
+/* Papier statt Tinte. Die Struktur kommt aus Haarlinien und Positionen,
+   nicht aus einem Leuchten hinter der Schrift. Der Seitenrhythmus lebt
+   weiter vom Wechsel – nur beginnt er jetzt hell und kippt später. */
 
 .hero {
   position: relative;
-  background: var(--ink);
-  color: var(--on-ink);
-  padding-top: clamp(8rem, 17vh, 12rem);
-  padding-bottom: 0;
-  overflow: hidden;
-  isolation: isolate;
+  background: var(--paper);
+  color: var(--on-paper);
+  padding-top: clamp(6.5rem, 13vh, 9rem);
+  /* Knapp gehalten: die Baustelle darunter bringt ihren eigenen Innenabstand
+     mit, und beide zusammen rissen ein Loch zwischen Unterschriftszeile und
+     Folgesektion. */
+  padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
 }
 
-/* Atmosphäre: ein einziger tiefer Grünschein, kein Farbfeuerwerk. */
-.hero::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  bottom: -45%;
-  width: min(1500px, 150vw);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(29, 122, 84, 0.5) 0%,
-    rgba(20, 82, 58, 0.16) 42%,
-    transparent 70%
-  );
-  pointer-events: none;
+.hero__sheet {
+  display: grid;
+  gap: clamp(1.25rem, 2.6vh, 2rem);
 }
 
-/* Die Headline läuft über die volle Breite. Auf kleinen Schirmen darf sie
-   umbrechen, ab Tablet steht jede Behauptung auf genau einer Zeile. */
 .hero__h {
-  font-size: clamp(2.4rem, 11vw, 3.6rem);
-  line-height: 0.9;
+  font-size: clamp(2.5rem, 6.9vw, 5rem);
+  line-height: 1;
   letter-spacing: -0.045em;
-  font-weight: 600;
+  font-weight: 700;
+  /* Gemessen: Unter 22ch bricht schon die erste Zeile und die Aussage läuft
+     auf drei Zeilen – damit rutscht die Unterschriftszeile aus dem ersten
+     Bildschirm. Bei 22ch steht jede der beiden Aussagen auf ihrer Zeile. */
+  max-width: 22ch;
 }
 
-.hero__foot {
+.hero__lead {
+  font-size: var(--t-lead);
+  line-height: 1.5;
+  color: var(--on-paper-dim);
+  max-width: 52ch;
+}
+
+/* --- Konditionen als Positionszeilen ------------------------------------ */
+/* Ein Leistungsverzeichnis kennt keine Karten: Zeile, Haarlinie, nächste
+   Zeile. Die Begriffsspalte steht in Mono, weil sie eine Position ist. */
+
+.terms {
+  border-top: 1px solid var(--line-paper-stark);
+  margin: 0;
+}
+.terms__row {
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
   grid-template-columns: minmax(0, 1fr);
-  align-items: start;
-  margin-top: clamp(2rem, 5vh, 3.25rem);
+  gap: 0.3rem 2.5rem;
+  padding-block: clamp(0.7rem, 1.4vw, 0.95rem);
+  border-bottom: 1px solid var(--line-paper);
+}
+.terms dt {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--on-paper-dim);
+}
+.terms dd {
+  margin: 0;
+  font-size: var(--t-small);
+  max-width: 62ch;
 }
 
-.hero__act {
-  display: grid;
-  gap: 1.25rem;
-  justify-items: start;
-}
-
-.hero__coords {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  color: var(--sand);
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1.75rem;
-}
-.hero__coords::after {
-  content: '';
-  height: 1px;
-  flex: 1;
-  max-width: 90px;
-  background: currentColor;
-  opacity: 0.5;
-}
-
-.hero__proof {
+/* Die Zeile, auf der man unterschreiben würde. */
+.hero__sign {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 0.5rem;
-  margin-top: 0.25rem;
-}
-.hero__proof li {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid var(--line-ink);
-  border-radius: var(--r-pill);
-  color: var(--on-ink-dim);
+  align-items: center;
+  gap: 0.9rem 1.75rem;
+  /* Ohne die Telefonnummer traegt die Zeile nur noch den Knopf. Der volle
+     Rasterabstand des Hero-Blatts liess ihn als eigenen Block darunter
+     stehen; er gehoert aber an die Liste, aus der er folgt. Negativer
+     Rand, weil ein Grid keinen Abstand fuer ein einzelnes Kind kennt. */
+  margin-top: -0.55rem;
+  padding-top: 0;
 }
 
-/* Laufband der Branchen: sagt in einer Zeile, für wen gebaut wird. */
-.ticker {
-  margin-top: clamp(3.5rem, 9vh, 6rem);
-  border-top: 1px solid var(--line-ink);
-  border-bottom: 1px solid var(--line-ink);
-  overflow: hidden;
-  display: flex;
-  user-select: none;
-  --ticker-dur: 42s;
+/* Der eine choreografierte Moment im Hero: Das Blatt schreibt sich.
+   Die Linie zieht sich von links, dann setzen sich die Positionen. */
+@media (prefers-reduced-motion: no-preference) {
+  .terms {
+    border-top-color: transparent;
+    position: relative;
+  }
+  .terms::before {
+    content: '';
+    position: absolute;
+    inset: -1px 0 auto 0;
+    height: 1px;
+    background: var(--line-paper-stark);
+    transform-origin: left;
+    animation: ruleIn 0.7s var(--ease) 0.15s both;
+  }
+  .terms__row,
+  .hero__sign {
+    animation: rowIn 0.6s var(--ease) both;
+  }
+  .terms__row:nth-child(1) { animation-delay: 0.42s; }
+  .terms__row:nth-child(2) { animation-delay: 0.5s; }
+  .terms__row:nth-child(3) { animation-delay: 0.58s; }
+  .terms__row:nth-child(4) { animation-delay: 0.66s; }
+  .terms__row:nth-child(5) { animation-delay: 0.74s; }
+  .hero__sign { animation-delay: 0.86s; }
 }
-.ticker__row {
-  display: flex;
-  flex: none;
-  align-items: center;
-  gap: 2.5rem;
-  padding: 1.05rem 1.25rem 1.05rem 0;
-  animation: ticker var(--ticker-dur) linear infinite;
+@keyframes ruleIn {
+  from {
+    transform: scaleX(0);
+  }
 }
-.ticker__row > * {
-  flex: none;
-}
-.ticker span {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-ink-dim);
-}
-.ticker i {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gruen-hell);
-  opacity: 0.8;
-}
-@keyframes ticker {
-  to {
-    transform: translateX(-100%);
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
   }
 }
 
 /* --- SIGNATURE: Die Baustelle ------------------------------------------ */
 /* Gepinnter Abschnitt. Eine Baukasten-Website wird abgerissen und neu
-   gebaut — scroll-gescrubbt, damit das Tempo am Rad des Nutzers hängt. */
+   gebaut – scroll-gescrubbt, damit das Tempo am Rad des Nutzers hängt. */
 
+/* Hero und Baustelle stehen beide auf Papier. Der volle Sektionsabstand
+   liest sich hier als Loch, weil keine Farbkante dazwischenliegt. */
 .site-rebuild {
   background: var(--paper);
-  padding-top: var(--section-y);
+  padding-top: clamp(2rem, 5vh, 3.5rem);
 }
 
 .rb {
@@ -707,7 +925,9 @@ button {
   grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: clamp(1rem, 3vh, 2rem);
-  padding-block: clamp(1.5rem, 5vh, 3rem);
+  /* Oben Platz für den festen Header, sonst liegt der Titel darunter. */
+  padding-top: calc(var(--hdr-h) + clamp(0.5rem, 2vh, 1.25rem));
+  padding-bottom: clamp(1.5rem, 5vh, 3rem);
   overflow: hidden;
 }
 
@@ -721,7 +941,14 @@ button {
 }
 .rb__head h2 {
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-  max-width: 20ch;
+  max-width: 22ch;
+}
+/* Der Beispielbetrieb ist erfunden. Das steht dran, wo er auftaucht. */
+.rb__disclaimer {
+  margin-top: 0.7rem;
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--on-paper-dim);
 }
 .rb__side {
   display: grid;
@@ -734,10 +961,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.45rem 0.9rem;
   border: 1px solid var(--line-paper);
   border-radius: var(--r-pill);
@@ -765,6 +990,12 @@ button {
 .rb__field {
   position: relative;
   display: grid;
+  /* minmax(0, 1fr) statt der impliziten auto-Spalte: auto heisst
+     max-content, und daran rechnet sich das max-width: 100% des Stapels.
+     Ohne diese Zeile wurde der Stapel auf einem hochkant gehaltenen Tablet
+     1018px breit in einem 823px breiten Feld - sein "hoechstens 100 Prozent"
+     bezog sich auf eine Spalte, die selbst schon zu breit war. */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   min-height: 0;
 }
@@ -783,22 +1014,50 @@ button {
    nicht an den Seitenrand. */
 .rb__stack {
   position: relative;
-  align-self: stretch; /* volle Bühnenhöhe, damit der Rahmen sie erben kann */
+  align-self: stretch;
   justify-self: center;
+  /* Feste Bezugsbreite. Ohne width: 100% ist der Stapel schrumpfend und
+     das width: 100% des Rahmens laeuft ins Leere - er blieb dann auf
+     seiner Inhaltsbreite von 348px stehen. */
+  width: 100%;
   max-width: 100%;
   display: flex;
   justify-content: center;
+  /* center statt des voreingestellten stretch: Strecken wuerde die
+     ausgerechnete Hoehe des Rahmens ueberschreiben. */
+  align-items: center;
+  /* Fluchtpunkt für die Kippung während des Umbaus: der Rahmen steht im
+     Raum, statt flach auf dem Bildschirm zu kleben. */
+  perspective: 1800px;
+  perspective-origin: 50% 45%;
 }
 
 /* Der Browser-Rahmen */
 .rb__frame {
   position: relative;
-  /* Höhengesteuert: die Bühne gibt die Höhe vor, die Breite folgt dem
-     Seitenverhältnis. Unter 900px wird auf breitengesteuert gewechselt. */
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  aspect-ratio: 16 / 10.2;
+  /* Breitengesteuert, in JEDER Ansicht. Vorher war der Rahmen
+     hoehengesteuert (height gesetzt, width: auto, aspect-ratio). Das
+     funktioniert in Chromium, aber nicht in Safari: dort leitet ein
+     Flex-Kind bei width: auto die Breite NICHT aus dem Seitenverhaeltnis
+     ab, sondern schrumpft auf seine Inhaltsbreite. Ergebnis in Safari war
+     ein 250x705-Rahmen - hochkant und gestaucht, auf allen Geraeten.
+
+     Jetzt gibt die Breite den Takt vor und die Hoehe folgt dem
+     Verhaeltnis; das verhalten sich alle Browser gleich. Damit der Rahmen
+     auf flachen Fenstern nicht zu hoch wird, misst initStageFit() in
+     site.js die tatsaechlich freie Hoehe und setzt --rb-max darauf.
+     Ohne JavaScript bleibt es bei voller Feldbreite - die Buehne schneidet
+     Ueberstand ab, die ruhige Fassung greift ohnehin.
+
+     Das Verhaeltnis steht an genau EINER Stelle: Breitendeckel und
+     aspect-ratio lesen dieselbe Variable. Vorher standen beide getrennt da.
+     Wer unten nur die aspect-ratio umstellte, liess den Deckel weiter mit
+     dem Querformat rechnen - der Rahmen blieb schmaler als der Platz, den
+     er haette nehmen koennen. */
+  --rb-ratio: 16 / 10.2;
+  width: min(100%, calc(var(--rb-max, 100vh) * (var(--rb-ratio))));
+  height: auto;
+  aspect-ratio: var(--rb-ratio);
   background: #fff;
   border: 1px solid var(--line-paper-stark);
   border-radius: var(--r-md);
@@ -806,7 +1065,13 @@ button {
   overflow: hidden;
   display: grid;
   grid-template-rows: auto 1fr;
+  /* minmax(0, 1fr): ohne das ist die implizite Spalte max-content und der
+     Innenbereich wurde breiter als sein eigener Rahmen (351 statt 321px).
+     Der Rahmen schnitt den Ueberstand ab - im Bild sah es aus, als sei die
+     Beispielseite rechts abgeschnitten. Dieselbe Falle wie beim Feld. */
+  grid-template-columns: minmax(0, 1fr);
   will-change: transform;
+  transform-style: preserve-3d;
 }
 .rb__chrome {
   display: flex;
@@ -828,7 +1093,7 @@ button {
 }
 .rb__url {
   flex: 1;
-  font-family: var(--mono);
+  font-family: var(--code);
   font-size: 0.6875rem;
   color: var(--on-paper-dim);
   background: #fff;
@@ -837,6 +1102,10 @@ button {
   border: 1px solid var(--line-paper);
   overflow: hidden;
   white-space: nowrap;
+  /* Auf schmalen Rahmen passt die Adresse nicht; ein hart abgeschnittenes
+     Wort sieht nach Fehler aus, drei Punkte nach Browser. */
+  text-overflow: ellipsis;
+  min-width: 0;
   text-overflow: ellipsis;
 }
 
@@ -855,33 +1124,42 @@ button {
   font-family: 'Times New Roman', Times, serif;
   color: #3a3a3a;
   background: #fafaf7;
-  padding: clamp(0.6rem, 1.6vw, 1.3rem);
+  /* Basisgrad. Der Nachbau der alten Seite lief auf 7,2 bis 11,5px - so
+     klein, dass er nicht mehr als schlechte Website lesbar war, sondern nur
+     noch als Unschaerfe. Er soll haesslich wirken, nicht unleserlich: die
+     Pointe (Gaestebuch im Menue, "Herzlich Willkommen") muss man lesen
+     koennen. Alles darin rechnet jetzt in em. */
+  font-size: clamp(10.5px, 2.8vw, 14px);
+  padding: 1em;
   text-align: center;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  gap: clamp(0.4rem, 1vw, 0.8rem);
+  gap: 0.7em;
   will-change: transform, opacity;
 }
 .old__bar {
   display: flex;
   justify-content: center;
   gap: 0.9rem;
-  font-size: clamp(0.55rem, 1.05vw, 0.72rem);
-  padding-bottom: 0.4rem;
+  font-size: 0.92em;
+  padding-bottom: 0.5em;
   border-bottom: 2px ridge #c9c9c0;
   color: #1a1aa8;
   text-decoration: underline;
 }
 .old__title {
-  font-size: clamp(0.95rem, 2.4vw, 1.6rem);
+  font-size: 1.75em;
   font-weight: 700;
   line-height: 1.15;
   color: #1c2d5a;
 }
 .old__body {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(0.5rem, 1.4vw, 1rem);
+  /* minmax(0, ...): ohne das schrumpfen die Spalten nicht unter ihren
+     Inhalt und das Bildfeld schob sich ueber den Innenabstand hinaus an
+     die Rahmenkante. */
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0.85em;
   align-items: start;
   text-align: left;
 }
@@ -912,15 +1190,15 @@ button {
   border: 1px solid #c4c4bb;
   display: grid;
   place-items: center;
-  font-family: var(--mono);
-  font-size: clamp(0.5rem, 1vw, 0.65rem);
+  font-family: var(--code);
+  font-size: 0.8em;
   color: #8b8b82;
 }
 .old__btn {
   justify-self: center;
   align-self: end;
-  font-size: clamp(0.55rem, 1.1vw, 0.72rem);
-  padding: 0.35rem 0.9rem;
+  font-size: 0.95em;
+  padding: 0.45em 1.1em;
   background: linear-gradient(#f4f4ee, #d8d8cf);
   border: 2px outset #c0c0b6;
   color: #2a2a2a;
@@ -929,8 +1207,8 @@ button {
   position: absolute;
   right: 0.6rem;
   bottom: 0.5rem;
-  font-family: var(--mono);
-  font-size: clamp(0.45rem, 0.85vw, 0.6rem);
+  font-family: var(--code);
+  font-size: 0.8em;
   color: #8b8b82;
 }
 /* Cookie-Wand, die den halben Inhalt verdeckt */
@@ -942,8 +1220,8 @@ button {
   background: #2b2b2b;
   color: #eee;
   font-family: Arial, sans-serif;
-  font-size: clamp(0.48rem, 0.95vw, 0.64rem);
-  padding: 0.5rem 0.7rem;
+  font-size: 0.85em;
+  padding: 0.7em 0.9em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -959,108 +1237,222 @@ button {
 
 /* --- Zustand NEU: die gebaute Seite ------------------------------------ */
 
+/* Die Beispielseite ist die Arbeitsprobe: eigene Navigation, ein Bildfeld
+   mit Tiefe, Leistungszeile, Kontakt. Sie muss zeigen, was ein Kunde
+   bekommt – „besser als die alte" reicht als Anspruch nicht. */
+/* Brinkmann bekommt eine eigene Welt – Werkstattlicht am Abend: Tiefblau,
+   Papierweiß, Messing. Das ist der Kern der Arbeitsprobe: Wir behaupten
+   Gestaltung für genau diesen Betrieb und dürfen dann nicht unser eigenes
+   Kalkgrau-Tiefgrün vorführen. Die Tokens gelten nur innerhalb der
+   Miniatur und der Handyfassung. */
+.new,
+.rb__phone .ph {
+  --bk-grund: #14202e;
+  --bk-ink: #f2ece1;
+  --bk-akzent: #c8863c;
+  /* 0.66 war auf Miniaturgroesse nicht mehr lesbar. */
+  --bk-dim: rgba(242, 236, 225, 0.82);
+  --bk-line: rgba(242, 236, 225, 0.18);
+  font-family: var(--bk-font);
+}
+
 .new {
   position: absolute;
   inset: 0;
-  background: var(--paper);
-  color: var(--on-paper);
+  background: var(--bk-grund);
+  color: var(--bk-ink);
   padding: clamp(0.8rem, 2.2vw, 1.7rem);
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  grid-template-rows: auto 1fr auto;
-  gap: clamp(0.5rem, 1.5vw, 1.1rem);
+  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: clamp(0.35rem, 1vw, 0.75rem) clamp(0.6rem, 1.7vw, 1.3rem);
   opacity: 0;
   will-change: transform, opacity;
 }
-.new__eyebrow {
+
+/* Kopfzeile der Beispielseite */
+.new__bar {
   grid-column: 1 / -1;
-  font-family: var(--mono);
-  font-size: clamp(0.45rem, 0.85vw, 0.6rem);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gruen);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.5vw, 1.1rem);
+  padding-bottom: clamp(0.35rem, 0.9vw, 0.6rem);
+  border-bottom: 1px solid var(--bk-line);
 }
+.new__brand {
+  font-family: var(--bk-font);
+  font-size: clamp(0.7rem, 1.4vw, 1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.new__nav {
+  display: flex;
+  gap: clamp(0.4rem, 1.1vw, 0.8rem);
+  margin-right: auto;
+}
+.new__nav i {
+  font-style: normal;
+  font-size: clamp(0.5rem, 0.95vw, 0.7rem);
+  letter-spacing: 0.01em;
+  color: var(--bk-dim);
+}
+.new__pill {
+  font-family: var(--code);
+  font-size: clamp(0.48rem, 0.92vw, 0.68rem);
+  letter-spacing: 0.01em;
+  padding: 0.22em 0.7em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--bk-line);
+  white-space: nowrap;
+}
+
 .new__h {
-  font-family: var(--display);
-  font-size: clamp(1rem, 3.1vw, 2.15rem);
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--bk-font);
+  font-size: clamp(0.95rem, 2.9vw, 2rem);
   font-weight: 600;
   line-height: 0.95;
   letter-spacing: -0.038em;
-  align-self: center;
 }
 .new__h em {
   font-style: normal;
   font-weight: 400;
-  color: var(--gruen);
+  color: var(--bk-akzent);
   display: block;
 }
+.new__copy {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: start;
+  font-size: clamp(0.56rem, 1.1vw, 0.78rem);
+  line-height: 1.5;
+  color: var(--bk-dim);
+  max-width: 32ch;
+}
+/* Das Bildfeld zeigt das Material des Betriebs: Holz mit Maserung und Tiefe,
+   dazu eine Bildunterschrift – so, wie eine echte Projektaufnahme säße. */
 .new__img {
-  grid-row: 2 / 4;
+  grid-column: 2;
+  grid-row: 2 / 5;
   border-radius: var(--r-sm);
-  background: linear-gradient(150deg, var(--gruen) 0%, #0d3527 60%, #0a2a1f 100%);
+  background: linear-gradient(158deg, #8d6c45 0%, #6a4e31 54%, #3d2d1c 100%);
   position: relative;
   overflow: hidden;
   clip-path: inset(0 0 100% 0);
+  box-shadow: inset 0 0 0 1px rgba(20, 12, 4, 0.25);
 }
-/* Giebel-Silhouette im Bildfeld: das Ortszeichen taucht wieder auf. */
-.new__img::after {
-  content: '';
+.new__grain {
   position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 54%;
-  height: 58%;
-  transform: translateX(-50%);
-  background: rgba(200, 180, 140, 0.34);
-  clip-path: polygon(
-    0% 100%,
-    0% 55%,
-    16% 55%,
-    16% 32%,
-    34% 32%,
-    50% 4%,
-    66% 32%,
-    84% 32%,
-    84% 55%,
-    100% 55%,
-    100% 100%
+  inset: 0;
+  background: repeating-linear-gradient(
+      91deg,
+      rgba(255, 244, 224, 0.09) 0 1px,
+      transparent 1px 4px,
+      rgba(28, 18, 8, 0.14) 4px 5px,
+      transparent 5px 11px
+    ),
+    radial-gradient(
+      ellipse at 30% 18%,
+      rgba(255, 240, 214, 0.22) 0%,
+      transparent 58%
+    );
+}
+/* Ein Regal in Schrägansicht: vier Böden, nach hinten verjüngt. Genug
+   Andeutung, dass man ein Möbelstück sieht, nicht nur Streifen. */
+.new__shelf {
+  position: absolute;
+  left: 18%;
+  right: 12%;
+  bottom: 14%;
+  display: grid;
+  gap: clamp(5px, 1.3vw, 11px);
+}
+.new__shelf i {
+  height: clamp(3px, 0.8vw, 7px);
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(243, 235, 218, 0.92),
+    rgba(206, 190, 160, 0.78)
   );
+  box-shadow: 0 3px 9px -3px rgba(20, 12, 4, 0.75);
+  transform-origin: left;
+}
+.new__shelf i:nth-child(1) {
+  width: 100%;
+}
+.new__shelf i:nth-child(2) {
+  width: 92%;
+}
+.new__shelf i:nth-child(3) {
+  width: 84%;
+}
+.new__shelf i:nth-child(4) {
+  width: 74%;
+}
+
+.new__tag {
+  position: absolute;
+  left: 7%;
+  top: 7%;
+  font-family: var(--code);
+  font-size: clamp(0.44rem, 0.86vw, 0.62rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(245, 238, 224, 0.9);
+}
+/* Bildunterschrift wie bei einer echten Projektaufnahme: was ist das, und
+   was hat es gekostet an Zeit. Steht auf einem Verlauf, damit sie auf dem
+   Holz lesbar bleibt. */
+.new__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.4em 7% 0.6em;
+  font-size: clamp(0.48rem, 0.94vw, 0.68rem);
+  line-height: 1.35;
+  color: rgba(247, 242, 232, 0.94);
+  background: linear-gradient(to top, rgba(24, 15, 6, 0.78), transparent);
+  /* Heller Text auf gemasertem Holz: eine dunkle Kante haelt ihn lesbar,
+     egal welche Maserungsstelle darunter liegt. */
+  text-shadow: 0 1px 2px rgba(16, 12, 6, 0.75);
 }
 .new__cta {
+  grid-column: 1;
+  grid-row: 4;
   align-self: end;
   justify-self: start;
-  font-size: clamp(0.5rem, 1.05vw, 0.72rem);
+  font-size: clamp(0.56rem, 1.12vw, 0.8rem);
   font-weight: 600;
   padding: 0.45rem 1rem;
   border-radius: var(--r-pill);
-  background: var(--gruen);
-  color: #fff;
+  background: var(--bk-akzent);
+  color: var(--bk-grund);
+  font-weight: 700;
   transform: scale(0.5);
   opacity: 0;
 }
-.new__facts {
-  grid-column: 1 / 2;
+/* Leistungszeile am Fuß: sagt in vier Wörtern, was der Betrieb macht. */
+.new__strip {
+  grid-column: 1 / -1;
+  grid-row: 5;
   display: flex;
-  gap: clamp(0.5rem, 1.4vw, 1.1rem);
-  align-self: end;
-  padding-top: 0.4rem;
-  border-top: 1px solid var(--line-paper);
+  flex-wrap: wrap;
+  gap: 0.3em 1.1em;
+  padding-top: clamp(0.3rem, 0.8vw, 0.55rem);
+  border-top: 1px solid var(--bk-line);
 }
-.new__facts div {
-  font-family: var(--mono);
-  font-size: clamp(0.42rem, 0.82vw, 0.58rem);
-  letter-spacing: 0.06em;
+.new__strip span {
+  font-family: var(--code);
+  font-size: clamp(0.46rem, 0.9vw, 0.66rem);
+  /* line-height 1: die Zeile ragte auf Handybreite sonst 1px unter den
+     Rahmen des Nachbaus. */
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--on-paper-dim);
-}
-.new__facts b {
-  display: block;
-  font-family: var(--display);
-  font-size: clamp(0.72rem, 1.6vw, 1.05rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--on-paper);
-  text-transform: none;
+  color: var(--bk-dim);
 }
 
 /* Handy-Ansicht, die zum Schluss andockt */
@@ -1068,56 +1460,140 @@ button {
   position: absolute;
   right: -3.5%;
   bottom: -5%;
-  width: clamp(74px, 15%, 124px);
+  /* Vorher clamp(74px, 15%, 124px): darin lief die Ueberschrift auf 11px
+     und die Bildzeile auf 4,5px. Bei 4,5px besteht ein Buchstabe nur noch
+     aus Antialiasing - das liest sich als Unschaerfe, nicht als kleine
+     Schrift. Groesseres Gehaeuse, damit der Inhalt Grad bekommt. */
+  width: clamp(96px, 19%, 158px);
   aspect-ratio: 9 / 18;
-  background: var(--ink);
-  border-radius: 14px;
+  /* Gerätegehäuse, nicht Markenfarbe – deshalb ein neutrales Schwarz und
+     kein Token aus unserer Palette. */
+  background: #101012;
+  border-radius: 16px;
   padding: 5px;
   box-shadow: 0 18px 40px -18px rgba(16, 23, 26, 0.55);
   opacity: 0;
-  will-change: transform, opacity;
 }
-.rb__phone > div {
+/* Die Handyfassung zeigt dieselbe Seite, nicht abstrakte Balken: derselbe
+   Name, dieselbe Aussage, dasselbe Holz, derselbe Weg zum Termin. */
+.rb__phone .ph {
   height: 100%;
   border-radius: 10px;
-  background: var(--paper);
-  padding: 8px 6px;
+  background: var(--bk-grund);
+  /* Ohne diese Zeile erbte die Handyfassung unser Tinte-Schwarz und setzte
+     Name und Ueberschrift unsichtbar auf den dunkelblauen Grund. Nur das
+     Bildfeld und die Schaltflaeche brachten ihre Farbe selbst mit. */
+  color: var(--bk-ink);
+  /* Basisgrad. Alles darin rechnet in em, damit der Inhalt mit dem
+     Gehaeuse mitwaechst statt in festen Pixeln stehenzubleiben. */
+  font-size: clamp(6px, 1.3vw, 11px);
+  padding: 0.85em 0.8em;
   display: grid;
-  gap: 4px;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.55em;
   align-content: start;
+  overflow: hidden;
 }
-.rb__phone i {
-  height: 4px;
-  border-radius: 1px;
-  background: rgba(16, 23, 26, 0.16);
+.ph__brand {
+  font-family: var(--bk-font);
+  font-size: 0.92em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.55em;
+  border-bottom: 1px solid var(--bk-line);
 }
-.rb__phone i:first-child {
-  height: 11px;
-  background: var(--gruen);
-  border-radius: 2px;
+.ph__h {
+  font-family: var(--bk-font);
+  font-size: 1.6em;
+  font-weight: 600;
+  /* 0.95 presste vier Zeilen aufeinander, seit die Gegenzeile dazukam. */
+  line-height: 1.12;
+  letter-spacing: -0.03em;
 }
-.rb__phone i:nth-child(4) {
-  width: 62%;
+/* Dieselbe Gegenzeile wie in der Breitfassung: die Handyfassung ist
+   dieselbe Seite, nicht eine gekuerzte. */
+.ph__h em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--bk-akzent);
+  display: block;
 }
-.rb__phone i:last-child {
-  height: 8px;
-  width: 66%;
+.ph__img {
+  position: relative;
+  border-radius: 0.4em;
+  overflow: hidden;
+  background: linear-gradient(158deg, #8d6c45 0%, #6a4e31 54%, #3d2d1c 100%);
+  display: grid;
+  align-content: end;
+  gap: 0.4em;
+  padding: 0 0.6em 0.8em;
+}
+.ph__img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    91deg,
+    rgba(255, 244, 224, 0.1) 0 1px,
+    transparent 1px 3px,
+    rgba(28, 18, 8, 0.16) 3px 4px,
+    transparent 4px 8px
+  );
+}
+/* Statt dreier leerer Balken eine Bildunterschrift, wie sie auf der
+   Handyfassung tatsächlich stünde. */
+.ph__img b {
+  position: relative;
+  font-family: var(--code);
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bk-ink);
+  text-shadow: 0 1px 2px rgba(16, 12, 6, 0.75);
+}
+.ph__cta {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.55em 0;
   border-radius: var(--r-pill);
-  background: var(--gruen);
-  margin-top: 3px;
+  background: var(--bk-akzent);
+  color: var(--bk-grund);
 }
 
-/* Bauline: grüner Strich, der den Abriss vom Aufbau trennt */
+/* Bauline: die Kante, hinter der freigelegt wird. Der Strich selbst ist
+   schmal; was ihn sichtbar macht, ist der Span, den er hinter sich herzieht
+   – so liest er sich als Werkzeug und nicht als Leuchteffekt. */
 .rb__sweep {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gruen-2);
-  box-shadow: 0 0 24px 6px rgba(29, 122, 84, 0.5);
+  top: -4%;
+  bottom: -4%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--gruen-2) 12%,
+    var(--gruen-2) 88%,
+    transparent
+  );
   left: 0;
   opacity: 0;
   z-index: 5;
+  will-change: transform;
+}
+.rb__sweep::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 78px;
+  background: linear-gradient(
+    to left,
+    rgba(29, 122, 84, 0.22),
+    transparent
+  );
 }
 
 /* Bildunterschrift: kommentiert den jeweiligen Bauzustand */
@@ -1149,7 +1625,7 @@ button {
   color: var(--on-paper);
 }
 
-/* Statische Alternative — für reduced-motion und als No-JS-Fallback */
+/* Statische Alternative – für reduced-motion und als No-JS-Fallback */
 .rb__static {
   display: none;
 }
@@ -1158,170 +1634,187 @@ button {
 /* Kein Icon-Grid. Eine Liste wie ein Leistungsverzeichnis: Zeilen, die
    sich beim Aufklappen mit Grün füllen. */
 
-.lv {
+/* --- Leistungen als Zeilen ------------------------------------------- */
+/* Kein Akkordeon mehr: das Aufklappen verbarg den Inhalt hinter einem Klick
+   und der grüne Kopfbalken beherrschte die Sektion. Drei Zeilen im selben
+   Takt wie Konditionen, Grundsätze und Phasen – der Seitenrhythmus lebt von
+   der Wiederholung dieser Form, nicht von einem Sonderbauteil. */
+
+.svc {
+  display: grid;
   border-top: 1px solid var(--line-paper);
 }
-.lv__item {
+.svc__row {
+  display: grid;
+  gap: 0.4rem clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(1.5rem, 3.5vh, 2.5rem);
   border-bottom: 1px solid var(--line-paper);
+  align-items: baseline;
 }
-.lv__btn {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: clamp(0.75rem, 2.5vw, 2rem);
-  padding: clamp(1.15rem, 2.6vw, 1.8rem) 0;
-  background: none;
-  border: 0;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.4s var(--ease), padding-inline 0.4s var(--ease);
-}
-/* Grüne Füllung wischt von links herein */
-.lv__btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gruen);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s var(--ease);
-  z-index: -1;
-}
-.lv__item:hover .lv__btn::before,
-.lv__btn:focus-visible::before,
-.lv__item.is-open .lv__btn::before {
-  transform: scaleX(1);
-}
-.lv__item:hover .lv__btn,
-.lv__btn:focus-visible,
-.lv__item.is-open .lv__btn {
-  color: var(--paper-2);
-  padding-inline: clamp(0.6rem, 1.6vw, 1.25rem);
-}
-.lv__btn > * {
-  position: relative;
-}
-
-.lv__gable {
-  width: 15px;
-  height: 13px;
-  background: currentColor;
-  opacity: 0.4;
-  clip-path: polygon(
-    0% 100%,
-    0% 62%,
-    20% 62%,
-    20% 34%,
-    40% 34%,
-    50% 0%,
-    60% 34%,
-    80% 34%,
-    80% 62%,
-    100% 62%,
-    100% 100%
-  );
-  transition: opacity 0.4s;
-}
-.lv__item:hover .lv__gable,
-.lv__item.is-open .lv__gable {
-  opacity: 1;
-}
-
-.lv__name {
-  font-family: var(--display);
-  font-size: clamp(1.5rem, 4vw, 2.65rem);
-  font-weight: 500;
-  letter-spacing: -0.038em;
-  line-height: 1;
-}
-.lv__sign {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  position: relative;
-  opacity: 0.5;
-  transition: opacity 0.4s, transform 0.5s var(--ease);
-}
-.lv__item:hover .lv__sign,
-.lv__item.is-open .lv__sign {
-  opacity: 1;
-}
-.lv__sign::before,
-.lv__sign::after {
-  content: '';
-  position: absolute;
-  inset: 50% 9px auto;
-  height: 1.5px;
-  background: currentColor;
-}
-.lv__sign::after {
-  transition: transform 0.4s var(--ease);
-  transform: rotate(90deg);
-}
-.lv__item.is-open .lv__sign::after {
-  transform: rotate(0deg);
-}
-
-.lv__panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.55s var(--ease);
-}
-.lv__item.is-open .lv__panel {
-  grid-template-rows: 1fr;
-}
-.lv__panel > div {
-  overflow: hidden;
-}
-.lv__inner {
-  display: grid;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  padding: clamp(1.25rem, 2.5vw, 1.85rem) 0 clamp(1.5rem, 3vw, 2.25rem);
-  grid-template-columns: minmax(0, 1fr);
-}
-.lv__claim {
-  font-size: var(--t-lead);
-  line-height: 1.45;
-  letter-spacing: -0.012em;
-  max-width: 34ch;
-}
-.lv__cols {
-  display: grid;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  grid-template-columns: minmax(0, 1fr);
-}
-.lv__col h4 {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
+.svc__row h3 {
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-paper-dim);
-  margin-bottom: 0.85rem;
-  letter-spacing: 0.14em;
+  letter-spacing: -0.032em;
 }
-.lv__col li {
+.svc__row p {
+  color: var(--on-paper-dim);
+  max-width: 48ch;
+}
+.svc__more {
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+/* --- Leistungsblatt ----------------------------------------------------- */
+/* Die Leistungsseite war die einzige Seite ohne einen einzigen starken Zug
+   des Systems: keine gepinnte Bewegung, kein Haarlinien-Verzeichnis,
+   Display-Schrift nur auf halber Kraft. Drei gleich laute Bloecke
+   untereinander. Jetzt leiht sie sich beides, was die Seite ohnehin
+   besitzt: das Kleben aus der Baustelle und der Spur (position: sticky)
+   und das Verzeichnis aus dem Hero (Zeile, Haarlinie, naechste Zeile).
+   Der Name bleibt stehen, waehrend sein Inhalt vorbeizieht. */
+
+.lvx {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
+}
+.lvx__name h2 {
+  /* Nicht --t-display-l: "Auffindbarkeit" ist als ein Wort 386px breit und
+     passte damit 13px zu knapp nicht in seine Spalte - der harte Umbruch
+     zerlegte es zu "Auffindbarkei / t". Dieser Grad haelt das laengste
+     Wort ueber die ganze Spanne innerhalb der Spalte. Silbentrennung
+     bleibt als Notausgang, falls je ein laengerer Name dazukommt. */
+  font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.lvx__body {
+  display: grid;
+  gap: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+.lvx__body .lead {
+  max-width: 46ch;
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+}
+.lvx__label {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  font-weight: 400;
+  color: var(--on-paper-dim);
+  margin-bottom: -0.4rem;
+}
+.band--ink .lvx__label {
+  color: var(--on-ink-dim);
+}
+
+/* Zeile, Haarlinie, naechste Zeile - dasselbe Bauteil wie die Konditionen
+   auf der Startseite. Bullet-Punkte sagen "Liste", Haarlinien sagen
+   "Verzeichnis", und ein Verzeichnis ist das, was hier steht. */
+.lvx__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-paper);
+}
+.band--ink .lvx__list {
+  border-top-color: var(--line-ink);
+}
+.lvx__list li {
+  padding-block: clamp(0.6rem, 1.3vw, 0.85rem);
+  border-bottom: 1px solid var(--line-paper);
   font-size: var(--t-small);
-  padding: 0.4rem 0 0.4rem 1.35rem;
-  position: relative;
   color: var(--on-paper-dim);
 }
-.lv__col li strong {
-  color: var(--on-paper);
-  font-weight: 600;
+.band--ink .lvx__list li {
+  border-bottom-color: var(--line-ink);
+  color: var(--on-ink-dim);
 }
-.lv__col li::before {
-  content: '';
+/* Der Nutzen ist der Grund, warum jemand liest. Der Umfang ist die
+   Auflistung dahinter. Beide standen vorher im selben Grad. */
+.lvx__list--nutzen li {
+  font-size: var(--t-body);
+  color: var(--on-paper);
+}
+.band--ink .lvx__list--nutzen li {
+  color: var(--on-ink);
+}
+
+/* --- Die Spur auf schmalen Schirmen ------------------------------------- */
+/* Auf dem Telefon lief die Ablaufseite bisher ganz ohne Bewegung: die
+   gepinnte Buehne braucht Breite fuer Schiene und Tafel nebeneinander, also
+   uebernahm die ruhige Liste - und damit fehlte der Seite ihr einziger
+   Moment. Statt die Buehne zu erzwingen (gepinntes Scrollen ist auf
+   mobilem Safari heikel) bekommt die Liste eine eigene Spur: eine
+   senkrechte Linie zeichnet sich beim Scrollen durch die fuenf Phasen,
+   und jede Phase setzt sich, sobald sie ins Bild kommt. Dieselbe Aussage
+   wie am Rechner, nur in der Achse, in der auf dem Telefon ohnehin
+   gescrollt wird. */
+
+.steps {
+  position: relative;
+}
+.steps__base,
+.steps__draw {
   position: absolute;
   left: 0;
-  top: 1.05em;
-  width: 7px;
-  height: 1.5px;
-  background: var(--gruen);
+  top: 0;
+  width: 2px;
+  pointer-events: none;
+}
+.steps__base {
+  height: 100%;
+  background: var(--line-ink);
+}
+.steps__draw {
+  height: 100%;
+  background: var(--gruen-hell);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  will-change: transform;
+}
+/* Der Schritt setzt sich: Ziffer und Text kommen aus dem Gedaempften
+   nach vorn. Kein Hereinfliegen - die Linie traegt die Bewegung. */
+.track__static .step {
+  padding-left: 1.5rem;
+  transition: opacity 0.5s var(--ease);
+  opacity: 0.45;
+}
+.track__static .step.is-on {
+  opacity: 1;
+}
+.track__static .step__no b {
+  transition: color 0.5s var(--ease);
+}
+.track__static .step.is-on .step__no b {
+  color: var(--gruen-hell);
+}
+/* Der Knoten auf der Linie, auf Hoehe der Ziffer. */
+.track__static .step::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: clamp(1.75rem, 4vw, 2.75rem);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--line-ink);
+  transition: border-color 0.5s var(--ease), background 0.5s var(--ease);
+}
+.track__static .step.is-on::after {
+  background: var(--gruen-hell);
+  border-color: var(--gruen-hell);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Ohne Bewegung steht alles gleich da - die Linie waere dann eine
+     Behauptung ohne Anlass. */
+  .steps__draw {
+    transform: scaleY(1);
+  }
+  .track__static .step {
+    opacity: 1;
+  }
 }
 
 /* --- Karten-Raster (Garantien, Referenzen, Team) ----------------------- */
@@ -1361,27 +1854,39 @@ button {
   color: var(--on-ink-dim);
 }
 .card__label {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--gruen);
-}
-/* Die Gegenüberstellung auf "Über uns": unsere Seite steht in Grün. */
-.card .card__vs,
-.band--ink .card .card__vs {
-  margin-top: 0.4rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--line-paper);
-  font-size: var(--t-small);
-  color: var(--gruen);
-}
-.band--ink .card .card__vs {
-  border-top-color: var(--line-ink);
-  color: var(--gruen-hell);
 }
 .band--ink .card__label {
-  color: var(--gruen-hell);
+  color: var(--sand);
+}
+
+/* --- Grundsätze: gesetzte Aussagen, kein Kartenraster ------------------ */
+/* Drei Sätze, für die niemand einen Rahmen braucht. Die Trennlinie und der
+   Weißraum leisten, wofür vorher eine Karte gebaut wurde. */
+
+.tenets {
+  display: grid;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--line-ink);
+}
+.tenet {
+  display: grid;
+  gap: 0.5rem clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(1.75rem, 4vh, 2.75rem);
+  border-bottom: 1px solid var(--line-ink);
+  align-items: baseline;
+}
+.tenet h3 {
+  font-size: clamp(1.35rem, 2.6vw, 1.95rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.tenet p {
+  font-size: var(--t-small);
+  color: var(--on-ink-dim);
+  max-width: 42ch;
 }
 
 /* --- Ablauf: echte Sequenz, deshalb echte Nummern ---------------------- */
@@ -1406,9 +1911,9 @@ button {
   border-bottom: 1px solid var(--line-ink);
 }
 .step__no {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
+  font-family: var(--label);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--t-label);
   color: var(--sand);
   display: flex;
   align-items: baseline;
@@ -1423,7 +1928,7 @@ button {
   color: var(--on-ink);
   opacity: 0.22;
 }
-.step__body h3 {
+.step__body h2 {
   font-size: var(--t-h3);
   font-weight: 600;
   letter-spacing: -0.028em;
@@ -1437,19 +1942,187 @@ button {
 /* Spezifisch genug, um .step__body p zu schlagen */
 .step__body .step__part {
   margin-top: 0.85rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
-  color: var(--gruen-hell);
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--rost-hell);
 }
 .step__dur {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-ink-dim);
   white-space: nowrap;
   align-self: start;
+}
+
+/* --- Ablauf-Signature: "Die Spur" ------------------------------------- */
+/* Eine Linie zieht sich beim Scrollen durch fünf Knoten. Die Sequenz ist
+   hier die eigentliche Aussage – deshalb bekommt sie die Bewegung und
+   nicht die Überschrift. Gepinnt nach demselben Prinzip wie die Baustelle:
+   die Sektion trägt die Scrollstrecke, die Bühne klebt per sticky. */
+
+/* Der Standardzustand ist die ruhige Liste, nicht die Bühne: erst wenn das
+   Skript die Steuerung übernommen hat, setzt es .is-live. Andersherum wäre
+   die Seite leer, sobald GSAP nicht lädt – die Tafeln sind ja versteckt,
+   bis jemand sie schaltet. */
+.track {
+  position: relative;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.track__stage {
+  display: none;
+}
+.track.is-live {
+  /* Fünf Phasen brauchen Strecke: unter ~500vh rauschen sie in wenigen
+     Mausrad-Rasten durch und keine steht lange genug, um gelesen zu werden. */
+  height: 520vh;
+}
+.track.is-live .track__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  /* Wie bei der Baustelle: der feste Header darf die Bühne nicht anschneiden. */
+  padding-top: var(--hdr-h);
+  overflow: hidden;
+}
+.track.is-live .track__static {
+  display: none;
+}
+.track__grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+/* Die Schiene: Grundlinie, gezeichnete Linie, fünf Knoten. */
+.rail {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.5rem;
+}
+.rail__base,
+.rail__draw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  translate: 0 -50%;
+}
+.rail__base {
+  background: var(--line-ink);
+}
+.rail__draw {
+  background: var(--gruen-hell);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+.rail__node {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px solid var(--line-ink);
+  font-family: var(--label);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--t-label);
+  color: var(--on-ink-dim);
+  transition: border-color 0.45s var(--ease), color 0.45s var(--ease),
+    background 0.45s var(--ease), scale 0.45s var(--ease);
+}
+.rail__node.is-on {
+  border-color: var(--gruen-hell);
+  color: var(--ink);
+  background: var(--gruen-hell);
+  scale: 1.14;
+}
+.rail__node.is-done {
+  border-color: var(--gruen-hell);
+  color: var(--gruen-hell);
+}
+
+/* Die Tafeln: immer nur eine sichtbar, gestapelt im selben Raster. */
+.track__panels {
+  display: grid;
+  min-height: 19rem;
+}
+.tp {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 14px;
+  transition: opacity 0.5s var(--ease), translate 0.5s var(--ease),
+    visibility 0.5s;
+}
+.tp.is-on {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+.tp__lead {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+}
+.tp__body {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+  max-width: 44ch;
+}
+.tp__icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  fill: none;
+  stroke: var(--gruen-hell);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+.tp h2 {
+  font-size: clamp(2.2rem, 5.2vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.038em;
+  line-height: 0.95;
+}
+.tp__body p {
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--on-ink-dim);
+}
+.tp__body .tp__part {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--rost-hell);
+}
+.tp__dur {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  color: var(--sand);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line-ink);
+  border-radius: var(--r-pill);
+}
+
+/* Ruhige Fassung – der Ausgangszustand, den .is-live ablöst */
+.track__static {
+  display: block;
+  padding-block: var(--section-y);
 }
 
 /* --- Referenzen -------------------------------------------------------- */
@@ -1483,10 +2156,8 @@ button {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .case h3 {
@@ -1505,9 +2176,8 @@ button {
   margin-top: 0.2rem;
 }
 .case__result span {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.3rem 0.7rem;
   border-radius: var(--r-pill);
   background: color-mix(in srgb, var(--gruen) 12%, transparent);
@@ -1570,10 +2240,8 @@ button {
 .ba__tag {
   position: absolute;
   bottom: 0.85rem;
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   padding: 0.3rem 0.7rem;
   border-radius: var(--r-pill);
   background: rgba(16, 23, 26, 0.72);
@@ -1644,17 +2312,72 @@ button {
 
 /* --- Split-Layout (Kopf einer Sektion) -------------------------------- */
 
+/* Oben ausgerichtet, nicht unten: bei langem Vorspann wuchs die rechte
+   Spalte sonst über die Überschrift hinaus und die Sektion sah gekippt aus. */
 .split {
   display: grid;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   grid-template-columns: minmax(0, 1fr);
-  align-items: end;
+  align-items: start;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
+
+/* --- Position: Kopf einer Leistungssektion ------------------------------ */
+/* Ein Leistungsverzeichnis nummeriert seine Positionen. Das ersetzt das
+   Label über der Überschrift: die Nummer trägt echte Information (welche
+   von dreien), das Label trug nur sich selbst. */
+
+.pos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: clamp(2rem, 5vw, 3.25rem);
+}
+.pos h2 {
+  font-size: var(--t-display-m);
+  margin-bottom: 0.9rem;
+}
+.pos .lead {
+  max-width: 58ch;
+}
+
+/* Die Nebenspalte traegt Fliesstext neben einer Ueberschrift. Sie beginnt
+   auf deren Hoehe, damit oben eine gemeinsame Kante entsteht – bei
+   align-content: end hing der Absatz frueher in der Luft, sobald die
+   Ueberschrift laenger war als er. */
 .split__side {
   display: grid;
-  gap: 1.25rem;
-  align-content: end;
+  gap: 1rem;
+  align-content: start;
+}
+
+/* --- Thesenblatt -------------------------------------------------------- */
+/* Die staerkste Aussage einer Seite steht nicht neben ihrer Begruendung,
+   sondern ueber ihr. Vorher lief die Ueberschrift links dreizeilig, der
+   Absatz stand oben rechts daneben und darunter war ein Loch - zwei
+   Spalten, die um dieselbe Aufmerksamkeit konkurrierten. Jetzt: Satz
+   allein, Haarlinie quer, Begruendung leise darunter in zwei Spalten.
+   Die Linie ist dasselbe Bauteil wie im Leistungsverzeichnis. */
+
+.thesis {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+.thesis h2 {
+  max-width: 24ch;
+}
+.thesis__body {
+  display: grid;
+  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--line-paper-stark);
+}
+.band--ink .thesis__body,
+.phead .thesis__body {
+  border-top-color: var(--line-ink);
+}
+.thesis__body .lead {
+  max-width: none;
 }
 
 /* --- Formular ---------------------------------------------------------- */
@@ -1668,10 +2391,8 @@ button {
   gap: 0.45rem;
 }
 .field > span {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-paper-dim);
 }
 .field input,
@@ -1710,19 +2431,15 @@ button {
   margin: 0.15rem 0 0;
   accent-color: var(--gruen);
 }
-.check a {
-  color: var(--gruen);
-  text-decoration: underline;
-}
+/* Farbe und Gewicht kommen aus der Link-Grundregel; hier stand vorher
+   zusätzlich ein fester Unterstrich, der sie überstimmt hat. */
 .hp {
   position: absolute;
   left: -9999px;
 }
-.form__note {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.06em;
-  color: var(--on-paper-dim);
+
+.form__status:empty {
+  display: none;
 }
 .form__status {
   font-size: var(--t-small);
@@ -1751,27 +2468,56 @@ button {
 .band--ink .direct a {
   border-color: var(--line-ink);
 }
+/* Die Kontaktwege sind der Zweck dieser Seite – sie sollen sich wie
+   Schalter anfassen, nicht wie eine Liste lesen. Der Versatz läuft über
+   transform statt über padding: Letzteres treibt das Layout und ruckelt. */
 .direct a {
+  position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--line-paper);
-  transition: padding-inline 0.4s var(--ease), color 0.3s;
 }
-.direct a:hover {
-  padding-inline: 0.75rem;
+/* Die zweite Fassung schlägt .rev.is-revealed, das sonst seine 0,8 s auch
+   dem Hover aufzwingt – ein Schalter, der eine Sekunde braucht, fühlt sich
+   kaputt an. */
+.direct a,
+.direct a.rev.is-revealed {
+  transition: transform 0.4s var(--ease), color 0.3s var(--ease),
+    opacity 0.6s var(--ease);
+}
+.direct a::before {
+  content: '';
+  position: absolute;
+  left: -0.9rem;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  translate: 0 -50%;
+  background: var(--gruen);
+  transition: height 0.4s var(--ease);
+}
+.band--ink .direct a::before {
+  background: var(--gruen-hell);
+}
+.direct a:hover,
+.direct a:focus-visible {
+  transform: translateX(0.6rem);
   color: var(--gruen);
 }
-.band--ink .direct a:hover {
+.direct a:hover::before,
+.direct a:focus-visible::before {
+  height: 1.6rem;
+}
+.band--ink .direct a:hover,
+.band--ink .direct a:focus-visible {
   color: var(--gruen-hell);
 }
 .direct b {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--label);
+  font-size: var(--t-label);
   font-weight: 400;
   color: var(--on-paper-dim);
 }
@@ -1799,6 +2545,12 @@ button {
   max-width: 26ch;
 }
 
+/* Die Sektion vor dem Footer teilt dessen Farbe – der Abstand darf nicht
+   doppelt gezählt werden, sonst wirkt der Übergang wie eine leere Seite. */
+.band--ink:has(.finale) {
+  padding-bottom: clamp(2rem, 4vh, 3rem);
+}
+
 /* --- Footer ----------------------------------------------------------- */
 
 .ftr {
@@ -1806,6 +2558,7 @@ button {
   color: var(--on-ink);
   padding-block: clamp(3.5rem, 8vh, 5.5rem) 2rem;
   border-top: 1px solid var(--line-ink);
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .ftr__top {
   display: grid;
@@ -1831,25 +2584,31 @@ button {
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
-.ftr h4 {
-  font-family: var(--mono);
-  font-size: var(--t-mono);
+.ftr__cols h2 {
+  font-family: var(--label);
+  font-size: var(--t-label);
   font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--sand);
   margin-bottom: 1rem;
 }
 .ftr li {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.25rem;
 }
+/* Die Zeilen sind 16px hoch; als eigenstaendige Ziele verlangt WCAG 2.2
+   mindestens 24px. Der Innenabstand vergroessert die Tippflaeche, ohne die
+   Schrift anzufassen - auf dem Telefon trifft man sonst den Nachbarn. */
 .ftr li a {
+  display: inline-block;
+  padding-block: 0.3rem;
   font-size: var(--t-small);
   color: var(--on-ink-dim);
   transition: color 0.3s;
 }
 .ftr li a:hover {
   color: var(--on-ink);
+}
+.ftr li a {
+  --wash: rgba(125, 201, 163, 0.26);
 }
 .ftr__bottom {
   display: flex;
@@ -1859,13 +2618,12 @@ button {
   align-items: center;
   padding-top: 1.75rem;
   border-top: 1px solid var(--line-ink);
-  font-family: var(--mono);
-  font-size: var(--t-mono);
-  letter-spacing: 0.08em;
+  font-family: var(--label);
+  font-size: var(--t-label);
   color: var(--on-ink-dim);
 }
 
-/* --- Reveal (dezent — die Energie steckt in der Baustelle) ------------ */
+/* --- Reveal (dezent – die Energie steckt in der Baustelle) ------------ */
 
 .rev {
   opacity: 0;
@@ -1880,6 +2638,10 @@ button {
 
 /* --- Seitenkopf für Unterseiten -------------------------------------- */
 
+/* Der Kopf liest sich wie der Kopf eines Angebots: Linienpapier, eine
+   Kennung am Rand, darunter die Aussage. Der grüne Lichtfleck, der hier
+   stand, ist ersatzlos entfallen – er war Dekor ohne Herleitung und das
+   deutlichste Vorlagen-Signal der ganzen Seite. */
 .phead {
   background: var(--ink);
   color: var(--on-ink);
@@ -1888,23 +2650,27 @@ button {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  --wash: rgba(125, 201, 163, 0.24);
 }
 .phead::before {
   content: '';
   position: absolute;
   z-index: -1;
-  right: -10%;
-  top: -40%;
-  width: min(900px, 90vw);
-  aspect-ratio: 1;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(29, 122, 84, 0.34) 0%,
-    transparent 66%
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--line-ink) 0 1px,
+    transparent 1px 2.75rem
   );
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+  opacity: 0.5;
+}
+.phead .wrap {
+  position: relative;
 }
 .phead h1 {
   font-size: var(--t-display-l);
+  font-weight: 700;
   max-width: 24ch;
 }
 .phead .lead {
@@ -1918,6 +2684,16 @@ button {
   max-width: 68ch;
   display: grid;
   gap: 1.1rem;
+  /* Deutsche Rechtstexte bestehen aus Komposita. "Verbraucher-
+     streitbeilegung" misst als Ueberschrift 361px und sprengte damit jedes
+     320px-Telefon: ein Grid-Element schrumpft nie unter seine
+     min-content-Breite, also schob das eine Wort die ganze Spalte auf.
+     hyphens braucht das lang-Attribut, das steht im html-Tag. */
+  /* -webkit- zuerst: ohne den Praefix trennt Safari nicht, und dann sprengt
+     "Verbraucherstreitbeilegung" als Ueberschrift wieder jedes Telefon. */
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 .prose h2 {
   font-size: var(--t-display-m);
@@ -1948,14 +2724,11 @@ button {
   left: -1.35rem;
   top: 0.72em;
   width: 7px;
-  height: 1.5px;
+  height: 2px;
   background: var(--gruen);
 }
-.prose a {
-  color: var(--gruen);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
+/* Auch hier trägt die Link-Grundregel: Gewicht statt Unterstrich, der
+   Marker kommt unter dem Zeiger. */
 .prose strong {
   color: var(--on-paper);
 }
@@ -1987,55 +2760,119 @@ button {
 }
 
 /* ======================================================================
-   Breakpoints — Mobile First, deshalb erweitern wir nach oben
+   Breakpoints – Mobile First, deshalb erweitern wir nach oben
    ====================================================================== */
 
-@media (min-width: 620px) {
-  /* Gemessen: "Nicht zusammengeklickt." misst 9,43 em in Bricolage 400.
-     Der Divisor 9,6 lässt Luft, damit die Zeile nie an den Rand stößt. */
-  .hero__h {
-    font-size: min(calc((100vw - 8rem) / 9.6), 129px);
-    text-wrap: nowrap;
+/* Lesegrade auf dem Telefon. Gemessen liefen Fließtext und Listen dort auf
+   16px und Beschriftungen auf 14,4px - neben einer 40px-Überschrift wirkt
+   das klein, und für eingeschränktes Sehvermögen ist es zu wenig. Auf dem
+   kleinen Schirm ist Platz kein Argument: dort wird ohnehin gescrollt.
+   Am Rechner bleiben die Werte, dort stimmt das Verhältnis. */
+@media (max-width: 619px) {
+  :root {
+    --t-body: 1.2rem;
+    --t-small: 1.1rem;
+    --t-label: 0.95rem;
+    --t-lead: 1.18rem;
   }
+}
+
+@media (min-width: 620px) {
   .cards--3,
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .lv__cols {
+  .thesis__body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lvx {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: clamp(2rem, 6vw, 5rem);
+  }
+  /* Der Name bleibt unter dem festen Header stehen, waehrend sein
+     Verzeichnis vorbeizieht. Kein Skript noetig - dieselbe Technik wie
+     die gepinnten Buehnen, nur ohne Scrollstrecke. */
+  .lvx__name {
+    position: sticky;
+    top: calc(var(--hdr-h) + clamp(1.5rem, 4vh, 3rem));
   }
   .step {
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: start;
   }
+  /* Position links, Zusage rechts – erst ab hier passt beides nebeneinander,
+     und erst so bleibt die Unterschriftszeile im ersten Bildschirm. */
+  .terms__row {
+    grid-template-columns: 12.5rem minmax(0, 1fr);
+    align-items: baseline;
+  }
 }
 
-@media (min-width: 900px) {
+/* Die Grenze zwischen Handy- und Rechnerfassung. 900px war zu hoch
+   gegriffen: ein nicht maximiertes Fenster oder 125 Prozent Zoom fallen
+   schnell darunter, und dann bekommt ein Rechner die Handyfassung der
+   Baustelle. Live nachgemessen sitzt die Rechnerfassung auch bei 820px
+   noch sauber - Rahmen und angedocktes Handy haben dort Platz. */
+@media (min-width: 820px) {
   .burger {
     display: none;
   }
   .cards--3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .hero__foot {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
   .split {
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   }
-  .lv__inner {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  .svc__row {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   }
   .rb__head {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .tenet {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .tp {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
   .ftr__top {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
   }
 }
 
-/* Kompakte Navigation: unter 900px wird zum Burger gewechselt */
-@media (max-width: 899px) {
+/* Kompakte Navigation: unter 820px wird zum Burger gewechselt */
+/* Flache Fenster: Laptops mit wenig Hoehe und Tablets im Querformat. Dort
+   nahm der Kopf 158 von 744 Pixeln und der Rahmen kam auf 54 Prozent der
+   Fensterbreite - er wirkte verloren. Der Kopf wird enger, der Rahmen
+   bekommt die Hoehe. */
+@media (min-width: 820px) and (max-height: 820px) {
+  .rb__stage {
+    padding-top: calc(var(--hdr-h) + 0.35rem);
+    gap: 0.7rem;
+  }
+  .rb__head {
+    gap: 0.4rem;
+  }
+  .rb__head h2 {
+    font-size: clamp(1.15rem, 1.85vw, 1.6rem);
+  }
+  .rb__disclaimer {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+  }
+  .rb__caption {
+    min-height: 0;
+  }
+  .rb__caption strong {
+    font-size: 0.98rem;
+  }
+  .rb__caption p {
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 819px) {
   .nav,
   .hdr__cta .btn {
     display: none;
@@ -2049,6 +2886,58 @@ button {
   .rb__phone {
     display: none; /* auf kleinen Bühnen würde das Handy nur stören */
   }
+  /* Auf 375x812 nahm der Kopf 320 von 812 Pixeln - 40 Prozent des Schirms
+     fuer Titel und Kommentar, waehrend der Nachbau, um den es geht, mit
+     308 auskommen musste. Deshalb wirkte er zusammengequetscht: nicht die
+     Abstaende darin waren zu klein, sondern der Kasten drumherum.
+     Der Kopf wird enger, der Rahmen bekommt die Hoehe. */
+  .rb__stage {
+    gap: 0.6rem;
+    padding-top: calc(var(--hdr-h) + 0.4rem);
+    padding-bottom: 0.75rem;
+  }
+  .rb__head {
+    gap: 0.45rem;
+  }
+  .rb__head h2 {
+    line-height: 1.06;
+    font-size: 1.35rem;
+    max-width: 26ch;
+  }
+  .rb__disclaimer {
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+  }
+  .rb__side {
+    gap: 0.45rem;
+  }
+  /* Der Kopf nahm 254 von 713 nutzbaren Pixeln. Der laengste Brocken war der
+     erklaerende Absatz der Bildunterschrift: vier Zeilen. Die fette Zeile
+     darueber traegt die Aussage jedes Takts aber schon vollstaendig ("Alles
+     raus, was keine Anfrage bringt.") - der Absatz erlaeutert sie nur. Auf
+     dem Handy gewinnt der Rahmen, um den es in der Sektion geht. */
+  .rb__caption p {
+    display: none;
+  }
+  .rb__state {
+    padding: 0.3rem 0.7rem;
+  }
+  .rb__caption {
+    min-height: 0;
+    gap: 0.2rem;
+  }
+  .rb__caption strong {
+    font-size: 0.95rem;
+  }
+  .rb__caption p {
+    font-size: 0.9rem;
+    line-height: 1.42;
+  }
+  /* Mit mehr Rahmenhoehe darf der Nachbau selbst wieder atmen. */
+  .new {
+    padding: 0.95rem 0.9rem;
+    gap: 0.5rem 0.8rem;
+  }
   .rb__stage {
     height: 100svh;
   }
@@ -2057,34 +2946,54 @@ button {
     width: 100%;
     align-items: center;
   }
-  .rb__frame {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-  }
+  /* Breite und Verhaeltnis regelt die Grundregel ueber --rb-ratio. Hier
+     stand frueher ein zweiter Breitendeckel mit fest eingetragenem 4/5 -
+     der galt schon ab 819px, waehrend das Verhaeltnis erst ab 620px
+     umschlug. Dazwischen rechneten beide gegeneinander. */
   .rb__caption {
     min-height: 0;
+  }
+  /* Die Spur braucht Breite für Schiene und Tafel nebeneinander. Auf
+     schmalen Schirmen liest sich die ruhige Liste ohnehin besser – auch
+     dann, wenn das Skript beim Laden noch auf Desktop-Breite lief. */
+  .track.is-live {
+    height: auto;
+  }
+  .track.is-live .track__stage {
+    display: none;
+  }
+  .track.is-live .track__static {
+    display: block;
   }
 }
 
 @media (max-width: 620px) {
   /* Hochkant statt Breitwand: auf dem Handy hat der Rahmen sonst zu wenig
-     Höhe für den Inhalt der Beispielseite. */
+     Höhe für den Inhalt der Beispielseite. 1/1 deckelte ihn auf 335px und
+     liess den Platz, den der schlankere Kopf freigibt, ungenutzt - der
+     Nachbau blieb gequetscht, obwohl darueber Luft war. */
   .rb__frame {
-    aspect-ratio: 1 / 1;
+    --rb-ratio: 4 / 5;
   }
   .rb__head h2 {
     font-size: 1.35rem;
   }
 }
 
+/* Kurze Schirme (iPhone SE und Verwandte). Bei 4/5 deckelt die knappe Hoehe
+   die Breite auf 300 von 335 verfuegbaren Pixeln - der Rahmen stand klein in
+   der Mitte. Quadratisch nimmt er die volle Breite und ist damit
+   breitengesteuert: seine Groesse haengt dann nicht mehr daran, ob Safari
+   seine Leisten gerade ein- oder ausgeblendet hat. Die Schwelle liegt so,
+   dass kein Geraet sie beim Ein- und Ausblenden ueberschreitet (SE 667-715,
+   iPhone 15 745-852). */
+@media (max-width: 819px) and (max-height: 730px) {
+  .rb__frame {
+    --rb-ratio: 1 / 1;
+  }
+}
+
 @media (max-width: 560px) {
-  .lv__btn {
-    grid-template-columns: auto 1fr;
-  }
-  .lv__sign {
-    display: none;
-  }
   .direct a {
     flex-direction: column;
     gap: 0.3rem;
@@ -2092,16 +3001,34 @@ button {
   .direct span {
     text-align: left;
   }
+  /* Im Hochkantrahmen stapelt sich die Beispielseite, statt zu spalten. */
   .new {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto auto 1fr auto auto;
+  }
+  .new__h,
+  .new__copy,
+  .new__img,
+  .new__cta {
+    grid-column: 1;
+  }
+  .new__copy {
+    grid-row: 3;
+    max-width: none;
   }
   .new__img {
-    grid-row: 3 / 4;
+    grid-row: 4;
     min-height: 60px;
   }
-  .new__facts {
-    grid-column: 1 / -1;
+  .new__cta {
+    grid-row: 5;
+  }
+  .new__strip {
+    grid-row: 6;
+  }
+  /* Auf dieser Breite trägt die Nummer im Kopf nicht mehr. */
+  .new__pill {
+    display: none;
   }
 }
 
@@ -2144,7 +3071,14 @@ button {
     grid-column: 1 / -1;
     margin-bottom: 0.75rem;
   }
-  .ticker__row {
-    animation: none;
+  /* Dasselbe für die Spur: die fünf Phasen stehen ruhig untereinander. */
+  .track.is-live {
+    height: auto;
+  }
+  .track.is-live .track__stage {
+    display: none;
+  }
+  .track.is-live .track__static {
+    display: block;
   }
 }
