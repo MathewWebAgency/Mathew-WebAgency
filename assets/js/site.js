@@ -232,13 +232,41 @@
     /* 132 statt 108: die Maske hat unten 0.2em Luft fuer die Unterlaengen,
        das Wort muss vor der Bewegung entsprechend tiefer stehen. */
     gsap.set(words, { yPercent: 132 });
-    gsap.to(words, {
-      yPercent: 0,
-      duration: 0.85,
-      ease: 'expo.out',
-      stagger: 0.055,
-      delay: 0.12
-    });
+
+    function lauf() {
+      gsap.to(words, {
+        yPercent: 0,
+        duration: 0.85,
+        ease: 'expo.out',
+        stagger: 0.055,
+        delay: 0.12,
+        onComplete: function () {
+          /* Zehn Kompositor-Ebenen braucht nach der Bewegung niemand mehr. */
+          gsap.set(words, { willChange: 'auto' });
+        }
+      });
+    }
+
+    /* Fraunces bestimmt die Breite jeder Wortmaske. Startet die Bewegung,
+       bevor die Schrift da ist, laufen die Masken in Georgia-Breiten los,
+       und beim Schriftwechsel aendert mitten in der Animation jede Maske
+       ihre Breite - die Zeile bricht neu um und es ruckelt. Auf localhost
+       nie zu sehen (Schrift nach 16 ms da), ueber Mobilfunk regelmaessig.
+       Deshalb: erst laufen, wenn die Schrift steht. Der Deckel von 600 ms
+       sorgt dafuer, dass eine haengende oder fehlende Schrift die
+       Ueberschrift nicht dauerhaft unter der Maske versteckt. */
+    if (document.fonts && document.fonts.load) {
+      var gestartet = false;
+      var los = function () {
+        if (gestartet) return;
+        gestartet = true;
+        lauf();
+      };
+      document.fonts.load('700 1em Fraunces').then(los, los);
+      setTimeout(los, 600);
+    } else {
+      lauf();
+    }
   }
 
   /* Nur eine FAQ-Antwort gleichzeitig offen halten. */
