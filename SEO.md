@@ -62,4 +62,7 @@ nicht auf die Seite.
 - Bing Webmaster Tools.
 - Lighthouse-Lauf, sobald Node verfügbar ist (`brew install node && npm i -g lighthouse`).
   Gate: SEO 100, Accessibility ≥ 95, Performance ≥ 90 auf Mobile.
-- AV-Vertrag mit Formspree.
+- Formspree-AV-Vertrag: liegt vor, in der Datenschutzerklaerung als Art.-28-Vertrag benannt.
+  Offen bleibt, welche Garantie nach Art. 46 DSGVO die USA-Uebermittlung traegt
+  (Standardvertragsklauseln oder EU-US Data Privacy Framework). Steht im Anhang des
+  Vertrags, meist als "Standard Contractual Clauses". Sobald geklaert, praezisieren.
