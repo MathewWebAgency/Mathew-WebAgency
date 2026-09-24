@@ -2775,6 +2775,16 @@ a:not([class]):focus-visible {
     --t-label: 0.95rem;
     --t-lead: 1.18rem;
   }
+  /* Auf dem Handy: Titel, dann sofort der Knopf. Einleitung und
+     Konditionen stehen weiter unten ohnehin (Ablauf, FAQ) und drückten
+     das Erstgespräch aus dem ersten Bildschirm. */
+  .hero__lead,
+  .terms {
+    display: none;
+  }
+  .hero__sign {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 620px) {
