@@ -47,6 +47,24 @@ Die Vergleichsseite mit den drei damals vorgelegten Richtungen liegt nicht im Re
 
 Radien: nur `3px`, `6px`, `10px` und echte Pillen. Nichts dazwischen.
 
+## „Die Übergabe“: vom Hero in die Baustelle
+
+Beim ersten Scrollen löst sich die grüne Hero-Zeile „Deine Website sollte es auch
+sein.“ von der Seite. Sie bleibt am Bildschirm stehen und schrumpft, während der
+Hero unter ihr wegscrollt und der Browserrahmen von unten heraufkommt. Sobald der
+Kopf der Baustelle ihre Höhe erreicht, nimmt er sie mit nach oben; dort wird sie
+zur Überschrift `.rb__title`. In den letzten acht Prozent blendet das fliegende
+Doppel zur echten Überschrift über.
+
+- `initHandOff()` in `assets/js/site.js`, ein fest liegendes Doppel (`.handoff`,
+  aria-hidden), pro Bild nur `transform` und `opacity`.
+- Das Ziel bekommt die skalierte Breite der Startzeile, damit beide an denselben
+  Stellen umbrechen. Gemessen deckt sich die Landung auf den Pixel, am Handy und
+  am Rechner.
+- Erste Hero-Zeile und Knopf blenden im ersten Viertel der Strecke aus, sonst
+  scrollt der Knopf auf dem Handy durch die fliegende Zeile.
+- Bei `prefers-reduced-motion: reduce` entfällt die Übergabe komplett.
+
 ## „Die Baustelle“ – die Signature-Animation
 
 Der Abschnitt `#baustelle` auf der Startseite ist das eine Element, das die Seite

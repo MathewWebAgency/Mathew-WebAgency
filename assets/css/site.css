@@ -839,7 +839,39 @@ a:not([class]):focus-visible {
 }
 .rb__head h2 {
   font-size: clamp(1.7rem, 3vw, 2.5rem);
-  max-width: 22ch;
+  /* Dieselbe Zeichenbreite wie der Hero-Titel: ch wächst mit dem Grad,
+     also bricht die Zeile hier an derselben Stelle um wie oben, und die
+     Übergabe landet ohne Sprung. */
+  max-width: 17ch;
+}
+.rb__head .rb__title {
+  color: var(--gruen);
+  /* Derselbe Zeilenfall wie der Hero-Titel, sonst ist die gelandete
+     Zeile um ein paar Pixel höher als das Doppel, das auf ihr aufsetzt. */
+  line-height: 0.9;
+}
+
+/* --- Übergabe: das fliegende Doppel der Hero-Zeile --------------------- */
+/* Liegt fest über der Seite, unter dem Header. Lage und Größe setzt
+   initHandOff() pro Bild über transform, nie über top/left/font-size. */
+.handoff {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  margin: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  will-change: transform, opacity;
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+  visibility: hidden;
+}
+.handoff .claim-b {
+  display: block;
 }
 /* Der Beispielbetrieb ist erfunden. Das steht dran, wo er auftaucht. */
 .rb__disclaimer {
@@ -2783,8 +2815,7 @@ a:not([class]):focus-visible {
     gap: 0.45rem;
   }
   .rb__head h2 {
-    line-height: 1.06;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     max-width: 26ch;
   }
   .rb__disclaimer {

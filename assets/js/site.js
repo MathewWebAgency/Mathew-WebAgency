@@ -332,6 +332,155 @@
     }
   }
 
+  /* ÜBERGABE – der Hero-Satz wird zur Überschrift der Baustelle.
+     Beim ersten Scrollen löst sich die grüne Zeile "Deine Website sollte es
+     auch sein." vom Hero, schrumpft und fährt an die Stelle, an der die
+     Baustelle ihre Überschrift trägt. Gleichzeitig kommt der Browserrahmen
+     von unten herauf. Hero und Baustelle sind so eine Bewegung.
+
+     Technik: ein fest liegendes Doppel der Zeile (aria-hidden). Beide
+     Endpunkte stehen fest – die Zeile im Hero bei Scroll 0 und die h2 in
+     der klebenden Bühne –, deshalb genügt Messen beim Laden und bei jedem
+     Refresh. Pro Bild wird nur transform und opacity geschrieben.
+
+     Die Umbrüche von Start- und Zielzeile können auf schmalen Schirmen
+     auseinanderliegen. Die letzten zwölf Prozent blenden deshalb vom Doppel
+     zur echten h2 über, statt hart zu tauschen. */
+  function initHandOff() {
+    var src = document.querySelector('.hero__h .claim-b');
+    var rb = document.querySelector('.rb');
+    var stage = rb && rb.querySelector('.rb__stage');
+    var dst = stage && stage.querySelector('.rb__title');
+    var stack = rb && rb.querySelector('.rb__stack');
+    if (!src || !dst || reduced || !hasST) return;
+
+    /* Was sonst im Hero steht, tritt zurück, sobald die Zeile abhebt:
+       sonst scrollt der Knopf auf dem Handy mitten durch sie hindurch. */
+    var rest = document.querySelectorAll(
+      '.hero__h .ko__line:not(.claim-b), .hero__lead, .terms, .hero__sign'
+    );
+
+    var ghost = document.createElement('div');
+    ghost.className = 'hero__h handoff';
+    ghost.setAttribute('aria-hidden', 'true');
+    var line = document.createElement('span');
+    line.className = 'claim-b';
+    line.textContent = src.textContent.replace(/\s+/g, ' ').trim();
+    ghost.appendChild(line);
+    document.body.appendChild(ghost);
+
+    var m = null;
+    function miss() {
+      var r = src.getBoundingClientRect();
+      var d = dst.getBoundingClientRect();
+      var st = stage.getBoundingClientRect();
+      var fs = parseFloat(getComputedStyle(src).fontSize) || 1;
+      var fd = parseFloat(getComputedStyle(dst).fontSize) || fs;
+      var k = fd / fs;
+      ghost.style.width = r.width + 'px';
+      /* Das Ziel bekommt die skalierte Breite der Startzeile. Dann bricht
+         es an denselben Stellen um wie das Doppel im Flug, und die Landung
+         deckt sich Buchstabe für Buchstabe. */
+      dst.style.maxWidth = 'none';
+      dst.style.width = r.width * k + 'px';
+      var ende = rb.getBoundingClientRect().top + window.scrollY;
+      m = {
+        x0: r.left,
+        y0: r.top + window.scrollY,
+        x1: d.left,
+        /* Beide Endpunkte in Seitenkoordinaten: bis die Bühne klebt, liegt
+           die h2 an fester Stelle im Dokument. So folgt das Doppel dem
+           echten Ziel, statt auf eine Stelle zu zielen, die erst am Ende
+           der Strecke erreicht wird. */
+        y1: ende + (d.top - st.top),
+        k: k,
+        ende: ende
+      };
+    }
+
+    function glatt(t) {
+      /* ease-in-out: die Zeile löst sich ruhig, fährt, setzt ruhig auf */
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    var zustand = '';
+    function setze(p) {
+      if (!m) return;
+      var z = p <= 0 ? 'start' : p >= 1 ? 'ziel' : 'flug';
+      if (z !== zustand) {
+        zustand = z;
+        src.style.visibility = z === 'start' ? '' : 'hidden';
+        ghost.style.visibility = z === 'flug' ? 'visible' : 'hidden';
+      }
+      /* Im ersten Viertel der Strecke ist der Rest des Hero weg. */
+      var weg = Math.min(1, Math.max(0, p / 0.25));
+      for (var i = 0; i < rest.length; i++) {
+        rest[i].style.opacity = weg ? String(1 - weg) : '';
+      }
+      var e = glatt(Math.min(1, Math.max(0, p)));
+      var x = m.x0 + (m.x1 - m.x0) * e;
+      /* Die Zeile bleibt am Bildschirm stehen und schrumpft, während der
+         Hero unter ihr wegscrollt. Sobald der Kopf der Baustelle von unten
+         auf ihrer Höhe ankommt, nimmt er sie mit nach oben. Eine Bahn ohne
+         Umweg: erst stehen, dann steigen. */
+      var y = Math.min(m.y0, m.y1 - window.scrollY);
+      var k = 1 + (m.k - 1) * e;
+      var ueber = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
+      ghost.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + k + ')';
+      ghost.style.opacity = String(1 - ueber);
+      dst.style.opacity = z === 'start' ? '0' : String(ueber);
+    }
+
+    miss();
+    setze(0);
+
+    ScrollTrigger.create({
+      start: 0,
+      end: function () {
+        return m ? m.ende : 1;
+      },
+      scrub: true,
+      invalidateOnRefresh: true,
+      onRefreshInit: function () {
+        /* Messen im Ruhezustand: Doppel weg, beide Zeilen an ihrem Platz. */
+        src.style.visibility = '';
+        dst.style.opacity = '';
+        dst.style.width = '';
+        dst.style.maxWidth = '';
+        for (var i = 0; i < rest.length; i++) rest[i].style.opacity = '';
+        zustand = '';
+      },
+      onRefresh: function (self) {
+        miss();
+        setze(self.progress);
+      },
+      onUpdate: function (self) {
+        setze(self.progress);
+      }
+    });
+
+    /* Der Rahmen kommt der Zeile entgegen. */
+    if (stack) {
+      gsap.fromTo(
+        stack,
+        { y: 90, scale: 0.94 },
+        {
+          y: 0,
+          scale: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            start: 0,
+            end: function () {
+              return m ? m.ende : 1;
+            },
+            scrub: 0.4,
+            invalidateOnRefresh: true
+          }
+        }
+      );
+    }
+  }
+
   function initRebuild() {
     var rb = document.querySelector('.rb');
     if (!rb || reduced || !hasST) return;
@@ -634,7 +783,7 @@
       .to(
         frame,
         {
-          boxShadow: '0 46px 90px -34px rgba(16, 23, 26, 0.66)',
+          boxShadow: '0 46px 90px -34px rgba(30, 39, 24, 0.66)',
           duration: 0.07
         },
         0.9
@@ -642,7 +791,7 @@
       .to(
         frame,
         {
-          boxShadow: '0 24px 60px -30px rgba(16, 23, 26, 0.4)',
+          boxShadow: '0 24px 60px -30px rgba(30, 39, 24, 0.4)',
           duration: 0.08
         },
         0.97
@@ -842,6 +991,7 @@
     initStageFit();
     initStepTrail();
     initRebuild();
+    initHandOff();
     initTrack();
     /* Nach dem Laden der Schriften verschieben sich Höhen. */
     if (document.fonts && hasST) {
