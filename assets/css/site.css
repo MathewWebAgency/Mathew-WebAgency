@@ -12,52 +12,26 @@
 /* --- Fonts ---------------------------------------------------------------- */
 /* Selbst gehostet: kein Google-Fonts-CDN (DSGVO) und keine externe Abhängigkeit. */
 
-/* Fraunces, variabel (Gewicht 100-900, optische Groesse 9-144, dazu die
-   Achsen SOFT und WONK). WONK laesst g, a und y aus der Achse kippen – das
-   ist der Grund fuer diese Schrift: eine Ueberschrift, die von Hand gesetzt
-   aussieht statt aus einer Bibliothek gegriffen. */
+/* Big Shoulders Display, variabel (Gewicht 100-900). Eine schmale Grotesk
+   aus der Tradition von Schildern und Fahrzeugbeschriftung, also aus genau
+   der Welt, in der unsere Kunden arbeiten: so steht der Name eines Betriebs
+   auf dem Transporter. Ueberschriften laufen in Versalien, Gewicht 800. */
 @font-face {
-  font-family: 'Fraunces';
+  font-family: 'Big Shoulders Display';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/fraunces-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url('../fonts/big-shoulders-display-latin.woff2') format('woff2');
 }
+/* Karla, variabel (Gewicht 200-800). Eine Grotesk mit leicht eigenwilligen
+   Formen (das g, das y, die kurzen Oberlaengen), freundlich statt glatt.
+   Traegt Fliesstext, Knoepfe und alle Beschriftungen. */
 @font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('../fonts/fraunces-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Newsreader, variabel (Gewicht 200-800, optische Groesse 6-72). Fuer den
-   Bildschirm gezeichnet, offene Punzen, ruhiger Duktus – sie traegt lange
-   deutsche Woerter, ohne sich neben Fraunces in den Vordergrund zu stellen. */
-@font-face {
-  font-family: 'Newsreader';
+  font-family: 'Karla';
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
-  src: url('../fonts/newsreader-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Newsreader';
-  font-style: normal;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url('../fonts/newsreader-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url('../fonts/karla-latin.woff2') format('woff2');
 }
 /* Archivo gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
    hat eine eigene Farbwelt – es braucht auch eine eigene Schrift, sonst
@@ -97,44 +71,38 @@
 /* --- Tokens -------------------------------------------------------------- */
 
 :root {
-  /* Flächen */
-  --paper: #e7eae4; /* Kalkgrau, kühl – bewusst kein Creme */
-  --paper-2: #f3f5f0; /* aufgehellte Karte */
-  --paper-3: #dbdfd7; /* eingesenkte Fläche, Hover */
-  --ink: #10171a; /* kühles Fast-Schwarz */
-  --ink-2: #192226; /* Karte auf dunklem Grund */
-  --ink-3: #232e32; /* Hover auf dunklem Grund */
+  /* Flächen: Leinen statt Kalkgrau. Warm, aber mit einem Hauch Grün,
+     damit es nicht ins Creme der Vorlagen kippt. */
+  --paper: #edebe0;
+  --paper-2: #f5f3ea; /* aufgehellte Karte */
+  --paper-3: #e2dfd1; /* eingesenkte Fläche, Hover */
+  /* Dunkle Bänder sind Moos, nicht Schwarz: die Seite bleibt auch dort warm
+     und grün, wo sie kippt. */
+  --ink: #26341f;
+  --ink-2: #2f3f28; /* Karte auf dunklem Grund */
+  --ink-3: #394a31; /* Hover auf dunklem Grund */
 
   /* Schrift */
-  --on-paper: #10171a;
-  --on-paper-dim: #59635f;
-  --on-ink: #eef1ec;
-  /* Aus der Sand-Familie getönt, nicht grau: auf dunklem Grund liest sich
-     Grau tot, ein Papierton liest sich wie Bleistift auf Tonpapier. 7.9:1. */
-  --on-ink-dim: #b0ab99;
+  --on-paper: #1e2718; /* Olivschwarz, 12.9:1 */
+  --on-paper-dim: #5a6150; /* 5.4:1 */
+  --on-ink: #f0eee3;
+  --on-ink-dim: #c2c6ae;
 
-  /* Akzente – zwei Stimmen, klar getrennte Rollen.
-     Grün sagt, was der Besucher tun kann: Schaltflächen, Links, Marker,
-     Fokus. Rost sagt, was wir sagen: der Widerspruch im Satzpaar, die
-     Zeile "Dein Part". Rost ist nie anklickbar – wo es steht, gibt es
-     nichts zu drücken. Dadurch bleibt Grün als Handlungssignal eindeutig,
-     obwohl die Seite mehr Farbe trägt. */
-  --gruen: #14523a; /* Tiefgrün – die Aktionsfarbe */
-  --gruen-2: #1d7a54; /* Hover */
-  --gruen-hell: #7dc9a3; /* Grün auf dunklem Grund (Kontrast) */
-  --rost: #a8452a; /* Gegenstimme auf Papier – 4.9:1 */
-  --rost-hell: #e0906b; /* Gegenstimme auf Tinte – 7.2:1 */
-  --sand: #c8b48c; /* Papierton auf dunklem Grund – nur Linien & Labels */
+  /* Grün ist jetzt die ganze Stimme der Seite. Moosgrün handelt (Knöpfe,
+     Links, Fokus) und setzt die zweite Zeile im Satzpaar; auf dunklem
+     Grund übernimmt das helle Flechtengrün beide Rollen. */
+  --gruen: #3b6526; /* Moos – 5.7:1 auf Leinen */
+  --gruen-2: #4a7a31; /* Hover */
+  --gruen-hell: #c9d56e; /* Flechte auf Moos */
+  --sand: #c2c6ae; /* Linien & Labels auf dunklem Grund */
 
   /* Linien */
-  --line-paper: rgba(16, 23, 26, 0.14);
-  --line-paper-stark: rgba(16, 23, 26, 0.32);
-  --line-ink: rgba(238, 241, 236, 0.16);
+  --line-paper: rgba(30, 39, 24, 0.14);
+  --line-paper-stark: rgba(30, 39, 24, 0.32);
+  --line-ink: rgba(240, 238, 227, 0.16);
 
-  /* Der Marker, den der Zeiger über einen Link zieht. Auf Papier ein
-     verdünntes Tiefgrün, auf Tinte das hellere Grün – beide so schwach,
-     dass die Schrift darüber lesbar bleibt. */
-  --wash: rgba(29, 122, 84, 0.2);
+  /* Der Marker, den der Zeiger über einen Link zieht. */
+  --wash: rgba(59, 101, 38, 0.2);
 
   /* Radien – klein, plus echte Pillen. Nichts dazwischen. */
   --r-xs: 3px;
@@ -143,8 +111,8 @@
   --r-pill: 999px;
 
   /* Typo */
-  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --body: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --display: 'Big Shoulders Display', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --body: 'Karla', 'Helvetica Neue', Arial, sans-serif;
   /* Beschriftungen laufen in der Fließtextschrift. Es gibt keine dritte
      Schrift mehr in unserer eigenen Oberfläche: die Spalte trägt die
      Information über ihre Position, nicht über einen Effekt. */
@@ -154,12 +122,12 @@
   /* Die Tischlerei Brinkmann setzt ihre eigene Schrift. */
   --bk-font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
 
-  --t-display-xl: clamp(2.6rem, 8.4vw, 7rem);
-  --t-display-l: clamp(2.15rem, 5.2vw, 4.1rem);
-  --t-display-m: clamp(1.75rem, 3.4vw, 2.6rem);
-  --t-h3: clamp(1.25rem, 1.9vw, 1.6rem);
-  /* Newsreader hat eine große x-Höhe und trägt lange deutsche Wörter,
-     braucht dafür aber etwas mehr Grad als eine Grotesk. */
+  /* Eine schmale Versalie braucht rund ein Viertel mehr Grad als eine
+     normal laufende Schrift, um dieselbe Fläche zu tragen. */
+  --t-display-xl: clamp(3.2rem, 10vw, 8.5rem);
+  --t-display-l: clamp(2.7rem, 6.4vw, 5.2rem);
+  --t-display-m: clamp(2.1rem, 4.2vw, 3.3rem);
+  --t-h3: clamp(1.5rem, 2.4vw, 2rem);
   --t-lead: clamp(1.1rem, 1.55vw, 1.4rem);
   --t-body: 1.125rem;
   --t-small: 1rem;
@@ -197,11 +165,7 @@ body {
   color: var(--on-paper);
   font-family: var(--body);
   font-size: var(--t-body);
-  font-variation-settings: 'opsz' 16;
-  /* Die Serif hat eine kleinere x-Höhe als die vorherige Grotesk und
-     verträgt deshalb etwas weniger Durchschuss bei gleicher Lesbarkeit.
-     Die optische Achse folgt der Schriftgröße automatisch. */
-  line-height: 1.56;
+  line-height: 1.58;
   font-weight: 400;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
@@ -224,20 +188,17 @@ h2,
 h3,
 h4 {
   font-family: var(--display);
-  font-weight: 600;
-  /* Eine Antiqua vertraegt weniger Engstand als die vorherige Grotesk:
-     -0.032em liess die Serifen ineinanderlaufen. */
-  letter-spacing: -0.015em;
-  line-height: 1.02;
+  /* Versalien in Gewicht 800, so wie ein Betrieb auf dem Firmenwagen steht.
+     Eine schmale Grotesk braucht keinen Engstand; eine Spur Luft hält die
+     Versalien bei großen Graden auseinander. Der Zeilenfall ist eng, weil
+     Versalien keine Unterlängen haben, die kollidieren könnten. */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
   margin: 0;
   text-wrap: balance;
-  font-optical-sizing: auto;
   overflow-wrap: break-word;
-  /* SOFT rundet die Ecken, WONK kippt g, a und y aus der Achse. Das ist
-     der Grund fuer diese Schrift: eine Ueberschrift, die gesetzt aussieht
-     statt gegriffen. Beide Achsen bleiben dezent - WONK ist ein Schalter,
-     SOFT der Regler, mit dem er ertraeglich wird. */
-  font-variation-settings: 'SOFT' 28, 'WONK' 1;
 }
 
 p {
@@ -266,53 +227,6 @@ button {
   outline: 2px solid var(--gruen-2);
   outline-offset: 3px;
   border-radius: var(--r-xs);
-}
-
-/* --- Zeiger --------------------------------------------------------------- */
-/* Ein nachlaufender Ring, kein Ersatz für den Systemzeiger: der bleibt
-   sichtbar, damit Zielgenauigkeit und Textcursor erhalten bleiben.
-   mix-blend-mode: difference erledigt hell und dunkel in einem – über
-   Kalkgrau erscheint der Ring dunkel, über Tinte hell. Zwei gepflegte
-   Fassungen wären dieselbe Wirkung mit doppelter Arbeit.
-   Wird nur bei feiner Zeigereingabe eingehängt (siehe site.js). */
-
-.cur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 300;
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  opacity: 0;
-  will-change: transform;
-  transition: opacity 0.3s var(--ease), width 0.3s var(--ease),
-    height 0.3s var(--ease), margin 0.3s var(--ease),
-    background 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-.cur.is-on {
-  opacity: 1;
-}
-/* Über Bedienelementen füllt sich der Ring und wird kleiner: das Ziel ist
-   erfasst, der Zeiger quittiert es. */
-.cur.is-hot {
-  width: 16px;
-  height: 16px;
-  margin: -8px 0 0 -8px;
-  background: #fff;
-}
-/* Über Text wird aus dem Ring ein schmaler Strich, der die Schreibrichtung
-   aufnimmt, statt den Satz zu verdecken. */
-.cur.is-text {
-  width: 2px;
-  height: 26px;
-  margin: -13px 0 0 -1px;
-  border-radius: 1px;
-  background: #fff;
 }
 
 /* --- Browser-Oberflächen ------------------------------------------------- */
@@ -425,7 +339,7 @@ a:not([class]):focus-visible {
 .band--ink {
   background: var(--ink);
   color: var(--on-ink);
-  --wash: rgba(125, 201, 163, 0.24);
+  --wash: rgba(201, 213, 110, 0.24);
 }
 .band--ink h1,
 .band--ink h2,
@@ -439,43 +353,29 @@ a:not([class]):focus-visible {
 
 /* --- Typografische Klassen ---------------------------------------------- */
 
-/* Die Display-Grade tragen schwerer als der Fließtext-Schnitt: erst dadurch
-   wird der leichte Widerspruch in .claim-b als eigene Stimme lesbar.
-
-   Zur Zeilenhoehe: Fraunces misst von Versalhoehe bis Unterlaenge 0,945 em,
-   mit Umlautpunkten darueber. Die frueheren Werte um 0,92 stammen von der
-   Grotesk und liessen auf schmalen Schirmen das g der einen Zeile in das i
-   der naechsten laufen. Unter 1,0 darf hier nichts mehr stehen. */
+/* Versalien haben keine Unterlängen; nur die Umlautpunkte ragen nach oben.
+   0,92 lässt ihnen genau so viel Luft, dass Ä und Ü nicht in die Zeile
+   darüber stoßen. */
 .display-xl {
   font-size: var(--t-display-xl);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.042em;
 }
 .display-l {
   font-size: var(--t-display-l);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.036em;
 }
 .display-m {
   font-size: var(--t-display-m);
-  line-height: 1.02;
 }
 
-/* Behauptung und Widerspruch als Satzpaar – das rhetorische Muster der Marke.
-   Der Widerspruch trägt über die Variable-Achse und einen optischen Versatz,
-   nicht über eine zweite Farbe: Grün ist die Farbe, in der man unterschreibt,
-   und verliert seine Bedeutung, wenn es in jeder Überschrift dekoriert. */
+/* Behauptung und Widerspruch als Satzpaar – das rhetorische Muster der
+   Marke. Es steht nur noch zweimal pro Seite: im Kopf und im Schlussaufruf.
+   Die zweite Zeile trägt dasselbe Gewicht und wechselt nur die Farbe. */
 .claim-b {
   display: block;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--rost);
+  color: var(--gruen);
 }
 .band--ink .claim-b,
 .phead .claim-b {
-  color: var(--rost-hell);
+  color: var(--gruen-hell);
 }
 
 /* --- Kopf-Öffnung -------------------------------------------------------- */
@@ -494,10 +394,9 @@ a:not([class]):focus-visible {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  /* Fraunces hat deutlich tiefere Unterlaengen als die vorherige Grotesk:
-     bei 0.08em kappte die Maske das g in "gut." auf halber Hoehe. Der
-     negative Aussenabstand nimmt die Luft aus dem Zeilenfall wieder
-     heraus, damit der Satz gleich sitzt. Wer diesen Wert erhoeht, muss
+  /* Luft fuer die Umlautpunkte und fuer den Fliesstext-Ersatz, falls die
+     Schrift spaet kommt. Der negative Aussenabstand nimmt die Luft aus dem
+     Zeilenfall wieder heraus, damit der Satz gleich sitzt. Wer diesen Wert erhoeht, muss
      auch den Startversatz in initHeadOpen() erhoehen – sonst lugt das
      Wort vor der Bewegung unter der Kante hervor. */
   padding-bottom: 0.2em;
@@ -658,9 +557,10 @@ a:not([class]):focus-visible {
   align-items: center;
   gap: 0.6rem;
   font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 /* M-Monogramm. In em bemessen, damit es der Wortmarke folgt: im Header
    steht sie auf 1.0625rem, im Footer auf 1.25rem. Die Marke ist breiter
@@ -762,9 +662,10 @@ a:not([class]):focus-visible {
 .mnav__list a {
   display: block;
   font-family: var(--display);
-  font-size: clamp(1.35rem, 4.4vw, 1.75rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--line-ink);
 }
@@ -804,14 +705,11 @@ a:not([class]):focus-visible {
 }
 
 .hero__h {
-  font-size: clamp(2.5rem, 6.9vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.045em;
-  font-weight: 700;
-  /* Gemessen: Unter 22ch bricht schon die erste Zeile und die Aussage läuft
-     auf drei Zeilen – damit rutscht die Unterschriftszeile aus dem ersten
-     Bildschirm. Bei 22ch steht jede der beiden Aussagen auf ihrer Zeile. */
-  max-width: 22ch;
+  /* Die schmale Versalie braucht Grad, um zu tragen: bei gleicher Breite
+     passt fast doppelt so viel Größe hinein wie bei der alten Antiqua. */
+  font-size: clamp(3.4rem, 9.5vw, 7.6rem);
+  line-height: 0.9;
+  max-width: 17ch;
 }
 
 .hero__lead {
@@ -940,7 +838,7 @@ a:not([class]):focus-visible {
   align-items: start;
 }
 .rb__head h2 {
-  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
   max-width: 22ch;
 }
 /* Der Beispielbetrieb ist erfunden. Das steht dran, wo er auftaucht. */
@@ -1061,7 +959,7 @@ a:not([class]):focus-visible {
   background: #fff;
   border: 1px solid var(--line-paper-stark);
   border-radius: var(--r-md);
-  box-shadow: 0 24px 60px -30px rgba(16, 23, 26, 0.4);
+  box-shadow: 0 24px 60px -30px rgba(30, 39, 24, 0.4);
   overflow: hidden;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -1089,7 +987,7 @@ a:not([class]):focus-visible {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: rgba(16, 23, 26, 0.2);
+  background: rgba(30, 39, 24, 0.2);
 }
 .rb__url {
   flex: 1;
@@ -1312,6 +1210,8 @@ a:not([class]):focus-visible {
   font-family: var(--bk-font);
   font-size: clamp(0.95rem, 2.9vw, 2rem);
   font-weight: 600;
+  /* Die Tischlerei setzt normal, nicht in unseren Versalien. */
+  text-transform: none;
   line-height: 0.95;
   letter-spacing: -0.038em;
 }
@@ -1471,7 +1371,7 @@ a:not([class]):focus-visible {
   background: #101012;
   border-radius: 16px;
   padding: 5px;
-  box-shadow: 0 18px 40px -18px rgba(16, 23, 26, 0.55);
+  box-shadow: 0 18px 40px -18px rgba(30, 39, 24, 0.55);
   opacity: 0;
 }
 /* Die Handyfassung zeigt dieselbe Seite, nicht abstrakte Balken: derselbe
@@ -1591,7 +1491,7 @@ a:not([class]):focus-visible {
   width: 78px;
   background: linear-gradient(
     to left,
-    rgba(29, 122, 84, 0.22),
+    rgba(59, 101, 38, 0.22),
     transparent
   );
 }
@@ -1618,10 +1518,8 @@ a:not([class]):focus-visible {
   }
 }
 .rb__caption strong {
-  font-family: var(--display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
-  letter-spacing: -0.02em;
   color: var(--on-paper);
 }
 
@@ -1653,8 +1551,6 @@ a:not([class]):focus-visible {
 }
 .svc__row h3 {
   font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-  font-weight: 400;
-  letter-spacing: -0.032em;
 }
 .svc__row p {
   color: var(--on-paper-dim);
@@ -1843,8 +1739,6 @@ a:not([class]):focus-visible {
 }
 .card h3 {
   font-size: var(--t-h3);
-  font-weight: 600;
-  letter-spacing: -0.028em;
 }
 .card p {
   font-size: var(--t-small);
@@ -1880,8 +1774,6 @@ a:not([class]):focus-visible {
 }
 .tenet h3 {
   font-size: clamp(1.35rem, 2.6vw, 1.95rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
 }
 .tenet p {
   font-size: var(--t-small);
@@ -1921,17 +1813,13 @@ a:not([class]):focus-visible {
 }
 .step__no b {
   font-family: var(--display);
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
   line-height: 0.8;
-  color: var(--on-ink);
-  opacity: 0.22;
+  color: var(--gruen-hell);
 }
 .step__body h2 {
   font-size: var(--t-h3);
-  font-weight: 600;
-  letter-spacing: -0.028em;
   margin-bottom: 0.5rem;
 }
 .step__body p {
@@ -1944,7 +1832,7 @@ a:not([class]):focus-visible {
   margin-top: 0.85rem;
   font-family: var(--label);
   font-size: var(--t-label);
-  color: var(--rost-hell);
+  color: var(--gruen-hell);
 }
 .step__dur {
   font-family: var(--label);
@@ -2096,8 +1984,6 @@ a:not([class]):focus-visible {
 }
 .tp h2 {
   font-size: clamp(2.2rem, 5.2vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.038em;
   line-height: 0.95;
 }
 .tp__body p {
@@ -2108,7 +1994,7 @@ a:not([class]):focus-visible {
 .tp__body .tp__part {
   font-family: var(--label);
   font-size: var(--t-label);
-  color: var(--rost-hell);
+  color: var(--gruen-hell);
 }
 .tp__dur {
   font-family: var(--label);
@@ -2162,8 +2048,6 @@ a:not([class]):focus-visible {
 }
 .case h3 {
   font-size: var(--t-h3);
-  font-weight: 600;
-  letter-spacing: -0.028em;
 }
 .case p {
   font-size: var(--t-small);
@@ -2244,7 +2128,7 @@ a:not([class]):focus-visible {
   font-size: var(--t-label);
   padding: 0.3rem 0.7rem;
   border-radius: var(--r-pill);
-  background: rgba(16, 23, 26, 0.72);
+  background: rgba(30, 39, 24, 0.72);
   color: var(--on-ink);
   pointer-events: none;
 }
@@ -2271,11 +2155,9 @@ a:not([class]):focus-visible {
   padding: clamp(1.1rem, 2.4vw, 1.55rem) 0;
   cursor: pointer;
   list-style: none;
-  font-family: var(--display);
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  transition: color 0.3s;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
+  transition: color 0.2s var(--ease);
 }
 .faq summary::-webkit-details-marker {
   display: none;
@@ -2527,10 +2409,8 @@ a:not([class]):focus-visible {
   color: var(--on-ink-dim);
 }
 .direct span {
-  font-family: var(--display);
-  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
-  font-weight: 500;
-  letter-spacing: -0.028em;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 700;
   text-align: right;
 }
 
@@ -2560,7 +2440,7 @@ a:not([class]):focus-visible {
   color: var(--on-ink);
   padding-block: clamp(3.5rem, 8vh, 5.5rem) 2rem;
   border-top: 1px solid var(--line-ink);
-  --wash: rgba(125, 201, 163, 0.24);
+  --wash: rgba(201, 213, 110, 0.24);
 }
 .ftr__top {
   display: grid;
@@ -2586,6 +2466,13 @@ a:not([class]):focus-visible {
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
+.ftr__cols h2,
+.lvx__label {
+  /* Beschriftungen, keine Überschriften im Sinne der Gestaltung: sie
+     bleiben in der Textschrift und in normaler Schreibweise. */
+  text-transform: none;
+  line-height: 1.3;
+}
 .ftr__cols h2 {
   font-family: var(--label);
   font-size: var(--t-label);
@@ -2610,7 +2497,7 @@ a:not([class]):focus-visible {
   color: var(--on-ink);
 }
 .ftr li a {
-  --wash: rgba(125, 201, 163, 0.26);
+  --wash: rgba(201, 213, 110, 0.26);
 }
 .ftr__bottom {
   display: flex;
@@ -2640,10 +2527,9 @@ a:not([class]):focus-visible {
 
 /* --- Seitenkopf für Unterseiten -------------------------------------- */
 
-/* Der Kopf liest sich wie der Kopf eines Angebots: Linienpapier, eine
-   Kennung am Rand, darunter die Aussage. Der grüne Lichtfleck, der hier
-   stand, ist ersatzlos entfallen – er war Dekor ohne Herleitung und das
-   deutlichste Vorlagen-Signal der ganzen Seite. */
+/* Moosgrüne Fläche, darauf nur die Aussage. Das Linienpapier, das hier
+   lag, gehörte zur Angebots-Metapher des alten Systems und lief quer
+   hinter dem Header durch. */
 .phead {
   background: var(--ink);
   color: var(--on-ink);
@@ -2652,28 +2538,14 @@ a:not([class]):focus-visible {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  --wash: rgba(125, 201, 163, 0.24);
-}
-.phead::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    var(--line-ink) 0 1px,
-    transparent 1px 2.75rem
-  );
-  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
-  opacity: 0.5;
+  --wash: rgba(201, 213, 110, 0.24);
 }
 .phead .wrap {
   position: relative;
 }
 .phead h1 {
   font-size: var(--t-display-l);
-  font-weight: 700;
-  max-width: 24ch;
+  max-width: 20ch;
 }
 .phead .lead {
   margin-top: 1.5rem;
@@ -2703,8 +2575,6 @@ a:not([class]):focus-visible {
 }
 .prose h3 {
   font-size: var(--t-h3);
-  font-weight: 600;
-  letter-spacing: -0.025em;
   margin-top: 1.5rem;
 }
 .prose p,
@@ -2746,10 +2616,9 @@ a:not([class]):focus-visible {
 }
 .oops__code {
   font-family: var(--display);
-  font-size: clamp(5rem, 22vw, 15rem);
-  font-weight: 400;
-  line-height: 0.78;
-  letter-spacing: -0.06em;
+  font-size: clamp(6rem, 26vw, 18rem);
+  font-weight: 800;
+  line-height: 0.8;
   color: var(--gruen-hell);
   opacity: 0.24;
 }
@@ -2779,6 +2648,15 @@ a:not([class]):focus-visible {
   }
   .hero__sign {
     margin-top: 0;
+  }
+  /* Die Bühne der Baustelle hält oben ohnehin Platz für den festen Header
+     frei. Zusammen mit den Innenabständen von Hero und Sektion stand unter
+     dem Knopf ein leeres Drittel Bildschirm. */
+  .hero {
+    padding-bottom: 0;
+  }
+  .site-rebuild {
+    padding-top: 0;
   }
 }
 

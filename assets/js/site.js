@@ -118,66 +118,6 @@
     });
   }
 
-  /* Zeiger: ein Ring, der dem Systemzeiger mit leichter Verzögerung folgt
-     und über Bedienelementen zufasst. Bei reduzierter Bewegung entfällt er
-     – eine nachlaufende Ebene ist genau das, was der Nutzer abbestellt hat.
-
-     Die Zeigerart wird nicht über eine Media Query entschieden, sondern am
-     Ereignis selbst: `(pointer: fine)` meldet grob, sobald ein Browser
-     Touch nachstellt – in der Handy-Vorschau am Rechner steckt aber weiter
-     eine Maus dahinter, und der Ring fehlte dort. Gebaut wird der Ring
-     deshalb erst bei der ersten echten Mausbewegung. Auf einem Gerät ohne
-     Maus tritt sie nie ein, dort entsteht auch kein Ring. */
-  function initCursor() {
-    if (reduced) return;
-
-    var el = null;
-    var tx = 0, ty = 0, x = 0, y = 0, started = false;
-
-    function build() {
-      el = document.createElement('div');
-      el.className = 'cur';
-      el.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(el);
-
-      (function loop() {
-        x += (tx - x) * 0.18;
-        y += (ty - y) * 0.18;
-        el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
-        requestAnimationFrame(loop);
-      })();
-
-      document.addEventListener('mouseleave', function () {
-        el.classList.remove('is-on');
-      });
-      document.addEventListener('mouseenter', function () {
-        if (started) el.classList.add('is-on');
-      });
-    }
-
-    document.addEventListener(
-      'pointermove',
-      function (e) {
-        if (e.pointerType !== 'mouse') return;
-        if (!el) build();
-        tx = e.clientX;
-        ty = e.clientY;
-        if (!started) {
-          started = true;
-          x = tx;
-          y = ty;
-          el.classList.add('is-on');
-        }
-        var t = e.target;
-        var hot = t.closest('a, button, summary, input, textarea, label, [role="button"]');
-        var text = t.closest('input[type="text"], input[type="email"], input[type="tel"], textarea');
-        el.classList.toggle('is-text', !!text);
-        el.classList.toggle('is-hot', !!hot && !text);
-      },
-      { passive: true }
-    );
-  }
-
   /* Kopf-Öffnung: die erste Überschrift der Seite wird gesetzt, Wort für
      Wort unter der eigenen Kante hervor. Läuft beim Laden, nicht beim
      Scrollen – der Besucher soll etwas sehen, bevor er etwas liest.
@@ -247,8 +187,8 @@
       });
     }
 
-    /* Fraunces bestimmt die Breite jeder Wortmaske. Startet die Bewegung,
-       bevor die Schrift da ist, laufen die Masken in Georgia-Breiten los,
+    /* Die Displayschrift bestimmt die Breite jeder Wortmaske. Startet die Bewegung,
+       bevor die Schrift da ist, laufen die Masken in Ersatzschrift-Breiten los,
        und beim Schriftwechsel aendert mitten in der Animation jede Maske
        ihre Breite - die Zeile bricht neu um und es ruckelt. Auf localhost
        nie zu sehen (Schrift nach 16 ms da), ueber Mobilfunk regelmaessig.
@@ -262,7 +202,7 @@
         gestartet = true;
         lauf();
       };
-      document.fonts.load('700 1em Fraunces').then(los, los);
+      document.fonts.load("800 1em 'Big Shoulders Display'").then(los, los);
       setTimeout(los, 600);
     } else {
       lauf();
@@ -894,7 +834,6 @@
     initLenis();
     initHeader();
     initMenu();
-    initCursor();
     initHeadOpen();
     initReveals();
     initFaq();

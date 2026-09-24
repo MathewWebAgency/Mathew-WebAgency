@@ -22,43 +22,28 @@ Kein Referenz-/Projektbereich: auf Wunsch des Inhabers vollständig entfernt, bi
 echte, freigegebene Projekte vorliegen. Ebenso kein Video und kein Marketing –
 das Unternehmen macht ausschließlich Webdesign.
 
-## Designsystem „Kalkgrau & Tiefgrün“
+## Designsystem „Werkstatt“
 
 Alle Tokens stehen oben in `assets/css/site.css` unter `:root`.
 
 | Token | Wert | Verwendung |
 |---|---|---|
-| `--paper` | `#E7EAE4` | Kalkgrau, kühle Seitenbasis |
-| `--paper-2` | `#F3F5F0` | Karten, erhöhte Flächen |
-| `--ink` | `#10171A` | kühles Fast-Schwarz für invertierte Bänder |
-| `--gruen` | `#14523A` | Tiefgrün – die einzige Aktionsfarbe |
-| `--gruen-hell` | `#7DC9A3` | Grün auf dunklem Grund (Kontrast) |
-| `--sand` | `#C8B48C` | Sandstein der Giebel, nur Linien und Labels |
-
-Herleitung: das Angebot auf Papier. Kalkgrau ist der kühle Bogen, auf dem eine
-Kalkulation steht – bewusst kein Creme. Tiefgrün ist die Farbe, in der man
-unterschreibt, und die einzige Aktionsfarbe der Seite.
-
-Der frühere **Stufengiebel** (Logo, Eyebrow-Marker, Bildfeld der Beispielseite)
-ist vollständig entfallen: Er war aus dem Prinzipalmarkt hergeleitet, und die
-Agentur arbeitet ortsunabhängig. Bis die Logodatei vorliegt, tragen Header und
-Footer die reine Wortmarke; `.brand__mark` im CSS ist für das M-Monogramm
-reserviert.
+| `--paper` | `#EDEBE0` | Leinen, warme Seitenbasis mit Grünstich |
+| `--paper-2` | `#F5F3EA` | Karten, erhöhte Flächen |
+| `--ink` | `#26341F` | Moos, dunkle Bänder und Seitenköpfe |
+| `--on-paper` | `#1E2718` | Olivschwarz, Text auf Leinen (12,9:1) |
+| `--gruen` | `#3B6526` | Moosgrün: Knöpfe, Links, zweite Zeile im Satzpaar |
+| `--gruen-hell` | `#C9D56E` | Flechte: Grün auf dunklem Grund |
 
 Schriften (selbst gehostet in `assets/fonts/`):
 
-- **Fraunces** (variabel 100–900, Achsen `opsz`, `SOFT`, `WONK`) für Display.
-  `WONK` kippt g, a und y aus der Achse – Überschriften sollen gesetzt
-  aussehen, nicht gegriffen. Gesetzt über `font-variation-settings`.
-- **Newsreader** (variabel 200–800) für Fließtext und Bedienelemente
-- **Keine dritte Schrift für Beschriftungen.** `FESTPREIS`, `ANSPRECHPARTNER`
-  und Verwandte liefen in gesperrten Versalien in Space Mono – das Bauteil,
-  das in jeder zweiten Vorlage steckt. Sie laufen jetzt in Newsreader, in
-  normaler Schreibweise, ohne Sperrung (`--label`).
-- **Space Mono** nur noch im Browserrahmen des Beispiels: Adresszeile,
-  Besucherzähler, Maßangaben (`--code`).
-- **Archivo** gehört nicht uns, sondern der Tischlerei Brinkmann (`--bk-font`).
-  Das Beispiel hat eine eigene Farbwelt und braucht auch eine eigene Schrift.
+- **Big Shoulders Display** (variabel) für Überschriften, in Versalien, Gewicht 800.
+  Eine schmale Grotesk aus der Tradition von Schildern und Fahrzeugbeschriftung.
+- **Karla** (variabel) für Fließtext, Knöpfe und Beschriftungen.
+- **Space Mono** nur im Browserrahmen des Beispiels (`--code`).
+- **Archivo** gehört der Tischlerei Brinkmann (`--bk-font`), nicht uns.
+
+Die Vergleichsseite mit den drei damals vorgelegten Richtungen liegt nicht im Repo.
 
 Radien: nur `3px`, `6px`, `10px` und echte Pillen. Nichts dazwischen.
 

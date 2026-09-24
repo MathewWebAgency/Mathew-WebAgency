@@ -144,28 +144,28 @@ gegeneinander laufen.
 gelegentlich trocken. Behauptung und Widerspruch als Satzpaar („Reden kostet nichts.
 Außer 30 Minuten.") sind das wiederkehrende rhetorische Muster.
 
-**Bestehendes Designsystem:** „Kalkgrau & Tiefgrün", vollständig dokumentiert in
-`README.md` und als Tokens in `assets/css/site.css`. Die Palette ist vom Nutzer
-bestätigt und bleibt. Hergeleitet ist sie jetzt aus dem Angebot auf Papier, nicht
-mehr aus Münster.
+**Designsystem „Werkstatt“ (Stand 2026-09-24, vom Inhaber aus drei Richtungen
+gewählt):** Leinen `#EDEBE0` als Fläche, Moos `#26341F` für dunkle Bänder,
+Olivschwarz `#1E2718` als Text, Moosgrün `#3B6526` für Knöpfe, Links und die
+zweite Zeile im Satzpaar, Flechte `#C9D56E` als Grün auf dunklem Grund.
+Abgelöst wurde „Kalkgrau & Tiefgrün“ mit Rost-Akzent: Der Inhaber fand die Seite
+zu kühl, und fette Serife plus Rost auf hellem Grund ist der bekannteste
+KI-Look. **Grün darf jetzt mehr als nur Knopf sein**, der Inhaber mag Grüntöne.
+Kein Rost, kein Terrakotta, kein Creme ohne Grünstich.
 
-**Schriften (Stand 2026-08-19, vom Inhaber gewählt):** Display **Fraunces**
-(variabel, Achsen `opsz`, `SOFT`, `WONK`), Fließtext **Newsreader** (variabel,
-200–800). **Es gibt keine dritte Schrift in unserer eigenen Oberfläche.** Die
-Beschriftungen (`FESTPREIS`, `ANSPRECHPARTNER`, `DANACH`, `ANTWORT INNERHALB VON
-24 STUNDEN`) liefen in gesperrten Versalien in Space Mono — der Inhaber hat genau
-diese Stellen als KI-Look markiert. Sie laufen jetzt in der Fließtextschrift, in
-normaler Schreibweise, ohne Sperrung. Space Mono bleibt ausschließlich im
-Browserrahmen des Beispiels (Adresszeile, Besucherzähler, Maßangaben), wo die
-Schreibmaschine eine echte Konvention ist. Instrument Sans, Bricolage Grotesque
-und Source Serif 4 wurden nacheinander als KI-typisch abgelehnt und sind restlos
-entfernt — keine davon zurückholen. Alle Schriften sind selbst gehostet; das ist
-eine DSGVO-Entscheidung, kein Geschmack.
+**Schriften:** Display **Big Shoulders Display** (variabel, Überschriften in
+Versalien, Gewicht 800). Hergeleitet aus der Welt der Kunden: so steht ein
+Betrieb auf dem Firmenwagen. Text, Knöpfe und Beschriftungen in **Karla**
+(variabel). Beschriftungen bleiben in normaler Schreibweise, ohne Sperrung.
+Space Mono nur im Browserrahmen des Beispiels, Archivo nur für die Tischlerei
+Brinkmann. **Abgelehnt und nicht zurückholen:** Instrument Sans, Bricolage
+Grotesque, Source Serif 4, Fraunces (von `impeccable detect` als überstrapazierte
+KI-Schrift gemeldet) und Newsreader (ging mit Fraunces). Alle Schriften selbst
+gehostet; das ist eine DSGVO-Entscheidung, kein Geschmack.
 
-**Grün ist Aktionsfarbe, kein Dekor.** Betonung in Überschriften kommt aus dem
-Schriftgewicht (700 gegen 400), nicht aus einer zweiten Farbe. Der frühere grüne
-Radial-Glow im Seitenkopf und die mintgrüne zweite Headline-Zeile waren die
-deutlichsten Vorlagen-Signale und sind entfernt.
+**Weniger Untertitel.** Das Satzpaar (Behauptung, zweite Zeile in Grün) steht nur
+noch im Seitenkopf und im Schlussaufruf. Alle anderen Überschriften stehen allein,
+ohne Einleitungssatz darunter. Auf dem Handy zeigt der Hero nur Titel und Knopf.
 
 **Links tragen keine Unterstriche.** Unter dem Zeiger wächst ein grüner Marker von
 der Grundlinie hoch. Links mitten im Fließtext bekommen zusätzlich Gewicht 600 als
