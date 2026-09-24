@@ -445,18 +445,36 @@ a:not([class]):focus-visible {
   font-size: var(--t-small);
   letter-spacing: -0.005em;
   cursor: pointer;
-  transition: background 0.35s var(--ease), transform 0.35s var(--ease),
-    color 0.35s var(--ease), border-color 0.35s var(--ease);
+  /* Unter 300 ms: ein Knopf antwortet, er erzählt nichts. */
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease),
+    color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .btn:hover {
   --btn-bg: var(--gruen-2);
-  transform: translateY(-2px);
 }
 .btn__arrow {
-  transition: transform 0.35s var(--ease);
+  transition: transform 0.2s var(--ease);
 }
-.btn:hover .btn__arrow {
-  transform: translateX(4px);
+/* Bewegung beim Überfahren nur mit echter Maus: Touch löst beim Tippen ein
+   falsches Hover aus, und der Knopf bliebe angehoben stehen. */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:hover .btn__arrow {
+    transform: translateX(4px);
+  }
+  .direct a:hover {
+    transform: translateX(0.6rem);
+  }
+  .direct a:hover::before {
+    transform: scaleY(1);
+  }
+}
+/* Druck quittieren: der Knopf gibt nach, schnell und ohne Nachlauf. */
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 0.12s;
 }
 
 .btn--ghost {
@@ -1268,66 +1286,35 @@ a:not([class]):focus-visible {
   grid-column: 2;
   grid-row: 2 / 5;
   border-radius: var(--r-sm);
-  background: linear-gradient(158deg, #8d6c45 0%, #6a4e31 54%, #3d2d1c 100%);
+  background: #3d2d1c; /* bis das Foto geladen ist */
   position: relative;
   overflow: hidden;
   clip-path: inset(0 0 100% 0);
   box-shadow: inset 0 0 0 1px rgba(20, 12, 4, 0.25);
 }
-.new__grain {
+.new__photo {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-      91deg,
-      rgba(255, 244, 224, 0.09) 0 1px,
-      transparent 1px 4px,
-      rgba(28, 18, 8, 0.14) 4px 5px,
-      transparent 5px 11px
-    ),
-    radial-gradient(
-      ellipse at 30% 18%,
-      rgba(255, 240, 214, 0.22) 0%,
-      transparent 58%
-    );
-}
-/* Ein Regal in Schrägansicht: vier Böden, nach hinten verjüngt. Genug
-   Andeutung, dass man ein Möbelstück sieht, nicht nur Streifen. */
-.new__shelf {
-  position: absolute;
-  left: 18%;
-  right: 12%;
-  bottom: 14%;
-  display: grid;
-  gap: clamp(5px, 1.3vw, 11px);
-}
-.new__shelf i {
-  height: clamp(3px, 0.8vw, 7px);
-  border-radius: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(243, 235, 218, 0.92),
-    rgba(206, 190, 160, 0.78)
-  );
-  box-shadow: 0 3px 9px -3px rgba(20, 12, 4, 0.75);
-  transform-origin: left;
-}
-.new__shelf i:nth-child(1) {
   width: 100%;
-}
-.new__shelf i:nth-child(2) {
-  width: 92%;
-}
-.new__shelf i:nth-child(3) {
-  width: 84%;
-}
-.new__shelf i:nth-child(4) {
-  width: 74%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  /* Die Schrankwand sitzt rechts der Mitte, das Fenster links. */
+  object-position: 58% 55%;
+  transform-origin: 60% 60%;
+  will-change: transform;
 }
 
 .new__tag {
   position: absolute;
-  left: 7%;
+  z-index: 1;
+  left: 6%;
   top: 7%;
+  padding: 0.35em 0.6em;
+  border-radius: var(--r-xs);
+  /* Tiefblau der Tischlerei, halb durchlässig: lesbar über jeder Stelle
+     des Fotos, ohne ein Kasten zu werden. */
+  background: rgba(20, 32, 46, 0.62);
   font-family: var(--code);
   font-size: clamp(0.44rem, 0.86vw, 0.62rem);
   letter-spacing: 0.03em;
@@ -1339,6 +1326,7 @@ a:not([class]):focus-visible {
    Holz lesbar bleibt. */
 .new__cap {
   position: absolute;
+  z-index: 1;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1454,7 +1442,8 @@ a:not([class]):focus-visible {
   position: relative;
   border-radius: 0.4em;
   overflow: hidden;
-  background: linear-gradient(158deg, #8d6c45 0%, #6a4e31 54%, #3d2d1c 100%);
+  /* Dasselbe Foto wie in der Rechnerfassung, auf die Schrankwand beschnitten. */
+  background: #3d2d1c url('../img/brinkmann-einbauschrank-800.webp') 64% 50% / cover no-repeat;
   display: grid;
   align-content: end;
   gap: 0.4em;
@@ -1464,13 +1453,7 @@ a:not([class]):focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    91deg,
-    rgba(255, 244, 224, 0.1) 0 1px,
-    transparent 1px 3px,
-    rgba(28, 18, 8, 0.16) 3px 4px,
-    transparent 4px 8px
-  );
+  background: linear-gradient(to top, rgba(24, 15, 6, 0.7), transparent 55%);
 }
 /* Statt dreier leerer Balken eine Bildunterschrift, wie sie auf der
    Handyfassung tatsächlich stünde. */
@@ -2399,7 +2382,7 @@ a:not([class]):focus-visible {
    kaputt an. */
 .direct a,
 .direct a.rev.is-revealed {
-  transition: transform 0.4s var(--ease), color 0.3s var(--ease),
+  transition: transform 0.22s var(--ease), color 0.2s var(--ease),
     opacity 0.6s var(--ease);
 }
 .direct a::before {
@@ -2413,17 +2396,18 @@ a:not([class]):focus-visible {
   background: var(--gruen);
   /* scaleY statt height: wächst ohne Layout-Neuberechnung */
   transform: scaleY(0);
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.22s var(--ease);
 }
 .band--ink .direct a::before {
   background: var(--gruen-hell);
 }
 .direct a:hover,
 .direct a:focus-visible {
-  transform: translateX(0.6rem);
   color: var(--gruen);
 }
-.direct a:hover::before,
+.direct a:focus-visible {
+  transform: translateX(0.6rem);
+}
 .direct a:focus-visible::before {
   transform: scaleY(1);
 }

@@ -565,7 +565,7 @@
     var newBar = neu.querySelector('.new__bar');
     var newHParts = neu.querySelectorAll('.new__h > *');
     var newImg = neu.querySelector('.new__img');
-    var newShelves = neu.querySelectorAll('.new__shelf i');
+    var newPhoto = neu.querySelector('.new__photo');
     var newCopy = neu.querySelector('.new__copy');
     var newCta = neu.querySelector('.new__cta');
     var newStrip = neu.querySelectorAll('.new__strip span');
@@ -580,9 +580,11 @@
        Wischer eine leere Fläche frei und übergibt nichts. */
     gsap.set(newBar, { opacity: 1, y: 0 });
     gsap.set([newHParts, newCopy, newStrip], { opacity: 0, y: 14 });
-    gsap.set(newShelves, { opacity: 0, x: -18 });
+    if (newPhoto) gsap.set(newPhoto, { scale: 1.22, yPercent: 6 });
     gsap.set(newImg, { clipPath: 'inset(0% 0% 100% 0%)' });
-    gsap.set(newCta, { opacity: 0, scale: 0.5 });
+    /* Nichts entsteht aus dem Nichts: 0.92 statt 0.5, sonst springt der
+       Knopf aus einem Punkt auf. */
+    gsap.set(newCta, { opacity: 0, scale: 0.92 });
     if (phone) gsap.set(phone, { opacity: 0, x: 90, rotate: 6 });
 
     var tl = gsap.timeline({
@@ -730,32 +732,33 @@
         },
         0.57
       )
+      /* Der Moment, auf den die ganze Baustelle zuläuft: wo die alte Seite
+         "BILD FOLGT" stehen hatte, zieht sich jetzt die Arbeit selbst auf.
+         Der Ausschnitt öffnet sich von oben, das Foto sitzt dabei noch nah
+         und setzt sich über eine längere Strecke auf seinen Platz, wie eine
+         Kamera, die zurückfährt. */
       .to(
         newImg,
         {
           clipPath: 'inset(0% 0% 0% 0%)',
           duration: 0.14,
-          ease: 'power2.out'
+          ease: 'power3.out'
         },
-        0.63
-      )
-      /* Die Regalböden schieben sich ein – wie beim Einbauen. */
-      .to(
-        newShelves,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.1,
-          stagger: 0.025,
-          ease: 'power2.out'
-        },
-        0.7
+        0.6
       )
       .to(
         newCta,
         { opacity: 1, scale: 1, duration: 0.1, ease: 'power3.out' },
         0.78
       );
+
+    if (newPhoto) {
+      tl.to(
+        newPhoto,
+        { scale: 1, yPercent: 0, duration: 0.3, ease: 'power2.out' },
+        0.6
+      );
+    }
 
     if (phone) {
       tl.to(

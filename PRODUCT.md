@@ -217,6 +217,15 @@ weder Node noch ImageMagick noch rsvg. qlmanage polstert auf ein Quadrat, deshal
 liegt das Motiv mittig auf einer 1200x1200-Buehne und wird danach mittig
 beschnitten.
 
+**Bild im Beispiel (neu 2026-09-24, vom Inhaber ausdrücklich gewünscht):**
+`assets/img/brinkmann-einbauschrank-{800,1200}.webp` trägt die fertige Seite der
+Tischlerei Brinkmann in der Baustelle. Erzeugt mit Kie.ai, Nano Banana 2 (Task
+`6baf44f9042e9d86ba3591a2f86ec03a`, 12 Credits): Einbauschrank Eiche massiv vor
+einer tiefblauen Altbauwand. Die Rohdatei liegt nicht im Repo. Es zeigt keine
+echte Arbeit, sondern gehört zum erfundenen Beispielbetrieb; der Hinweis darauf
+steht an der Animation. Die Buchrücken tragen winzige Pseudoschrift, die in der
+Einbaugröße nicht lesbar ist.
+
 **Bilder allgemein:** Auf Wunsch des Inhabers (2026-08-18) wird noch keine Bildwelt
 erzeugt, solange keine Bildrichtung feststeht. Nicht ungefragt generieren. Das gilt
 fuer Motive, nicht fuer Marken- und Teilbilder aus dem eigenen System.
