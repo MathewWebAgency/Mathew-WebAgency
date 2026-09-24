@@ -2494,10 +2494,12 @@ a:not([class]):focus-visible {
   left: -0.9rem;
   top: 50%;
   width: 3px;
-  height: 0;
+  height: 1.6rem;
   translate: 0 -50%;
   background: var(--gruen);
-  transition: height 0.4s var(--ease);
+  /* scaleY statt height: wächst ohne Layout-Neuberechnung */
+  transform: scaleY(0);
+  transition: transform 0.4s var(--ease);
 }
 .band--ink .direct a::before {
   background: var(--gruen-hell);
@@ -2509,7 +2511,7 @@ a:not([class]):focus-visible {
 }
 .direct a:hover::before,
 .direct a:focus-visible::before {
-  height: 1.6rem;
+  transform: scaleY(1);
 }
 .band--ink .direct a:hover,
 .band--ink .direct a:focus-visible {
@@ -2731,13 +2733,6 @@ a:not([class]):focus-visible {
    Marker kommt unter dem Zeiger. */
 .prose strong {
   color: var(--on-paper);
-}
-.prose__todo {
-  border-left: 3px solid #d69a2e;
-  background: color-mix(in srgb, #d69a2e 9%, transparent);
-  padding: 0.85rem 1.1rem;
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
-  font-size: 0.875rem;
 }
 
 /* --- Notfallseite ---------------------------------------------------- */
