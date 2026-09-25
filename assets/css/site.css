@@ -31,25 +31,28 @@
   font-display: swap;
   src: url('../fonts/karla-latin.woff2') format('woff2');
 }
-/* Archivo gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
-   hat eine eigene Farbwelt – es braucht auch eine eigene Schrift, sonst
-   versprechen wir Gestaltung fuer genau diesen Betrieb und zeigen unsere. */
+/* Anybody gehoert nicht uns, sondern der Tischlerei Brinkmann. Das Beispiel
+   hat eine eigene Farbwelt und braucht auch eine eigene Schrift, sonst
+   versprechen wir Gestaltung fuer genau diesen Betrieb und zeigen unsere.
+   Variabel in Breite (50 bis 150) und Staerke. */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Anybody';
   font-style: normal;
   font-weight: 100 900;
+  font-stretch: 50% 150%;
   font-display: swap;
-  src: url('../fonts/archivo-latin.woff2') format('woff2');
+  src: url('../fonts/anybody-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Anybody';
   font-style: normal;
   font-weight: 100 900;
+  font-stretch: 50% 150%;
   font-display: swap;
-  src: url('../fonts/archivo-latin-ext.woff2') format('woff2');
+  src: url('../fonts/anybody-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -118,7 +121,7 @@
   /* Nur im Browserrahmen des Beispiels. */
   --code: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
   /* Die Tischlerei Brinkmann setzt ihre eigene Schrift. */
-  --bk-font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --bk-font: 'Anybody', 'Arial Black', 'Helvetica Neue', sans-serif;
 
   /* Eine schmale Versalie braucht rund ein Viertel mehr Grad als eine
      normal laufende Schrift, um dieselbe Fläche zu tragen. */
@@ -786,14 +789,6 @@ a:not([class]):focus-visible {
   align-items: center;
   gap: 0.9rem 1.75rem;
 }
-/* Nur auf dem Handy: dort fehlen die Konditionen, also steht das Wichtigste
-   davon direkt am Knopf. */
-.hero__note {
-  display: none;
-  font-size: var(--t-label);
-  color: var(--on-paper-dim);
-}
-
 /* Der eine choreografierte Moment im Hero: Das Blatt schreibt sich.
    Die Linie zieht sich von links, dann setzen sich die Positionen. */
 @media (prefers-reduced-motion: no-preference) {
@@ -1216,112 +1211,93 @@ a:not([class]):focus-visible {
 
 /* --- Zustand NEU: die gebaute Seite ------------------------------------ */
 
-/* Die Beispielseite ist die Arbeitsprobe: eigene Navigation, ein Bildfeld
-   mit Tiefe, Leistungszeile, Kontakt. Sie muss zeigen, was ein Kunde
-   bekommt – „besser als die alte" reicht als Anspruch nicht. */
-/* Brinkmann bekommt eine eigene Welt – Werkstattlicht am Abend: Tiefblau,
-   Papierweiß, Messing. Das ist der Kern der Arbeitsprobe: Wir behaupten
-   Gestaltung für genau diesen Betrieb und dürfen dann nicht unser eigenes
-   Kalkgrau-Tiefgrün vorführen. Die Tokens gelten nur innerhalb der
-   Miniatur und der Handyfassung. */
+/* Die Beispielseite ist die Arbeitsprobe. Sie muss zeigen, was ein Kunde
+   bekommt, nicht nur „besser als die alte“ sein.
+   Brinkmann hat eine eigene Welt, abgeleitet aus dem eigenen Foto: die
+   tiefblaue Wand wird zum Grund, die Eiche bleibt das Bild, Kobalt ist
+   das Signal. Die Schrift ist Anybody, eine Grotesk mit verstellbarer
+   Breite: breit und schwer für Name und Aussage, schmal für die
+   Gegenzeile. Eine Familie, zwei Gesichter. Ecken bleiben scharf wie eine
+   gehobelte Kante, bewusst anders als unsere runden Knöpfe. Die Tokens
+   gelten nur in der Miniatur und in der Handyfassung. */
 .new,
 .rb__phone .ph {
-  --bk-grund: #14202e;
-  --bk-ink: #f2ece1;
-  --bk-akzent: #c8863c;
-  /* 0.66 war auf Miniaturgroesse nicht mehr lesbar. */
-  --bk-dim: rgba(242, 236, 225, 0.82);
-  --bk-line: rgba(242, 236, 225, 0.18);
+  --bk-grund: #0f1826;
+  --bk-ink: #efeee8;
+  --bk-akzent: #3552d4;
+  --bk-dim: rgba(239, 238, 232, 0.82);
+  --bk-line: rgba(239, 238, 232, 0.22);
   font-family: var(--bk-font);
+  font-stretch: 100%;
 }
 
 .new {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   background: var(--bk-grund);
   color: var(--bk-ink);
-  padding: clamp(0.8rem, 2.2vw, 1.7rem);
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  grid-template-rows: auto auto 1fr auto auto;
-  gap: clamp(0.35rem, 1vw, 0.75rem) clamp(0.6rem, 1.7vw, 1.3rem);
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* Alle Grade rechnen in Breite des Rahmens (cqi), nicht des Fensters:
+     sonst lief die Ueberschrift in schmaleren Rahmen in die Kopfzeile. */
+  container-type: inline-size;
+  --bk-pad: clamp(0.8rem, 3.6cqi, 1.9rem);
   opacity: 0;
   will-change: transform, opacity;
 }
 
-/* Kopfzeile der Beispielseite */
+/* Kopfzeile: Zeichen, Name, Navigation. Sie liegt über dem Foto. */
 .new__bar {
   grid-column: 1 / -1;
+  grid-row: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 1.5vw, 1.1rem);
-  padding-bottom: clamp(0.35rem, 0.9vw, 0.6rem);
-  border-bottom: 1px solid var(--bk-line);
+  padding: calc(var(--bk-pad) * 0.7) var(--bk-pad);
 }
 .new__brand {
-  font-family: var(--bk-font);
-  font-size: clamp(0.7rem, 1.4vw, 1rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-right: auto;
+  font-size: clamp(0.62rem, 1.95cqi, 1rem);
+  font-weight: 800;
+  font-stretch: 150%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+/* Zeichen der Tischlerei: zwei Zinken, die ineinandergreifen. */
+.new__mark {
+  width: 1.35em;
+  height: 1.35em;
+  flex: none;
+  fill: var(--bk-ink);
+}
+.new__mark path + path {
+  fill: var(--bk-akzent);
 }
 .new__nav {
   display: flex;
-  gap: clamp(0.4rem, 1.1vw, 0.8rem);
-  margin-right: auto;
+  gap: clamp(0.5rem, 1.4vw, 1.1rem);
 }
 .new__nav i {
   font-style: normal;
-  font-size: clamp(0.5rem, 0.95vw, 0.7rem);
-  letter-spacing: 0.01em;
-  color: var(--bk-dim);
-}
-.new__pill {
-  font-family: var(--code);
-  font-size: clamp(0.48rem, 0.92vw, 0.68rem);
-  letter-spacing: 0.01em;
-  padding: 0.22em 0.7em;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--bk-line);
-  white-space: nowrap;
+  font-size: clamp(0.5rem, 1.5cqi, 0.78rem);
+  font-weight: 500;
+  color: var(--bk-ink);
 }
 
-.new__h {
-  grid-column: 1;
-  grid-row: 2;
-  font-family: var(--bk-font);
-  font-size: clamp(0.95rem, 2.9vw, 2rem);
-  font-weight: 600;
-  /* Die Tischlerei setzt normal, nicht in unseren Versalien. */
-  text-transform: none;
-  line-height: 0.95;
-  letter-spacing: -0.038em;
-}
-.new__h em {
-  font-style: normal;
-  font-weight: 400;
-  color: var(--bk-akzent);
-  display: block;
-}
-.new__copy {
-  grid-column: 1;
-  grid-row: 3;
-  align-self: start;
-  font-size: clamp(0.56rem, 1.1vw, 0.78rem);
-  line-height: 1.5;
-  color: var(--bk-dim);
-  max-width: 32ch;
-}
-/* Das Bildfeld zeigt das Material des Betriebs: Holz mit Maserung und Tiefe,
-   dazu eine Bildunterschrift – so, wie eine echte Projektaufnahme säße. */
+/* Das Foto läuft randlos in die rechte Seite, bis unter die Kopfzeile. */
 .new__img {
   grid-column: 2;
-  grid-row: 2 / 5;
-  border-radius: var(--r-sm);
-  background: #3d2d1c; /* bis das Foto geladen ist */
+  grid-row: 1 / 3;
   position: relative;
   overflow: hidden;
+  background: #1b2a3f; /* bis das Foto geladen ist */
   clip-path: inset(0 0 100% 0);
-  box-shadow: inset 0 0 0 1px rgba(20, 12, 4, 0.25);
 }
 .new__photo {
   position: absolute;
@@ -1331,79 +1307,110 @@ a:not([class]):focus-visible {
   max-width: none;
   object-fit: cover;
   /* Die Schrankwand sitzt rechts der Mitte, das Fenster links. */
-  object-position: 58% 55%;
+  object-position: 62% 55%;
   transform-origin: 60% 60%;
   will-change: transform;
 }
-
-.new__tag {
+/* Der Grund zieht von links ins Bild: dort, wo die Überschrift ins Foto
+   hineinragt, bleibt sie lesbar. Oben ein Schatten für die Navigation. */
+.new__img::after {
+  content: '';
   position: absolute;
-  z-index: 1;
-  left: 6%;
-  top: 7%;
-  padding: 0.35em 0.6em;
-  border-radius: var(--r-xs);
-  /* Tiefblau der Tischlerei, halb durchlässig: lesbar über jeder Stelle
-     des Fotos, ohne ein Kasten zu werden. */
-  background: rgba(20, 32, 46, 0.62);
-  font-family: var(--code);
-  font-size: clamp(0.44rem, 0.86vw, 0.62rem);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: rgba(245, 238, 224, 0.9);
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--bk-grund) 0%, rgba(15, 24, 38, 0.72) 22%, rgba(15, 24, 38, 0) 58%),
+    linear-gradient(to bottom, rgba(15, 24, 38, 0.6), rgba(15, 24, 38, 0) 24%);
 }
-/* Bildunterschrift wie bei einer echten Projektaufnahme: was ist das, und
-   was hat es gekostet an Zeit. Steht auf einem Verlauf, damit sie auf dem
-   Holz lesbar bleibt. */
-.new__cap {
-  position: absolute;
+
+/* Aussage, Text und Knopf. Die Überschrift ist breiter als ihre Spalte
+   und ragt ins Foto hinein. */
+.new__main {
+  grid-column: 1 / -1;
+  grid-row: 2;
   z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1.4em 7% 0.6em;
-  font-size: clamp(0.48rem, 0.94vw, 0.68rem);
-  line-height: 1.35;
-  color: rgba(247, 242, 232, 0.94);
-  background: linear-gradient(to top, rgba(24, 15, 6, 0.78), transparent);
-  /* Heller Text auf gemasertem Holz: eine dunkle Kante haelt ihn lesbar,
-     egal welche Maserungsstelle darunter liegt. */
-  text-shadow: 0 1px 2px rgba(16, 12, 6, 0.75);
+  align-self: center;
+  display: grid;
+  justify-items: start;
+  gap: clamp(0.45rem, 1.9cqi, 1rem);
+  padding: 0 var(--bk-pad);
+}
+.new__h {
+  font-family: var(--bk-font);
+  font-size: clamp(1.1rem, 5.8cqi, 3rem);
+  font-weight: 800;
+  font-stretch: 150%;
+  /* Die Tischlerei setzt normal, nicht in unseren Versalien. */
+  text-transform: none;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.new__h span {
+  display: block;
+}
+/* Die Gegenzeile: dieselbe Schrift, ganz schmal, auf einem Streifen
+   Kobalt. Wie ein Etikett auf einer Kiste aus der Werkstatt. */
+.new__h em {
+  display: inline-block;
+  margin-top: 0.12em;
+  padding: 0.06em 0.22em 0.1em;
+  font-style: normal;
+  font-size: 1.08em;
+  font-weight: 700;
+  font-stretch: 58%;
+  letter-spacing: 0;
+  background: var(--bk-akzent);
+}
+.new__copy {
+  font-size: clamp(0.56rem, 1.7cqi, 0.88rem);
+  line-height: 1.5;
+  color: var(--bk-dim);
+  max-width: 30ch;
 }
 .new__cta {
-  grid-column: 1;
-  grid-row: 4;
-  align-self: end;
-  justify-self: start;
-  font-size: clamp(0.56rem, 1.12vw, 0.8rem);
-  font-weight: 600;
-  padding: 0.45rem 1rem;
-  border-radius: var(--r-pill);
-  background: var(--bk-akzent);
-  color: var(--bk-grund);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: clamp(0.56rem, 1.7cqi, 0.88rem);
   font-weight: 700;
-  transform: scale(0.5);
+  padding: 0.62em 1em;
+  background: var(--bk-akzent);
+  color: var(--bk-ink);
   opacity: 0;
 }
-/* Leistungszeile am Fuß: sagt in vier Wörtern, was der Betrieb macht. */
+.new__cta b {
+  font-weight: 400;
+}
+
+/* Leistungszeile am Fuß, als heller Streifen: sagt in vier Wörtern, was
+   der Betrieb macht, und nennt rechts die Arbeit auf dem Foto. */
 .new__strip {
   grid-column: 1 / -1;
-  grid-row: 5;
+  grid-row: 3;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3em 1.1em;
-  padding-top: clamp(0.3rem, 0.8vw, 0.55rem);
-  border-top: 1px solid var(--bk-line);
+  align-items: baseline;
+  gap: 0.3em clamp(0.7rem, 1.8vw, 1.4rem);
+  padding: calc(var(--bk-pad) * 0.5) var(--bk-pad);
+  background: var(--bk-ink);
+  color: var(--bk-grund);
 }
 .new__strip span {
-  font-family: var(--code);
-  font-size: clamp(0.46rem, 0.9vw, 0.66rem);
+  font-size: clamp(0.46rem, 1.45cqi, 0.74rem);
   /* line-height 1: die Zeile ragte auf Handybreite sonst 1px unter den
      Rahmen des Nachbaus. */
   line-height: 1;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-stretch: 125%;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--bk-dim);
+}
+.new__strip .new__work {
+  margin-left: auto;
+  font-weight: 500;
+  font-stretch: 75%;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 /* Handy-Ansicht, die zum Schluss andockt */
@@ -1428,84 +1435,85 @@ a:not([class]):focus-visible {
 /* Die Handyfassung zeigt dieselbe Seite, nicht abstrakte Balken: derselbe
    Name, dieselbe Aussage, dasselbe Holz, derselbe Weg zum Termin. */
 .rb__phone .ph {
+  position: relative;
   height: 100%;
   border-radius: 10px;
   background: var(--bk-grund);
   /* Ohne diese Zeile erbte die Handyfassung unser Tinte-Schwarz und setzte
-     Name und Ueberschrift unsichtbar auf den dunkelblauen Grund. Nur das
-     Bildfeld und die Schaltflaeche brachten ihre Farbe selbst mit. */
+     Name und Ueberschrift unsichtbar auf den dunklen Grund. */
   color: var(--bk-ink);
   /* Basisgrad. Alles darin rechnet in em, damit der Inhalt mit dem
      Gehaeuse mitwaechst statt in festen Pixeln stehenzubleiben. */
   font-size: clamp(6px, 1.3vw, 11px);
-  padding: 0.85em 0.8em;
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 0.55em;
-  align-content: start;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
   overflow: hidden;
 }
 .ph__brand {
+  grid-row: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.9em 0.8em 0.5em;
   font-family: var(--bk-font);
-  font-size: 0.92em;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  padding-bottom: 0.55em;
-  border-bottom: 1px solid var(--bk-line);
+  font-size: 0.78em;
+  font-weight: 800;
+  /* Im schmalen Gehaeuse passt der breite Schnitt nicht: der Name lief
+     ueber den Rand. */
+  font-stretch: 100%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.ph__h {
-  font-family: var(--bk-font);
-  font-size: 1.6em;
-  font-weight: 600;
-  /* 0.95 presste vier Zeilen aufeinander, seit die Gegenzeile dazukam. */
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-}
-/* Dieselbe Gegenzeile wie in der Breitfassung: die Handyfassung ist
-   dieselbe Seite, nicht eine gekuerzte. */
-.ph__h em {
-  font-style: normal;
-  font-weight: 400;
-  color: var(--bk-akzent);
-  display: block;
+.ph__brand .new__mark {
+  width: 1.3em;
+  height: 1.3em;
 }
 .ph__img {
+  grid-row: 1 / 3;
   position: relative;
-  border-radius: 0.4em;
-  overflow: hidden;
   /* Dasselbe Foto wie in der Rechnerfassung, auf die Schrankwand beschnitten. */
-  background: #3d2d1c url('../img/brinkmann-einbauschrank-800.webp') 64% 50% / cover no-repeat;
-  display: grid;
-  align-content: end;
-  gap: 0.4em;
-  padding: 0 0.6em 0.8em;
+  background: #1b2a3f url('../img/brinkmann-einbauschrank-800.webp') 60% 50% / cover no-repeat;
 }
-.ph__img::before {
+.ph__img::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(24, 15, 6, 0.7), transparent 55%);
+  background:
+    linear-gradient(to top, var(--bk-grund) 0%, rgba(15, 24, 38, 0) 45%),
+    linear-gradient(to bottom, rgba(15, 24, 38, 0.65), rgba(15, 24, 38, 0) 30%);
 }
-/* Statt dreier leerer Balken eine Bildunterschrift, wie sie auf der
-   Handyfassung tatsächlich stünde. */
-.ph__img b {
-  position: relative;
-  font-family: var(--code);
-  font-size: 0.72em;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--bk-ink);
-  text-shadow: 0 1px 2px rgba(16, 12, 6, 0.75);
+.ph__h {
+  grid-row: 3;
+  z-index: 1;
+  margin-top: -1.6em;
+  padding: 0 0.8em;
+  font-family: var(--bk-font);
+  font-size: 1.45em;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ph__h em {
+  display: inline-block;
+  margin-top: 0.14em;
+  padding: 0.06em 0.22em 0.1em;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 58%;
+  letter-spacing: 0;
+  background: var(--bk-akzent);
 }
 .ph__cta {
-  font-size: 0.85em;
+  grid-row: 4;
+  margin: 0.9em 0.8em 1em;
+  font-size: 0.82em;
   font-weight: 700;
   text-align: center;
-  padding: 0.55em 0;
-  border-radius: var(--r-pill);
+  padding: 0.7em 0;
   background: var(--bk-akzent);
-  color: var(--bk-grund);
+  color: var(--bk-ink);
 }
 
 /* Bauline: die Kante, hinter der freigelegt wird. Der Strich selbst ist
@@ -2761,9 +2769,6 @@ a:not([class]):focus-visible {
     align-items: flex-start;
     gap: 0.6rem;
   }
-  .hero__note {
-    display: block;
-  }
   /* Die Bühne der Baustelle hält oben ohnehin Platz für den festen Header
      frei. Zusammen mit den Innenabständen von Hero und Sektion stand unter
      dem Knopf ein leeres Drittel Bildschirm. */
@@ -2935,8 +2940,7 @@ a:not([class]):focus-visible {
   }
   /* Mit mehr Rahmenhoehe darf der Nachbau selbst wieder atmen. */
   .new {
-    padding: 0.95rem 0.9rem;
-    gap: 0.5rem 0.8rem;
+    --bk-pad: 0.9rem;
   }
   .rb__stage {
     height: 100svh;
@@ -3001,33 +3005,49 @@ a:not([class]):focus-visible {
   .direct span {
     text-align: left;
   }
-  /* Im Hochkantrahmen stapelt sich die Beispielseite, statt zu spalten. */
+  /* Im Hochkantrahmen stapelt sich die Beispielseite: das Foto oben über
+     die volle Breite, die Überschrift greift von unten hinein. */
   .new {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto 1fr auto auto;
-  }
-  .new__h,
-  .new__copy,
-  .new__img,
-  .new__cta {
-    grid-column: 1;
-  }
-  .new__copy {
-    grid-row: 3;
-    max-width: none;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
   }
   .new__img {
-    grid-row: 4;
-    min-height: 60px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .new__img::after {
+    background:
+      linear-gradient(to top, var(--bk-grund) 0%, rgba(15, 24, 38, 0) 42%),
+      linear-gradient(to bottom, rgba(15, 24, 38, 0.65), rgba(15, 24, 38, 0) 26%);
+  }
+  .new__main {
+    grid-row: 3;
+    margin-top: -1.5rem;
+    padding-bottom: var(--bk-pad);
+  }
+  .new__h {
+    font-size: 1.3rem;
+  }
+  .new__copy {
+    font-size: 0.66rem;
+    max-width: none;
   }
   .new__cta {
-    grid-row: 5;
+    font-size: 0.66rem;
   }
   .new__strip {
-    grid-row: 6;
+    grid-row: 4;
   }
-  /* Auf dieser Breite trägt die Nummer im Kopf nicht mehr. */
-  .new__pill {
+  .new__strip {
+    column-gap: 0.75rem;
+  }
+  .new__strip span {
+    font-size: 0.5rem;
+    font-stretch: 105%;
+  }
+  /* Auf dieser Breite tragen die Arbeit und die halbe Navigation nicht mehr. */
+  .new__strip .new__work,
+  .new__nav i:nth-child(n + 2) {
     display: none;
   }
 }
