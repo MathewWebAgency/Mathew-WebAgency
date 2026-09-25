@@ -75,6 +75,9 @@
       burger.setAttribute('aria-expanded', String(open));
       menu.classList.toggle('is-open', open);
       menu.setAttribute('aria-hidden', String(!open));
+      /* aria-hidden allein sperrt nichts: die Links blieben per Tab
+         erreichbar, obwohl man sie nicht sieht. */
+      menu.inert = !open;
       document.body.style.overflow = open ? 'hidden' : '';
     }
     burger.addEventListener('click', function () {
@@ -207,6 +210,44 @@
     } else {
       lauf();
     }
+  }
+
+  /* Dock: auf dem Handy ist der Header-Knopf ausgeblendet. Sobald der Knopf
+     im Seitenkopf aus dem Bild ist, erscheint unten einer im Daumenbereich.
+     Er tritt zurück, sobald der Schlussaufruf oder die Fußzeile im Bild ist,
+     dort steht ohnehin einer. */
+  function initDock() {
+    var dock = document.querySelector('[data-dock]');
+    if (!dock || !('IntersectionObserver' in window)) return;
+    var start = document.querySelector('.hero__sign, .phead');
+    var ende = document.querySelectorAll('.finale, .ftr');
+    var vorbei = false;
+    var amEnde = 0;
+
+    function setze() {
+      var an = vorbei && amEnde === 0;
+      dock.classList.toggle('is-on', an);
+      dock.inert = !an;
+    }
+    if (start) {
+      new IntersectionObserver(function (e) {
+        /* "vorbei" heißt: oben aus dem Bild, nicht noch unterhalb. */
+        vorbei = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
+        setze();
+      }).observe(start);
+    }
+    var sichtbar = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) sichtbar.add(e.target);
+        else sichtbar.delete(e.target);
+      });
+      amEnde = sichtbar.size;
+      setze();
+    });
+    ende.forEach(function (el) {
+      io.observe(el);
+    });
   }
 
   /* Nur eine FAQ-Antwort gleichzeitig offen halten. */
@@ -354,11 +395,10 @@
     var stack = rb && rb.querySelector('.rb__stack');
     if (!src || !dst || reduced || !hasST) return;
 
-    /* Was sonst im Hero steht, tritt zurück, sobald die Zeile abhebt:
-       sonst scrollt der Knopf auf dem Handy mitten durch sie hindurch. */
-    var rest = document.querySelectorAll(
-      '.hero__h .ko__line:not(.claim-b), .hero__lead, .terms, .hero__sign'
-    );
+    /* Der übrige Kopf der Baustelle (Hinweis, Status, Kommentar) erscheint
+       erst mit der Landung. Vorher stünden seine Bruchstücke ohne
+       Überschrift unter dem Hero-Knopf. */
+    var kopfRest = rb.querySelectorAll('.rb__disclaimer, .rb__side');
 
     var ghost = document.createElement('div');
     ghost.className = 'hero__h handoff';
@@ -393,6 +433,7 @@
            echten Ziel, statt auf eine Stelle zu zielen, die erst am Ende
            der Strecke erreicht wird. */
         y1: ende + (d.top - st.top),
+        park: d.top - st.top, /* Lage der h2, wenn die Bühne klebt */
         k: k,
         ende: ende
       };
@@ -412,18 +453,19 @@
         src.style.visibility = z === 'start' ? '' : 'hidden';
         ghost.style.visibility = z === 'flug' ? 'visible' : 'hidden';
       }
-      /* Im ersten Viertel der Strecke ist der Rest des Hero weg. */
-      var weg = Math.min(1, Math.max(0, p / 0.25));
-      for (var i = 0; i < rest.length; i++) {
-        rest[i].style.opacity = weg ? String(1 - weg) : '';
+      var kopf = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
+      for (var i = 0; i < kopfRest.length; i++) {
+        kopfRest[i].style.opacity = z === 'ziel' ? '' : String(kopf);
       }
       var e = glatt(Math.min(1, Math.max(0, p)));
       var x = m.x0 + (m.x1 - m.x0) * e;
-      /* Die Zeile bleibt am Bildschirm stehen und schrumpft, während der
-         Hero unter ihr wegscrollt. Sobald der Kopf der Baustelle von unten
-         auf ihrer Höhe ankommt, nimmt er sie mit nach oben. Eine Bahn ohne
-         Umweg: erst stehen, dann steigen. */
-      var y = Math.min(m.y0, m.y1 - window.scrollY);
+      /* Die Zeile fährt zuerst ganz normal mit der Seite nach oben. Unter
+         dem Header bleibt sie stehen und schrumpft, der Rest des Hero
+         scrollt unter ihrem Leinenstreifen weg, so wie unter einem
+         Header. Kommt die Bühne der Baustelle oben an, liegt ihre
+         Überschrift genau dort. Nichts wird ausgeblendet: der Knopf im
+         Hero bleibt sichtbar, bis er von selbst aus dem Bild scrollt. */
+      var y = Math.max(m.y0 - window.scrollY, m.park);
       var k = 1 + (m.k - 1) * e;
       var ueber = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
       ghost.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + k + ')';
@@ -447,7 +489,7 @@
         dst.style.opacity = '';
         dst.style.width = '';
         dst.style.maxWidth = '';
-        for (var i = 0; i < rest.length; i++) rest[i].style.opacity = '';
+        for (var i = 0; i < kopfRest.length; i++) kopfRest[i].style.opacity = '';
         zustand = '';
       },
       onRefresh: function (self) {
@@ -530,6 +572,7 @@
         label: 'Fertig',
         url: 'tischlerei-brinkmann.de',
         title: 'Ein Weg. Auf jedem Gerät derselbe.',
+        cta: 'So eine Seite für deinen Betrieb? Erstgespräch anfragen',
         text: 'Ein Ziel pro Seite, lesbar auf dem Handy in der Werkstatt. Was Brinkmann kann, sieht man jetzt in der ersten Sekunde – nicht erst im dritten Klick.'
       }
     ];
@@ -549,7 +592,11 @@
            innerHTML startet sie von selbst neu und hängt nicht am
            GSAP-Ticker (der in Hintergrund-Tabs pausiert). */
         caption.innerHTML =
-          '<strong>' + b.title + '</strong><p>' + b.text + '</p>';
+          '<strong>' + b.title + '</strong><p>' + b.text + '</p>' +
+          (b.cta
+            ? '<a class="btn rb__cta" href="/kontakt.html">' + b.cta +
+              ' <span class="btn__arrow" aria-hidden="true">→</span></a>'
+            : '');
       }
     }
 
@@ -989,6 +1036,7 @@
     initHeadOpen();
     initReveals();
     initFaq();
+    initDock();
     initBeforeAfter();
     initForm();
     initStageFit();

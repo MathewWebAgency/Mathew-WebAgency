@@ -28,7 +28,7 @@
 
 <link rel="preload" href="/assets/fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
 <link rel="preload" href="/assets/fonts/karla-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260924c">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260925a">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
   </div>
 </header>
 
-<div class="mnav" id="mnav" aria-hidden="true">
+<div class="mnav" id="mnav" aria-hidden="true" inert>
   <ul class="mnav__list">
     <li><a href="/leistungen.html">Leistungen</a></li>
     <li><a href="/ablauf.html" aria-current="page">Ablauf</a></li>
@@ -287,9 +287,16 @@
   </div>
 </footer>
 
+<!-- Knopf im Daumenbereich (nur Handy): erscheint, sobald der Knopf im
+     Seitenkopf aus dem Bild ist, und tritt beim Schlussaufruf zurück. -->
+<div class="dock" data-dock inert>
+  <a class="btn" href="/kontakt.html">Erstgespräch anfragen <span class="btn__arrow" aria-hidden="true">→</span></a>
+  <span class="dock__note">30 Min. &middot; kostenlos</span>
+</div>
+
 <script src="/assets/js/gsap.min.js" defer></script>
 <script src="/assets/js/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/lenis.min.js" defer></script>
-<script src="/assets/js/site.js?v=20260924c" defer></script>
+<script src="/assets/js/site.js?v=20260925a" defer></script>
 </body>
 </html>
