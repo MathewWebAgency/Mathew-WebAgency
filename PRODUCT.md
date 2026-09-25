@@ -206,16 +206,11 @@ mit Plausiblem auf.
 `assets/img/team-placeholder.svg` und `assets/img/hero-poster.jpg` waren unbelegt
 und von keiner Seite mehr eingebunden — beide sind entfernt.
 
-**Teilbild und App-Symbol (neu 2026-08-19):** `assets/img/og-image.png` (1200x630)
-und `assets/img/apple-touch-icon.png` (180x180) sind aus dem aktuellen System neu
-gebaut. Die Vorgaenger stammten von Mitte Juli und zeigten gesperrte Versalien, den
-gruenen Radial-Schein, das alte Marineblau und einen abgeloesten Slogan; das
-App-Symbol trug sogar ein voellig anderes Zeichen als der Browser-Tab. Gebaut werden
-sie aus einer SVG mit base64-eingebetteten Schriften, gerastert per
-`qlmanage -t -s <breite>` und zugeschnitten per `sips` — auf diesem Rechner gibt es
-weder Node noch ImageMagick noch rsvg. qlmanage polstert auf ein Quadrat, deshalb
-liegt das Motiv mittig auf einer 1200x1200-Buehne und wird danach mittig
-beschnitten.
+**Teilbild und App-Symbole (neu gebaut 2026-09-25, Werkstatt-Look):**
+`og-image.png` (1200x630) zeigt Wortmarke und Hero-Satzpaar in Big Shoulders auf
+Leinen, `icon-512/192`, `apple-touch-icon` und `logo-google` das M in Leinen auf
+Moos, wie das Favicon. Gebaut mit `.claude/render/` (Canvas mit den echten
+Schriften, Anleitung in `LIESMICH.md`). Der alte Weg über qlmanage entfällt.
 
 **Bild im Beispiel (neu 2026-09-24, vom Inhaber ausdrücklich gewünscht):**
 `assets/img/brinkmann-einbauschrank-{800,1200}.webp` trägt die fertige Seite der
