@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Render: Teilbild und Symbole</title>
+<style>
+@font-face{font-family:'Big Shoulders Display';font-weight:100 900;src:url('/assets/fonts/big-shoulders-display-latin.woff2') format('woff2')}
+@font-face{font-family:'Karla';font-weight:200 800;src:url('/assets/fonts/karla-latin.woff2') format('woff2')}
+body{margin:0;padding:20px;background:#999;display:grid;gap:20px;justify-items:start;font:14px sans-serif}
+canvas{box-shadow:0 2px 12px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+<p id="status">rendere …</p>
+<script>
+const M = 'M0.3 0L10.5 0.5L46.2 57.6L46.1 59.4L39.1 70.5L0.2 9.2ZM0.2 20.5L13.2 40.4L13.2 84L0.2 84ZM17 0L31.4 0L49.1 29.6L67.5 0L82.3 0.3L49.8 52.9ZM18.9 50.2L31.1 69.1L30.9 84L18.9 84ZM89.5 0L99.8 0.2L99.8 8.8L52.6 84L46.7 84L41.9 75.8ZM80.8 49.9L81.1 83.8L68.8 84L68.8 68.6ZM99.7 20.2L99.8 84L87 84L87 40.2Z';
+const C = { leinen:'#EDEBE0', moos:'#26341F', oliv:'#1E2718', gruen:'#3B6526', dim:'#5A6150', hell:'#F0EEE3', linie:'rgba(30,39,24,0.18)' };
+const D = "'Big Shoulders Display'", B = "'Karla'";
+
+function canvas(w, h) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  document.body.appendChild(c); return c;
+}
+/* Das M ist 100 x 84 Einheiten gross. */
+function monogramm(ctx, x, y, breite, farbe) {
+  const k = breite / 100;
+  ctx.save(); ctx.translate(x, y); ctx.scale(k, k);
+  ctx.fillStyle = farbe; ctx.fill(new Path2D(M)); ctx.restore();
+}
+/* Versalien mit leichter Sperrung, wie im CSS (0.005em). */
+function versal(ctx, text, x, y, px, farbe, gewicht = 800, sperr = 0.005) {
+  ctx.font = `${gewicht} ${px}px ${D}`;
+  ctx.letterSpacing = (sperr * px) + 'px';
+  ctx.fillStyle = farbe; ctx.textBaseline = 'alphabetic';
+  ctx.fillText(text.toUpperCase(), x, y);
+  return ctx.measureText(text.toUpperCase()).width;
+}
+
+function teilbild() {
+  const W = 1200, H = 630, R = 72;
+  const c = canvas(W, H), x = c.getContext('2d');
+  x.fillStyle = C.leinen; x.fillRect(0, 0, W, H);
+
+  // Kopf: Monogramm und Wortmarke
+  monogramm(x, R, 58, 44, C.oliv);
+  versal(x, 'Mathew WebAgency', R + 58, 93, 36, C.oliv, 800, 0.02);
+
+  // Die These, genau wie im Hero: Behauptung in Olivschwarz, Widerspruch in Moos
+  const px = 112, lh = px * 0.9;
+  let y = 250;
+  versal(x, 'Deine Arbeit ist gut.', R, y, px, C.oliv);
+  y += lh; versal(x, 'Deine Website sollte', R, y, px, C.gruen);
+  y += lh; versal(x, 'es auch sein.', R, y, px, C.gruen);
+
+  // Fusszeile
+  x.fillStyle = C.linie; x.fillRect(R, 536, W - 2 * R, 1);
+  x.font = `500 25px ${B}`; x.letterSpacing = '0px'; x.fillStyle = C.dim;
+  x.fillText('Websites, Auffindbarkeit und Betreuung', R, 580);
+  x.font = `700 25px ${B}`; x.fillStyle = C.gruen; x.textAlign = 'right';
+  x.fillText('mathew-webagency.de', W - R, 580);
+  return c;
+}
+
+/* App-Symbol: das M hell auf Moos. Keine eigenen Rundungen - iOS und
+   Android maskieren selbst. Das M bleibt in der sicheren Zone (Kreis mit
+   40 % Radius), damit es auch als "maskable" nicht angeschnitten wird. */
+function symbol(n) {
+  const c = canvas(n, n), x = c.getContext('2d');
+  x.fillStyle = C.moos; x.fillRect(0, 0, n, n);
+  const b = n * 0.5, h = b * 0.84;
+  monogramm(x, (n - b) / 2, (n - h) / 2, b, C.hell);
+  return c;
+}
+
+async function senden(c, name) {
+  await fetch('http://127.0.0.1:4175/' + name, { method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' }, body: c.toDataURL('image/png') });
+}
+
+(async () => {
+  await Promise.all([
+    document.fonts.load(`800 100px ${D}`),
+    document.fonts.load(`500 20px ${B}`),
+    document.fonts.load(`700 20px ${B}`)
+  ]);
+  const jobs = [[teilbild(), 'og-image.png'], [symbol(512), 'icon-512.png'],
+                [symbol(192), 'icon-192.png'], [symbol(180), 'apple-touch-icon.png']];
+  for (const [c, n] of jobs) await senden(c, n);
+  document.getElementById('status').textContent = 'fertig: ' + jobs.map(j => j[1]).join(', ');
+  document.title = 'fertig';
+})();
+</script>
+</body>
+</html>

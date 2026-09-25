@@ -1,17 +1,21 @@
 {
   "version": "0.0.1",
+  "_hinweis": [
+    "Attach-Konfiguration ohne Startbefehl. Der Vorschau-Prozess hat in diesem",
+    "iCloud-Ordner keinen Lesezugriff - er kann weder devserver.py oeffnen noch",
+    "die Website-Dateien ausliefern (getestet: Server startete, lieferte aber auf",
+    "jede Anfrage 404). Deshalb wird der Server ausserhalb gestartet:",
+    "",
+    "    python3 .claude/devserver.py &",
+    "",
+    "Danach haengt sich die Vorschau ueber diese Konfiguration an Port 4173 an."
+  ],
   "configurations": [
     {
       "name": "mathew-webagency",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "4173",
-        "--directory",
-        "/Users/aaronmathew/Library/Mobile Documents/com~apple~CloudDocs/Claude Code Websites/Mathew WebAgency"
-      ],
-      "port": 4173
+      "url": "http://localhost:4173",
+      "port": 4173,
+      "autoPort": false
     }
   ]
 }
