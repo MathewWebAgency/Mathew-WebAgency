@@ -1652,50 +1652,87 @@ a:not([class]):focus-visible {
   gap: clamp(1.1rem, 2.4vw, 1.6rem);
 }
 .lvx__body .lead {
-  max-width: 46ch;
-  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+  max-width: 44ch;
+  color: var(--on-paper);
 }
-.lvx__label {
-  font-family: var(--label);
-  font-size: var(--t-label);
-  font-weight: 400;
-  color: var(--on-paper-dim);
-  margin-bottom: -0.4rem;
-}
-.band--ink .lvx__label {
-  color: var(--on-ink-dim);
+.band--ink .lvx__body .lead {
+  color: var(--on-ink);
 }
 
-/* Zeile, Haarlinie, naechste Zeile - dasselbe Bauteil wie die Konditionen
-   auf der Startseite. Bullet-Punkte sagen "Liste", Haarlinien sagen
-   "Verzeichnis", und ein Verzeichnis ist das, was hier steht. */
+/* Vorher standen Nutzen und Umfang als zwei gleich gebaute Verzeichnisse
+   untereinander, jede Zeile mit Haarlinie, dazu zwei winzige Beschriftungen,
+   die kaum zu unterscheiden waren. Sechs Zeilen im selben Grau, nichts
+   fuehrte das Auge. Jetzt gibt es eine klare Rangfolge: der Nutzen ist der
+   Grund, warum jemand liest, und steht gross mit Haken. Der Umfang ist das
+   Kleingedruckte und liegt ruhig in einem eigenen Kasten. */
 .lvx__list {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--line-paper);
 }
-.band--ink .lvx__list {
-  border-top-color: var(--line-ink);
+.lvx__list--nutzen {
+  display: grid;
+  gap: clamp(0.8rem, 1.6vw, 1.1rem);
+  margin-block: clamp(0.4rem, 1vw, 0.8rem);
 }
-.lvx__list li {
-  padding-block: clamp(0.6rem, 1.3vw, 0.85rem);
-  border-bottom: 1px solid var(--line-paper);
-  font-size: var(--t-small);
-  color: var(--on-paper-dim);
-}
-.band--ink .lvx__list li {
-  border-bottom-color: var(--line-ink);
-  color: var(--on-ink-dim);
-}
-/* Der Nutzen ist der Grund, warum jemand liest. Der Umfang ist die
-   Auflistung dahinter. Beide standen vorher im selben Grad. */
 .lvx__list--nutzen li {
-  font-size: var(--t-body);
+  position: relative;
+  padding-left: 2.1rem;
+  font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.35;
   color: var(--on-paper);
+}
+/* Haken aus zwei Kanten, in Moosgruen: dasselbe Zeichen wie ein Abhaken
+   auf dem Aufmass, kein Symbol aus einer Bibliothek. */
+.lvx__list--nutzen li::before {
+  content: '';
+  position: absolute;
+  left: 0.2rem;
+  top: 0.22em;
+  width: 0.5rem;
+  height: 0.9rem;
+  border-right: 3px solid var(--gruen);
+  border-bottom: 3px solid var(--gruen);
+  transform: rotate(40deg);
 }
 .band--ink .lvx__list--nutzen li {
   color: var(--on-ink);
+}
+.band--ink .lvx__list--nutzen li::before {
+  border-color: var(--gruen-hell);
+}
+
+.lvx__pack {
+  display: grid;
+  gap: 0.6rem;
+  padding: clamp(1rem, 2.2vw, 1.4rem) clamp(1.1rem, 2.4vw, 1.6rem);
+  border-radius: var(--r-sm);
+  background: var(--paper-3);
+}
+.band--ink .lvx__pack {
+  background: var(--ink-2);
+}
+.lvx__label {
+  font-family: var(--label);
+  font-size: var(--t-label);
+  font-weight: 700;
+  color: var(--on-paper);
+}
+.band--ink .lvx__label {
+  color: var(--on-ink);
+}
+.lvx__pack .lvx__list {
+  display: grid;
+  gap: 0.35rem;
+}
+.lvx__pack .lvx__list li {
+  font-size: var(--t-small);
+  line-height: 1.45;
+  color: var(--on-paper-dim);
+}
+.band--ink .lvx__pack .lvx__list li {
+  color: var(--on-ink-dim);
 }
 
 /* --- Die Spur auf schmalen Schirmen ------------------------------------- */
