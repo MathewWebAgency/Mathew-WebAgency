@@ -1027,9 +1027,20 @@
     });
   }
 
+  /* Copyright-Jahr: stellt sich zum Jahreswechsel von selbst um. Im HTML
+     steht das Jahr als Rückfall, falls das Skript nicht läuft. */
+  function initJahr() {
+    var jahr = String(new Date().getFullYear());
+    document.querySelectorAll('[data-jahr]').forEach(function (el) {
+      el.textContent = jahr;
+    });
+  }
+
   /* ------------------------------------------------------------ Start ---- */
 
   function boot() {
+    /* Zuerst, damit ein Fehler weiter unten das Jahr nicht aufhält. */
+    initJahr();
     initLenis();
     initHeader();
     initMenu();
