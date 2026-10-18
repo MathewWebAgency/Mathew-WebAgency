@@ -749,13 +749,6 @@ a:not([class]):focus-visible {
   max-width: 17ch;
 }
 
-.hero__lead {
-  font-size: var(--t-lead);
-  line-height: 1.5;
-  color: var(--on-paper-dim);
-  max-width: 52ch;
-}
-
 /* --- Konditionen als Positionszeilen ------------------------------------ */
 /* Ein Leistungsverzeichnis kennt keine Karten: Zeile, Haarlinie, nächste
    Zeile. Die Begriffsspalte steht in Mono, weil sie eine Position ist. */
@@ -2741,10 +2734,9 @@ a:not([class]):focus-visible {
     --t-label: 0.95rem;
     --t-lead: 1.18rem;
   }
-  /* Auf dem Handy: Titel, dann sofort der Knopf. Einleitung und
-     Konditionen stehen weiter unten ohnehin (Ablauf, FAQ) und drückten
-     das Erstgespräch aus dem ersten Bildschirm. */
-  .hero__lead,
+  /* Auf dem Handy: Titel, dann sofort der Knopf. Die Konditionen stehen
+     weiter unten ohnehin (Ablauf, FAQ) und drückten das Erstgespräch aus
+     dem ersten Bildschirm. */
   .terms {
     display: none;
   }
