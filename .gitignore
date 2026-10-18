@@ -6,3 +6,6 @@ Icon?
 
 # Lokale Claude-Code-Einstellungen (nicht teilen)
 .claude/settings.local.json
+
+# Impeccable: lokale Pruefberichte und Zustaende
+.impeccable/
